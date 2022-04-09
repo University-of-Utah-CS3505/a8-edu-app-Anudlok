@@ -19,7 +19,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->widget->show();
     this->resize(1300, 900);
-
 }
 
 MainWindow::~MainWindow()

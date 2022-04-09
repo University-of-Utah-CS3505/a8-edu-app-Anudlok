@@ -63,7 +63,7 @@ void SceneWidget::paintEvent(QPaintEvent *) {
 //    printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 
     painter.drawImage((int)(position.x*20), (int)(position.y*20), image);
-    painter.drawImage(200, 200, image);
+//    painter.drawImage(200, 200, image);
 //    qDebug() << image;
     painter.end();
    }
