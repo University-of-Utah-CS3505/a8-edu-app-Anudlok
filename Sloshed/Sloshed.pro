@@ -126,4 +126,4 @@ DISTFILES += \
     alien1.png
 
 RESOURCES += \
-    alien_image.qrc
+    GameImages.qrc

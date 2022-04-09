@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/GameImages">
+        <file>Images/BackgroundSketch1.png</file>
+        <file>Images/EnemySketch1.png</file>
+        <file>Images/GameplaySketch1.png</file>
+        <file>Images/LogoSketch2.png</file>
+        <file>Images/PowerupSketch1.png</file>
+        <file>Images/SpriteSketch1.png</file>
+        <file>Images/StartSketch1.png</file>
+    </qresource>
+</RCC>
