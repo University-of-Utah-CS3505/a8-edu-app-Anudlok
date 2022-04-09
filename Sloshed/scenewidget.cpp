@@ -5,7 +5,7 @@
 SceneWidget::SceneWidget(QWidget *parent) : QWidget(parent),
     world(b2Vec2(0.0f, 10.0f)),
     timer(this),
-    image("Images/alien1.png") // Make a resource file - mac executables are in a hidden folder
+    image(":/Images/alien1.jpg") // Make a resource file - mac executables are in a hidden folder
 {
     // Define the ground body.
     b2BodyDef groundBodyDef;
