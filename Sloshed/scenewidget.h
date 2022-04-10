@@ -1,3 +1,11 @@
+/************************************************
+ * SceneWidget class
+ * Class definition for SceneWidget QWidget
+ * Window
+ * @author: Anna Timofeyenko, Gabby Culley,
+ *          Gaby Torres, Raynard Christian, Angela Mishler
+ * @date: 4/9/2022
+************************************************/
 #ifndef SCENEWIDGET_H
 #define SCENEWIDGET_H
 

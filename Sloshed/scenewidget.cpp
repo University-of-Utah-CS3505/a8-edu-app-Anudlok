@@ -1,3 +1,11 @@
+/************************************************
+ * SceneWidget class
+ * Class definition for SceneWidget QWidget
+ * Window
+ * @author: Anna Timofeyenko, Gabby Culley,
+ *          Gaby Torres, Raynard Christian, Angela Mishler
+ * @date: 4/9/2022
+************************************************/
 #include "scenewidget.h"
 #include <QPainter>
 #include <QDebug>
@@ -60,11 +68,17 @@ void SceneWidget::paintEvent(QPaintEvent *) {
     b2Vec2 position = body->GetPosition();
     float angle = body->GetAngle();
 
-//    printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
-
+    //DvD Motion
+    int x = position.x;
+    int y = position.y;
+    int xSpeed = 10;
+    int ySpeed = 10;
+    //TODO: find a way to get the world image
+    //if(x+ image.width() == width){
+    // xSpeed *= -1;
+    //}
     painter.drawImage((int)(position.x*20), (int)(position.y*20), image);
-//    painter.drawImage(200, 200, image);
-//    qDebug() << image;
+
     painter.end();
    }
 

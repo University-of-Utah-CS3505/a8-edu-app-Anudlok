@@ -1,3 +1,11 @@
+/************************************************
+ * Player class
+ * Class definition for Player QObject
+ * Window
+ * @author: Anna Timofeyenko, Gabby Culley,
+ *          Gaby Torres, Raynard Christian, Angela Mishler
+ * @date: 4/9/2022
+************************************************/
 #ifndef PLAYER_H
 #define PLAYER_H
 
