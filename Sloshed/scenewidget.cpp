@@ -50,7 +50,6 @@ SceneWidget::SceneWidget(QWidget *parent) : QWidget(parent),
 
     // Set the box density to be non-zero, so it will be dynamic.
     fixtureDef.density = 1.0f;
-
     // Override the default friction.
     fixtureDef.friction = 0.3f;
     fixtureDef.restitution = 0.9;
@@ -68,15 +67,28 @@ void SceneWidget::paintEvent(QPaintEvent *) {
     b2Vec2 position = body->GetPosition();
     float angle = body->GetAngle();
 
+
+    /*
+     //Credit: https://www.youtube.com/watch?v=0j86zuqqTlQ
     //DvD Motion
+     body->SetAngularVelocity(0.785398);
     int x = position.x;
     int y = position.y;
-    int xSpeed = 10;
-    int ySpeed = 10;
-    //TODO: find a way to get the world image
-    //if(x+ image.width() == width){
-    // xSpeed *= -1;
-    //}
+    int xSpeed = 20;
+    int ySpeed = 20;
+
+    int width = this->width();
+    int height= this->height();
+
+    if(x+ image.width() == width||x==0){
+     xSpeed = -xSpeed;
+    }
+
+    if( y + image.height() == height|| y == 0){
+    ySpeed = -ySpeed;
+    }
+    painter.drawImage((int)(position.x*xSpeed), (int) (position.y*ySpeed), image);
+    */
     painter.drawImage((int)(position.x*20), (int)(position.y*20), image);
 
     painter.end();
