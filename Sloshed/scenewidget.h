@@ -29,6 +29,10 @@ private:
     b2Body* body;
     QTimer timer;
     QImage image;
+    int x;
+    int y;
+    int xSpeed;
+    int ySpeed;
 };
 
 #endif // SCENEWIDGET_H

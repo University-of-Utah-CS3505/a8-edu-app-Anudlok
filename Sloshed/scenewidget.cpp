@@ -13,7 +13,9 @@
 SceneWidget::SceneWidget(QWidget *parent) : QWidget(parent),
     world(b2Vec2(0.0f, 10.0f)),
     timer(this),
-    image(":/GameImages/Images/LogoSketch2.png") // Make a resource file - mac executables are in a hidden folder
+    image(":/GameImages/Images/LogoSketch2.png"), // Make a resource file - mac executables are in a hidden folder
+    x(0), y(0),
+    xSpeed(20), ySpeed(20)
 {
     // Define the ground body.
     b2BodyDef groundBodyDef;
@@ -64,9 +66,8 @@ SceneWidget::SceneWidget(QWidget *parent) : QWidget(parent),
 void SceneWidget::paintEvent(QPaintEvent *) {
     // Create a painter
     QPainter painter(this);
-    b2Vec2 position = body->GetPosition();
-    float angle = body->GetAngle();
-
+    //b2Vec2 position = body->GetPosition();
+    //float angle = body->GetAngle();
 
     /*
      //Credit: https://www.youtube.com/watch?v=0j86zuqqTlQ
@@ -89,10 +90,32 @@ void SceneWidget::paintEvent(QPaintEvent *) {
     }
     painter.drawImage((int)(position.x*xSpeed), (int) (position.y*ySpeed), image);
     */
-    painter.drawImage((int)(position.x*20), (int)(position.y*20), image);
+    //painter.drawImage((int)(position.x*20), (int)(position.y*20), image);
 
-    painter.end();
-   }
+    //painter.end();
+
+
+    //NOTES:
+    //Not actually a working solution with the physics engine, will need to modify
+    //Changed the changed the x,y position of the central widget from 19 to 0 and the y height to 900 from 859.
+    //Also changed the x,y position of the scene widget to do this and made it match the size of the central widget.
+    //Credit: https://www.youtube.com/watch?v=0j86zuqqTlQ
+    //DvD Motion
+    //b2Vec2 position = body->GetPosition();
+
+    int width = this->width();
+    int height = this->height();
+
+    if(x + image.width() > width || x < 0)
+        xSpeed = -xSpeed;
+
+    if(y + image.height() > height || y < 0)
+        ySpeed = -ySpeed;
+
+    x = x + xSpeed;
+    y = y + ySpeed;
+    painter.drawImage((int)(x), (int)(y), image);
+}
 
 void SceneWidget::updateWorld() {
     // It is generally best to keep the time step and iterations fixed.
