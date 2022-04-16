@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
   //  effect->setBlurRadius(50);
   //  effect->blurRadius();
   //  this->setGraphicsEffect(effect);
+    //Test
 }
 
 MainWindow::~MainWindow()
