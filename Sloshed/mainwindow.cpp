@@ -15,6 +15,7 @@
 #include <QGraphicsView>
 #include <QPalette>
 #include <QGraphicsBlurEffect>
+#include "player.h"
 
 //QGraphicsScene - Container for game objects. A Player, a tree, etc. Think of it as a map or a world
 //QGraphicsItem - Object that you want to put into a scene. The player class must be derived from the QGraphicsItem class
@@ -28,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->scene->show();
     this->resize(1300, 900);
+    GameStartScreen();
 
    //use code below to blur the screen
   //  QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
@@ -44,13 +46,19 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_startButton_clicked()
 {
-    ui->startButton->hide();
     startGame();
 }
 
 void MainWindow::startGame() {
+    ui->stackWindow->setCurrentIndex(1);
+    ui->stackWindow->widget(1)->
+            setStyleSheet("background-image: url(:/GameImages/Images/GameplaySketch1.png)");
+}
 
-
+void MainWindow::GameStartScreen() {
+    ui->stackWindow->addWidget(new SceneWidget());
+    ui->startButton->setParent(ui->stackWindow->widget(2));
+    ui->stackWindow->setCurrentIndex(2);
 }
 
 

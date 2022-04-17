@@ -15,6 +15,11 @@
 class Player : public QObject
 {
     Q_OBJECT
+
+private:
+    QImage *player;
+    int x, y;
+
 public:
     explicit Player(QObject *parent = nullptr);
     void keyPressEvent(QKeyEvent* event);

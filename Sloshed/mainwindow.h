@@ -23,6 +23,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void startGame();
+    void GameStartScreen();
 
 private slots:
     void on_startButton_clicked();

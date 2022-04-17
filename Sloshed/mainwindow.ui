@@ -26,22 +26,38 @@
       <height>900</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QPushButton" name="startButton">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>550</y>
-      <width>319</width>
-      <height>200</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(:/GameImages/Images/StartSketch1.png)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
+    <widget class="QStackedWidget" name="stackWindow">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>-20</y>
+       <width>1301</width>
+       <height>931</height>
+      </rect>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="TestScreen">
+      <widget class="QPushButton" name="startButton">
+       <property name="geometry">
+        <rect>
+         <x>480</x>
+         <y>510</y>
+         <width>319</width>
+         <height>200</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-image: url(:/GameImages/Images/StartSketch1.png)</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="gameplayScreen"/>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -50,7 +66,7 @@
      <x>0</x>
      <y>0</y>
      <width>1300</width>
-     <height>26</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>

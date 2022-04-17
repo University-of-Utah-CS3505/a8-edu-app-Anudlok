@@ -7,9 +7,12 @@
  * @date: 4/9/2022
 ************************************************/
 #include "player.h"
+#include <QPainter>
 
 Player::Player(QObject *parent)
     : QObject{parent}
 {
-
+    player = new QImage(":/GameImages/Images/SpriteSketch1.png");
+    x = 200;
+    y = 400;
 }

@@ -57,8 +57,6 @@ SceneWidget::SceneWidget(QWidget *parent) : QWidget(parent),
     fixtureDef.restitution = 0.9;
     // Add the shape to the body.
     body->CreateFixture(&fixtureDef);
-    printf("Init world\n");
-
     connect(&timer, &QTimer::timeout, this, &SceneWidget::updateWorld);
     timer.start(50);
 }
