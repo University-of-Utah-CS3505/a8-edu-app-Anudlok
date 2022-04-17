@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
       ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->widget->show();
+    ui->scene->show();
     this->resize(1300, 900);
 
    //use code below to blur the screen
@@ -41,4 +41,17 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_startButton_clicked()
+{
+    ui->startButton->hide();
+    startGame();
+}
+
+void MainWindow::startGame() {
+
+
+}
+
+
 
