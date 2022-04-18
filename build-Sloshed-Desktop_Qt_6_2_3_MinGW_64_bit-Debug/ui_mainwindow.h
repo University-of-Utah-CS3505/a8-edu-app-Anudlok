@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -25,11 +26,11 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    SceneWidget *scene;
     QStackedWidget *stackWindow;
-    QWidget *TestScreen;
+    SceneWidget *startScreen;
     QPushButton *startButton;
     QWidget *gameplayScreen;
+    QGraphicsView *gameplayView;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -37,30 +38,30 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1300, 834);
+        MainWindow->resize(1300, 900);
         MainWindow->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/BackgroundSketch1.png)"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        scene = new SceneWidget(centralwidget);
-        scene->setObjectName(QString::fromUtf8("scene"));
-        scene->setGeometry(QRect(0, 0, 1300, 900));
-        stackWindow = new QStackedWidget(scene);
+        stackWindow = new QStackedWidget(centralwidget);
         stackWindow->setObjectName(QString::fromUtf8("stackWindow"));
-        stackWindow->setGeometry(QRect(0, -20, 1301, 931));
-        TestScreen = new QWidget();
-        TestScreen->setObjectName(QString::fromUtf8("TestScreen"));
-        startButton = new QPushButton(TestScreen);
+        stackWindow->setGeometry(QRect(0, 0, 1300, 900));
+        startScreen = new SceneWidget();
+        startScreen->setObjectName(QString::fromUtf8("startScreen"));
+        startButton = new QPushButton(startScreen);
         startButton->setObjectName(QString::fromUtf8("startButton"));
         startButton->setGeometry(QRect(480, 510, 319, 200));
         startButton->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/StartSketch1.png)"));
-        stackWindow->addWidget(TestScreen);
+        stackWindow->addWidget(startScreen);
         gameplayScreen = new QWidget();
         gameplayScreen->setObjectName(QString::fromUtf8("gameplayScreen"));
+        gameplayView = new QGraphicsView(gameplayScreen);
+        gameplayView->setObjectName(QString::fromUtf8("gameplayView"));
+        gameplayView->setGeometry(QRect(0, 0, 1300, 900));
         stackWindow->addWidget(gameplayScreen);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1300, 17));
+        menubar->setGeometry(QRect(0, 0, 1300, 19));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -68,7 +69,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackWindow->setCurrentIndex(0);
+        stackWindow->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

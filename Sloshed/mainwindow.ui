@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1300</width>
-    <height>834</height>
+    <height>900</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,10 +20,10 @@
    <widget class="QStackedWidget" name="stackWindow">
     <property name="geometry">
      <rect>
-      <x>-30</x>
-      <y>100</y>
-      <width>1301</width>
-      <height>931</height>
+      <x>0</x>
+      <y>0</y>
+      <width>1300</width>
+      <height>900</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -47,7 +47,18 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="gameplayScreen"/>
+    <widget class="QWidget" name="gameplayScreen">
+     <widget class="QGraphicsView" name="gameplayView">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1300</width>
+        <height>900</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -56,7 +67,7 @@
      <x>0</x>
      <y>0</y>
      <width>1300</width>
-     <height>26</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>

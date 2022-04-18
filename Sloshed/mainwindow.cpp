@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
       ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->resize(1300, 900);
+    this->resize(WIDTH, HEIGHT);
 
     // The stack window contains each of the gameplay screens.
     // Index 0 is the start screen
@@ -43,6 +43,20 @@ MainWindow::MainWindow(QWidget *parent)
     ui->startButton->setParent(ui->stackWindow->widget(0));
     ui->stackWindow->setCurrentIndex(0);
 
+    // Set up gameplay screen
+    qDebug() << "before timer";
+    sceneTimer = new QTimer(ui->stackWindow->widget(1));
+    truckTimer = new QTimer(ui->stackWindow->widget(1));
+    qDebug() << "after timer";
+
+    qDebug() << "after connects";
+    gameplayScene = new QGraphicsScene(ui->stackWindow->widget(1));
+    ui->gameplayView->setScene(gameplayScene);
+    gameplayScene->setSceneRect(0, 0, WIDTH, HEIGHT);
+
+    connect(sceneTimer, &QTimer::timeout, gameplayScene, &QGraphicsScene::advance);
+    connect(truckTimer, &QTimer::timeout, this, &MainWindow::sendTruck);
+    qDebug() << "after set scene";
    //use code below to blur the screen
   //  QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
   //  effect->setBlurRadius(50);
@@ -69,14 +83,18 @@ void MainWindow::startGame() {
     ui->stackWindow->setCurrentIndex(1);
     ui->stackWindow->widget(1)->
             setStyleSheet("background-image: url(:/GameImages/Images/GameplaySketch1.png)");
+    sceneTimer->start(25);
+    truckTimer->start(2000);
 }
 
 
 void MainWindow::PauseScreen(){
+//    sceneTimer->stop();
+//    truckTimer->stop();
     QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
     //insert code to stop all on screen movement here
-    ui->stackWindow->addWidget(new SceneWidget());
-    ui->stackWindow->setCurrentIndex(3);
+//    ui->stackWindow->addWidget(new SceneWidget());
+//    ui->stackWindow->setCurrentIndex(3);
     //blur game screen
     effect->setBlurRadius(50);
     effect->blurRadius();
@@ -84,6 +102,7 @@ void MainWindow::PauseScreen(){
    //ok now add the buttons
     QPushButton returnButton("return to game", ui->stackWindow->widget(3));
     QPushButton restartButton("restart game", ui->stackWindow->widget(3));
+
 }
 
 /*
@@ -119,6 +138,14 @@ void MainWindow::keyPressEvent(QKeyEvent * k){
     default:
         break;
     }
+}
+
+void MainWindow::sendTruck() {
+    QList<int> lanes = {0, -150, -300, -450};
+    Truck *truck = new Truck(-900, lanes[QRandomGenerator::global()->bounded(4)]);
+    truck->setTransformOriginPoint(truck->boundingRect().width()/2, truck->boundingRect().height()/2);
+    gameplayScene->addItem(truck);
+    //truck->remove();
 }
 
 

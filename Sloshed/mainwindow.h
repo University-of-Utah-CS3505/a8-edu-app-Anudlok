@@ -10,6 +10,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QGraphicsScene>
+#include "truck.h"
+#include <Qtimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -36,5 +39,11 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QGraphicsScene *gameplayScene;
+    int const WIDTH = 1300;
+    int const HEIGHT = 900;
+    QTimer *sceneTimer;
+    QTimer *truckTimer;
+    void sendTruck();
 };
 #endif // MAINWINDOW_H

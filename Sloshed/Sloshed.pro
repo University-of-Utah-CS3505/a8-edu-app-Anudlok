@@ -58,7 +58,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     player.cpp \
-    scenewidget.cpp
+    scenewidget.cpp \
+    truck.cpp
 
 HEADERS += \
     Box2D/Box2D.h \
@@ -110,7 +111,8 @@ HEADERS += \
     Box2D/Rope/b2Rope.h \
     mainwindow.h \
     player.h \
-    scenewidget.h
+    scenewidget.h \
+    truck.h
 
 FORMS += \
     mainwindow.ui
