@@ -14,6 +14,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 #include "SceneWidget.h"
@@ -24,8 +25,10 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    SceneWidget *scene;
+    QStackedWidget *stackWindow;
+    SceneWidget *startScreen;
     QPushButton *startButton;
+    QWidget *gameplayScreen;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -37,13 +40,19 @@ public:
         MainWindow->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/BackgroundSketch1.png)"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        scene = new SceneWidget(centralwidget);
-        scene->setObjectName(QString::fromUtf8("scene"));
-        scene->setGeometry(QRect(0, 0, 1300, 900));
-        startButton = new QPushButton(centralwidget);
+        stackWindow = new QStackedWidget(centralwidget);
+        stackWindow->setObjectName(QString::fromUtf8("stackWindow"));
+        stackWindow->setGeometry(QRect(0, 0, 1301, 931));
+        startScreen = new SceneWidget();
+        startScreen->setObjectName(QString::fromUtf8("startScreen"));
+        startButton = new QPushButton(startScreen);
         startButton->setObjectName(QString::fromUtf8("startButton"));
-        startButton->setGeometry(QRect(470, 550, 319, 200));
+        startButton->setGeometry(QRect(480, 510, 319, 200));
         startButton->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/StartSketch1.png)"));
+        stackWindow->addWidget(startScreen);
+        gameplayScreen = new QWidget();
+        gameplayScreen->setObjectName(QString::fromUtf8("gameplayScreen"));
+        stackWindow->addWidget(gameplayScreen);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -54,6 +63,9 @@ public:
         MainWindow->setStatusBar(statusbar);
 
         retranslateUi(MainWindow);
+
+        stackWindow->setCurrentIndex(0);
+
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
