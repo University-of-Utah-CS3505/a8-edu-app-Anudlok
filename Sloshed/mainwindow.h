@@ -24,9 +24,15 @@ public:
     ~MainWindow();
     void startGame();
     void GameStartScreen();
+    void PauseScreen();
 
 private slots:
     void on_startButton_clicked();
+    /* working on this so ignore it :)
+    void on_restartButton_clicked();
+    void on_returnButton_clicked();
+    */
+    void keyPressed(QKeyEvent *k);
 
 private:
     Ui::MainWindow *ui;
