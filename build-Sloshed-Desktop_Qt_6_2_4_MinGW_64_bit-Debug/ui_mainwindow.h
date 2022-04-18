@@ -42,7 +42,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         stackWindow = new QStackedWidget(centralwidget);
         stackWindow->setObjectName(QString::fromUtf8("stackWindow"));
-        stackWindow->setGeometry(QRect(0, 0, 1301, 931));
+        stackWindow->setGeometry(QRect(-30, 100, 1301, 931));
         startScreen = new SceneWidget();
         startScreen->setObjectName(QString::fromUtf8("startScreen"));
         startButton = new QPushButton(startScreen);
@@ -64,7 +64,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackWindow->setCurrentIndex(0);
+        stackWindow->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

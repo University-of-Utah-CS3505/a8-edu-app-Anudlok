@@ -31,6 +31,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->resize(1300, 900);
 
+    // The stack window contains each of the gameplay screens.
+    // Index 0 is the start screen
+    // Index 1 is the gameplay screen
+    // We can add other screens to future widgets.
+
+    // Note: To add a SceneWidget to the mainwindow.ui, add a QWidget (SceneWidget's parent class)
+    // to the UI, right-click the QWidget, and click Promote to -> SceneWidget
+
     // Set up start screen
     ui->startButton->setParent(ui->stackWindow->widget(0));
     ui->stackWindow->setCurrentIndex(0);
@@ -95,16 +103,20 @@ void MainWindow::on_returnButton_clicked(){
 
 */
 
-//https://www.qtcentre.org/threads/40779-keyboard-detecting-key-pressed
-//https://doc.qt.io/qt-5/qkeyevent.html
-void MainWindow::keyPressed(QKeyEvent * k){
+// https://www.qtcentre.org/threads/40779-keyboard-detecting-key-pressed
+// https://doc.qt.io/qt-5/qkeyevent.html
+// https://stackoverflow.com/questions/12558988/qt-keypress-event
+void MainWindow::keyPressEvent(QKeyEvent * k){
     switch(k->key()){
-        case Qt::Key_P:
+    case Qt::Key_P:
+        PauseScreen();
+        break;
+    case Qt::Key_Escape:
         PauseScreen();
         break;
     //case Qt::KeyUp:       <-format for key switch statements for when we add more game stuff
     //  break;
-      default:
+    default:
         break;
     }
 }

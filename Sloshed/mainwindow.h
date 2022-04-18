@@ -32,7 +32,7 @@ private slots:
     void on_restartButton_clicked();
     void on_returnButton_clicked();
     */
-    void keyPressed(QKeyEvent *k);
+    void keyPressEvent(QKeyEvent *k);
 
 private:
     Ui::MainWindow *ui;

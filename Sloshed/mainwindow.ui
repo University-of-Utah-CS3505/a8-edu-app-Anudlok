@@ -20,14 +20,14 @@
    <widget class="QStackedWidget" name="stackWindow">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
+      <x>-30</x>
+      <y>100</y>
       <width>1301</width>
       <height>931</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="SceneWidget" name="startScreen">
      <widget class="QPushButton" name="startButton">

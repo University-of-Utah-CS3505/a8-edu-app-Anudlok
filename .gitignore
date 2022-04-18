@@ -1,0 +1,8 @@
+
+*.idx
+*.o
+*.stash
+*.json
+*.Debug
+*.Release
+*.exe
