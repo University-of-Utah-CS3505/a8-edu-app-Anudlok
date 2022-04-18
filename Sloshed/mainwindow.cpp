@@ -44,19 +44,17 @@ MainWindow::MainWindow(QWidget *parent)
     ui->stackWindow->setCurrentIndex(0);
 
     // Set up gameplay screen
-    qDebug() << "before timer";
     sceneTimer = new QTimer(ui->stackWindow->widget(1));
     truckTimer = new QTimer(ui->stackWindow->widget(1));
-    qDebug() << "after timer";
 
-    qDebug() << "after connects";
     gameplayScene = new QGraphicsScene(ui->stackWindow->widget(1));
     ui->gameplayView->setScene(gameplayScene);
     gameplayScene->setSceneRect(0, 0, WIDTH, HEIGHT);
 
+    // Timer for the whole scene and send trucks
     connect(sceneTimer, &QTimer::timeout, gameplayScene, &QGraphicsScene::advance);
     connect(truckTimer, &QTimer::timeout, this, &MainWindow::sendTruck);
-    qDebug() << "after set scene";
+
    //use code below to blur the screen
   //  QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
   //  effect->setBlurRadius(50);
@@ -89,8 +87,8 @@ void MainWindow::startGame() {
 
 
 void MainWindow::PauseScreen(){
-//    sceneTimer->stop();
-//    truckTimer->stop();
+    sceneTimer->stop();
+    truckTimer->stop();
     QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
     //insert code to stop all on screen movement here
 //    ui->stackWindow->addWidget(new SceneWidget());
