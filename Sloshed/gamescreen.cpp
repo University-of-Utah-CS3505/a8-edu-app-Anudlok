@@ -99,6 +99,10 @@ void GameScreen::nextLevel() {
     startGame();
 }
 
+/**
+ * Adds water bottles to the level
+ * @brief GameScreen::placeWaterBottles
+ */
 void GameScreen::placeWaterBottles() {
     // x coordinates
     QList<int> cols = {100, 300, 500, 700, 900, 1100};
@@ -110,7 +114,7 @@ void GameScreen::placeWaterBottles() {
         // Get random x coordinate
         int x = cols[QRandomGenerator::global()->bounded(6)];
 
-        // Place waterbottle
+        // Place water bottle
         WaterBottle *bottle = new WaterBottle(x, y);
         gameplayScene->addItem(bottle);
     }
