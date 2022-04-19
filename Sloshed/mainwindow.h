@@ -42,6 +42,8 @@ private:
     QGraphicsScene *gameplayScene;
     int const WIDTH = 1300;
     int const HEIGHT = 900;
+    int truckSpawnDelay = 1000;
+    int sceneAdvanceDelay = 25;
     QTimer *sceneTimer;
     QTimer *truckTimer;
     void sendTruck();

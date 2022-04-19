@@ -11,7 +11,9 @@
 class Truck : public QGraphicsPixmapItem
 {
 public:
-    Truck(int, int);
+    Truck(int, int, bool);
+    static int const HEIGHT = 120;
+    static int const WIDTH = 360;
 
 protected:
     void advance(int phase);
@@ -23,12 +25,12 @@ protected:
 private:
     qreal angle;
     qreal speed;
-    qreal xPos;
-    qreal yPos;
     qreal collideTime;
-    QString imgPath = R"(C:\Users\arcmi\OneDrive\Documents\2022\UofU\Spring2022\CS 3505\A8Images\EnemySketch1.png)";
+    QString imgPath = R"(C:\Users\gabby\Documents\School Assignments\GitHub\a8-edu-app-Anudlok\Sloshed\Images\EnemySketch1.png)";
+            //":/Images/EnemySketch1.png";//R"(C:\Users\arcmi\OneDrive\Documents\2022\UofU\Spring2022\CS 3505\A8Images\EnemySketch1.png)";
     QPixmap pixmap;
     bool collided;
+    bool movingRight;
 
 signals:
     void stopTrucks();
