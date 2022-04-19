@@ -1,9 +1,6 @@
 #ifndef TRUCK_H
 #define TRUCK_H
 
-#include <QPainter>
-#include <QGraphicsPixmapItem>
-#include <QGraphicsScene>
 /************************************************
  * Truck class
  * Class definition for Truck QGraphicsPixmapItem
@@ -11,6 +8,9 @@
  *          Gaby Torres, Raynard Christian, Angela Mishler
  * @date: 4/18/2022
 ************************************************/
+#include <QPainter>
+#include <QGraphicsPixmapItem>
+#include <QGraphicsScene>
 #include <QRandomGenerator>
 #include <QList>
 #include <QTimer>
