@@ -74,3 +74,12 @@ void GameScreen::sendTruck() {
     truck->setTransformOriginPoint(truck->boundingRect().width()/2, truck->boundingRect().height()/2);
     gameplayScene->addItem(truck);
 }
+
+void GameScreen::nextLevel() {
+    level++;
+    // Change truckSpawnDelay and sceneAdvanceDelay
+    if (truckSpawnDelay > MIN_TRUCK_SPAWN_DELAY)
+        truckSpawnDelay += 400;
+    if (sceneAdvanceDelay > MIN_SCENE_ADVANCE_DELAY)
+        sceneAdvanceDelay += 5;
+}
