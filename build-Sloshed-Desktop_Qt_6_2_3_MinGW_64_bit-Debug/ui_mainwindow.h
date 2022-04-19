@@ -11,7 +11,6 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -19,6 +18,7 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 #include "SceneWidget.h"
+#include "gamescreen.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -29,8 +29,7 @@ public:
     QStackedWidget *stackWindow;
     SceneWidget *startScreen;
     QPushButton *startButton;
-    QWidget *gameplayScreen;
-    QGraphicsView *gameplayView;
+    GameScreen *gameplayScreen;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -52,16 +51,13 @@ public:
         startButton->setGeometry(QRect(480, 510, 319, 200));
         startButton->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/StartSketch1.png)"));
         stackWindow->addWidget(startScreen);
-        gameplayScreen = new QWidget();
+        gameplayScreen = new GameScreen();
         gameplayScreen->setObjectName(QString::fromUtf8("gameplayScreen"));
-        gameplayView = new QGraphicsView(gameplayScreen);
-        gameplayView->setObjectName(QString::fromUtf8("gameplayView"));
-        gameplayView->setGeometry(QRect(0, 0, 1300, 900));
         stackWindow->addWidget(gameplayScreen);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1300, 19));
+        menubar->setGeometry(QRect(0, 0, 1300, 26));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
