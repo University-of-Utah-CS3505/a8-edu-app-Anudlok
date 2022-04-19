@@ -1,18 +1,18 @@
-/************************************************
- * Player class
- * Class definition for Player QObject
- * Window
- * @author: Anna Timofeyenko, Gabby Culley,
- *          Gaby Torres, Raynard Christian, Angela Mishler
- * @date: 4/9/2022
-************************************************/
 #include "player.h"
-#include <QPainter>
 
-Player::Player(QObject *parent)
-    : QObject{parent}
+Player::Player()
 {
-    player = new QImage(":/GameImages/Images/SpriteSketch1.png");
-    x = 200;
-    y = 400;
+    setPos(mapToParent(610, 800));
+    setPixmap(imgPath);
+    speed = 3;
+    angle = 20;
+}
+
+void Player::advance(int phase)
+{
+    if(!phase) return;
+
+    if(scene()->collidingItems(this).isEmpty()) {
+        setPos(x(), y() - speed);
+    }
 }

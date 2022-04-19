@@ -42,6 +42,10 @@ GameScreen::GameScreen(QWidget *parent)
 void GameScreen::startGame() {
     sceneTimer->start(sceneAdvanceDelay);
     truckTimer->start(truckSpawnDelay);
+    Player *player = new Player();
+    player->setScale(0.6);
+    player->setTransformOriginPoint(player->boundingRect().width()/2 , player->boundingRect().height()/2);
+    gameplayScene->addItem(player);
 }
 
 /**
@@ -73,4 +77,23 @@ void GameScreen::sendTruck() {
     // Set truck to transform (e.g. spin) from its center point
     truck->setTransformOriginPoint(truck->boundingRect().width()/2, truck->boundingRect().height()/2);
     gameplayScene->addItem(truck);
+}
+
+/**
+ * Advances the game to the next level.
+ * @brief GameScreen::nextLevel
+ */
+void GameScreen::nextLevel() {
+    // Change truckSpawnDelay and sceneAdvanceDelay
+    if (level < MAX_LEVEL) {
+        level++;
+        truckSpawnDelay *= 0.70; // Values for levels: 2000 1400 980 686 480
+        sceneAdvanceDelay *= 0.8; // Values for levels: 25 20 16 13 11
+    }
+
+    stopGame();
+//    foreach (Truck* truck, truckList) {
+//        truck->remove();
+//    }
+    startGame();
 }

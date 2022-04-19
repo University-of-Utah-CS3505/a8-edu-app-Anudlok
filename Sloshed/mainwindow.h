@@ -12,6 +12,7 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include "truck.h"
+#include "player.h"
 #include <Qtimer>
 
 QT_BEGIN_NAMESPACE

@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -29,7 +30,8 @@ public:
     QStackedWidget *stackWindow;
     SceneWidget *startScreen;
     QPushButton *startButton;
-    GameScreen *gameplayScreen;
+    QWidget *gameplayScreen;
+    QGraphicsView *gameplayView;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -53,11 +55,14 @@ public:
         stackWindow->addWidget(startScreen);
         gameplayScreen = new GameScreen();
         gameplayScreen->setObjectName(QString::fromUtf8("gameplayScreen"));
+        gameplayView = new QGraphicsView(gameplayScreen);
+        gameplayView->setObjectName(QString::fromUtf8("gameplayView"));
+        gameplayView->setGeometry(QRect(0, 0, 1300, 900));
         stackWindow->addWidget(gameplayScreen);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1300, 26));
+        menubar->setGeometry(QRect(0, 0, 1300, 17));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));

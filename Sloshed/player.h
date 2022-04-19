@@ -1,31 +1,25 @@
-/************************************************
- * Player class
- * Class definition for Player QObject
- * Window
- * @author: Anna Timofeyenko, Gabby Culley,
- *          Gaby Torres, Raynard Christian, Angela Mishler
- * @date: 4/9/2022
-************************************************/
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <QObject>
-#include <QGraphicsRectItem>
+#include <QPainter>
+#include <QGraphicsPixmapItem>
+#include <QGraphicsScene>
+#include <QRandomGenerator>
+#include <QList>
+#include <QTimer>
 
-class Player : public QObject
+class Player : public QGraphicsPixmapItem
 {
-    Q_OBJECT
+public:
+    Player();
+
+protected:
+    void advance(int phase);
 
 private:
-    QImage *player;
-    int x, y;
-
-public:
-    explicit Player(QObject *parent = nullptr);
-    void keyPressEvent(QKeyEvent* event);
-
-signals:
-
+    QString imgPath = ":/GameImages/Images/SpriteSketch1.png";
+    qreal angle;
+    qreal speed;
 };
 
 #endif // PLAYER_H

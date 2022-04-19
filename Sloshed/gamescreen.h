@@ -19,6 +19,7 @@ public:
     explicit GameScreen(QWidget *parent = nullptr);
     void startGame();
     void stopGame();
+    void nextLevel();
 
 signals:
 
@@ -30,9 +31,10 @@ private:
     QTimer *truckTimer;
 
     // Variables to tweak gameplay
-    int truckSpawnDelay = 1000;
+    int truckSpawnDelay = 2000;
     int sceneAdvanceDelay = 25;
-
+    int level = 1;
+    int const MAX_LEVEL = 5;
 };
 
 #endif // GAMESCREEN_H
