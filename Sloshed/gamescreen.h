@@ -11,6 +11,10 @@
 
 #include <QWidget>
 #include <QGraphicsScene>
+#include "mainwindow.h"
+#include "truck.h"
+#include "waterbottle.h"
+#include <QGraphicsView>
 
 class GameScreen : public QWidget
 {
@@ -26,16 +30,20 @@ signals:
 private:
     void sendTruck();
     void placeWaterBottles();
+    void sendMousePosition();
     QGraphicsView *gameplayView;
     QGraphicsScene *gameplayScene;
     QTimer *sceneTimer;
     QTimer *truckTimer;
+    QTimer* mouseTimer;
 
     // Variables to tweak gameplay
     int truckSpawnDelay = 2000;
     int sceneAdvanceDelay = 25;
+    int mouseDelay = 100;
     int level = 1;
     int const MAX_LEVEL = 5;
+    Player *player;
 };
 
 #endif // GAMESCREEN_H

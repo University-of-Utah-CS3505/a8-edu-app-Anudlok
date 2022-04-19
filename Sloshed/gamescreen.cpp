@@ -7,10 +7,6 @@
  * @date: 4/18/2022
 ************************************************/
 #include "gamescreen.h"
-#include "mainwindow.h"
-#include "truck.h"
-#include "waterbottle.h"
-#include <QGraphicsView>
 
 /**
  * GameScreen constructor
@@ -33,8 +29,10 @@ GameScreen::GameScreen(QWidget *parent)
     // Timer for the whole scene and send trucks
     sceneTimer = new QTimer(this);
     truckTimer = new QTimer(this);
+    mouseTimer = new QTimer(this);
     connect(sceneTimer, &QTimer::timeout, gameplayScene, &QGraphicsScene::advance);
     connect(truckTimer, &QTimer::timeout, this, &GameScreen::sendTruck);
+    connect(mouseTimer, &QTimer::timeout, this, &GameScreen::sendMousePosition);
 }
 
 /**
@@ -44,8 +42,10 @@ GameScreen::GameScreen(QWidget *parent)
 void GameScreen::startGame() {
     sceneTimer->start(sceneAdvanceDelay);
     truckTimer->start(truckSpawnDelay);
+    mouseTimer->start(mouseDelay);
+
     placeWaterBottles();
-    Player *player = new Player();
+    player = new Player();
     player->setScale(0.6);
     player->setTransformOriginPoint(player->boundingRect().width()/2 , player->boundingRect().height()/2);
     gameplayScene->addItem(player);
@@ -118,4 +118,10 @@ void GameScreen::placeWaterBottles() {
         WaterBottle *bottle = new WaterBottle(x, y);
         gameplayScene->addItem(bottle);
     }
+}
+
+void GameScreen::sendMousePosition() {
+    int x = this->mapFromGlobal(QCursor::pos()).x();
+    int y = this->mapFromGlobal(QCursor::pos()).y();
+    player->mousePosition(x, y);
 }
