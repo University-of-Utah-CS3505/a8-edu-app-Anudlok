@@ -22,6 +22,9 @@ public:
 
 protected:
     void advance(int phase);
+
+private:
+    QString imgPath = ":/GameImages/Images/PowerupSketch1.png";
 };
 
 #endif // WATERBOTTLE_H

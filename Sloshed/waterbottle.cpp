@@ -3,6 +3,7 @@
 WaterBottle::WaterBottle(int x, int y)
 {
     setPos(mapToParent(x, y));
+    setPixmap(imgPath);
 }
 
 void WaterBottle::advance(int phase) {

@@ -25,6 +25,7 @@ signals:
 
 private:
     void sendTruck();
+    void placeWaterBottles();
     QGraphicsView *gameplayView;
     QGraphicsScene *gameplayScene;
     QTimer *sceneTimer;

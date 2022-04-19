@@ -8,6 +8,8 @@
 ************************************************/
 #include "gamescreen.h"
 #include "mainwindow.h"
+#include "truck.h"
+#include "waterbottle.h"
 #include <QGraphicsView>
 
 /**
@@ -42,6 +44,7 @@ GameScreen::GameScreen(QWidget *parent)
 void GameScreen::startGame() {
     sceneTimer->start(sceneAdvanceDelay);
     truckTimer->start(truckSpawnDelay);
+    placeWaterBottles();
     Player *player = new Player();
     player->setScale(0.6);
     player->setTransformOriginPoint(player->boundingRect().width()/2 , player->boundingRect().height()/2);
@@ -92,8 +95,23 @@ void GameScreen::nextLevel() {
     }
 
     stopGame();
-//    foreach (Truck* truck, truckList) {
-//        truck->remove();
-//    }
+    gameplayScene->clear();
     startGame();
+}
+
+void GameScreen::placeWaterBottles() {
+    // x coordinates
+    QList<int> cols = {100, 300, 500, 700, 900, 1100};
+    // y coordinates of the 4 lanes (center)
+    QList<int> lanes = {155, 315, 475, 635};
+
+    // Place a bottle in each lane
+    foreach (int y, lanes) {
+        // Get random x coordinate
+        int x = cols[QRandomGenerator::global()->bounded(6)];
+
+        // Place waterbottle
+        WaterBottle *bottle = new WaterBottle(x, y);
+        gameplayScene->addItem(bottle);
+    }
 }
