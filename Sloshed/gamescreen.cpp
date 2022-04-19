@@ -79,11 +79,21 @@ void GameScreen::sendTruck() {
     gameplayScene->addItem(truck);
 }
 
+/**
+ * Advances the game to the next level.
+ * @brief GameScreen::nextLevel
+ */
 void GameScreen::nextLevel() {
-    level++;
     // Change truckSpawnDelay and sceneAdvanceDelay
-    if (truckSpawnDelay > MIN_TRUCK_SPAWN_DELAY)
-        truckSpawnDelay += 400;
-    if (sceneAdvanceDelay > MIN_SCENE_ADVANCE_DELAY)
-        sceneAdvanceDelay += 5;
+    if (level < MAX_LEVEL) {
+        level++;
+        truckSpawnDelay *= 0.70; // Values for levels: 2000 1400 980 686 480
+        sceneAdvanceDelay *= 0.8; // Values for levels: 25 20 16 13 11
+    }
+
+    stopGame();
+//    foreach (Truck* truck, truckList) {
+//        truck->remove();
+//    }
+    startGame();
 }

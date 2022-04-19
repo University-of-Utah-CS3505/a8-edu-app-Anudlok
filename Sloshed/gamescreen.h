@@ -31,12 +31,10 @@ private:
     QTimer *truckTimer;
 
     // Variables to tweak gameplay
-    const int MIN_TRUCK_SPAWN_DELAY = 1000;
-    const int MIN_SCENE_ADVANCE_DELAY = 5;
     int truckSpawnDelay = 2000;
     int sceneAdvanceDelay = 25;
     int level = 1;
-
+    int const MAX_LEVEL = 5;
 };
 
 #endif // GAMESCREEN_H
