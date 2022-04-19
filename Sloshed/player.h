@@ -12,6 +12,10 @@ class Player : public QGraphicsPixmapItem
 {
 public:
     Player();
+
+protected:
+    void advance(int phase);
+
 private:
     QString imgPath = ":/GameImages/Images/SpriteSketch1.png";
     qreal angle;

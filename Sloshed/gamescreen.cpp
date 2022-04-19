@@ -42,6 +42,10 @@ GameScreen::GameScreen(QWidget *parent)
 void GameScreen::startGame() {
     sceneTimer->start(sceneAdvanceDelay);
     truckTimer->start(truckSpawnDelay);
+    Player *player = new Player();
+    player->setScale(0.6);
+    player->setTransformOriginPoint(player->boundingRect().width()/2 , player->boundingRect().height()/2);
+    gameplayScene->addItem(player);
 }
 
 /**
