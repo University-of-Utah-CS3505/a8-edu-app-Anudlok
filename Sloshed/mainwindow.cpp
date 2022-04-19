@@ -37,23 +37,15 @@ MainWindow::MainWindow(QWidget *parent)
     // We can add other screens to future widgets.
 
     // Note: To add a SceneWidget to the mainwindow.ui, add a QWidget (SceneWidget's parent class)
-    // to the UI, right-click the QWidget, and click Promote to -> SceneWidget
+    // to the UI, right-click the QWidget, and click Promote to -> SceneWidget.
+
+    // If you want to add new custom classes that inherits from QWidget, you'll need to add
+    // the promoted class to the mainwindow.ui first. Right-click the QWidget, click Promote to...,
+    // and add your custom class in the window that pops up.
 
     // Set up start screen
     ui->startButton->setParent(ui->stackWindow->widget(0));
     ui->stackWindow->setCurrentIndex(0);
-
-    // Set up gameplay screen
-    sceneTimer = new QTimer(ui->stackWindow->widget(1));
-    truckTimer = new QTimer(ui->stackWindow->widget(1));
-
-    gameplayScene = new QGraphicsScene(ui->stackWindow->widget(1));
-    ui->gameplayView->setScene(gameplayScene);
-    gameplayScene->setSceneRect(0, 0, WIDTH, HEIGHT);
-
-    // Timer for the whole scene and send trucks
-    connect(sceneTimer, &QTimer::timeout, gameplayScene, &QGraphicsScene::advance);
-    connect(truckTimer, &QTimer::timeout, this, &MainWindow::sendTruck);
 
    //use code below to blur the screen
   //  QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
@@ -79,15 +71,11 @@ void MainWindow::on_startButton_clicked()
 
 void MainWindow::startGame() {
     ui->stackWindow->setCurrentIndex(1);
-    ui->stackWindow->widget(1)->
-            setStyleSheet("background-image: url(:/GameImages/Images/GameplaySketch1.png)");
-    sceneTimer->start(sceneAdvanceDelay);
-    truckTimer->start(truckSpawnDelay);
+    ui->gameplayScreen->startGame();
 }
 
 void MainWindow::PauseScreen(){
-    sceneTimer->stop();
-    truckTimer->stop();
+    ui->gameplayScreen->stopGame();
     QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
     //insert code to stop all on screen movement here
 //    ui->stackWindow->addWidget(new SceneWidget());
@@ -137,23 +125,6 @@ void MainWindow::keyPressEvent(QKeyEvent * k){
     }
 }
 
-void MainWindow::sendTruck() {
-    // y coordinates of the 4 lanes
-    QList<int> lanes = {155, 315, 475, 635};
-    // Get random lane
-    int laneNum = QRandomGenerator::global()->bounded(4);
-    // 0th and 3rd lane have trucks moving right. Other lanes move left.
-    bool movingRight = laneNum % 2 == 0;
-    // Place truck
-    Truck *truck;
-    if (movingRight)
-        truck = new Truck(0 - Truck::HEIGHT, lanes[laneNum], true);
-    else
-        truck = new Truck(WIDTH + Truck::WIDTH, lanes[laneNum], false);
-    // Set truck to transform (e.g. spin) from its center point
-    truck->setTransformOriginPoint(truck->boundingRect().width()/2, truck->boundingRect().height()/2);
-    gameplayScene->addItem(truck);
-}
 
 
 

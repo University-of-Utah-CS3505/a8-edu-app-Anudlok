@@ -1,3 +1,10 @@
+/************************************************
+ * Truck class
+ * Class definition for Truck QGraphicsPixmapItem
+ * @author: Anna Timofeyenko, Gabby Culley,
+ *          Gaby Torres, Raynard Christian, Angela Mishler
+ * @date: 4/18/2022
+************************************************/
 #include "truck.h"
 
 Truck::Truck(int x, int y, bool movingRight) {

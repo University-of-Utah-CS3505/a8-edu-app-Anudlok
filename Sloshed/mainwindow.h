@@ -28,6 +28,8 @@ public:
     void startGame();
     void GameStartScreen();
     void PauseScreen();
+    static int const WIDTH = 1300;
+    static int const HEIGHT = 900;
 
 private slots:
     void on_startButton_clicked();
@@ -39,13 +41,5 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QGraphicsScene *gameplayScene;
-    int const WIDTH = 1300;
-    int const HEIGHT = 900;
-    int truckSpawnDelay = 1000;
-    int sceneAdvanceDelay = 25;
-    QTimer *sceneTimer;
-    QTimer *truckTimer;
-    void sendTruck();
 };
 #endif // MAINWINDOW_H
