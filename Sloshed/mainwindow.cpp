@@ -18,6 +18,7 @@
 #include <QKeyEvent>
 #include "player.h"
 #include "scenewidget.h"
+#include "gamescreen.h"
 
 //QGraphicsScene - Container for game objects. A Player, a tree, etc. Think of it as a map or a world
 //QGraphicsItem - Object that you want to put into a scene. The player class must be derived from the QGraphicsItem class

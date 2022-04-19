@@ -6,6 +6,7 @@
  * @date: 4/18/2022
 ************************************************/
 #include "truck.h"
+#include "player.h"
 
 Truck::Truck(int x, int y, bool movingRight) {
     setPos(mapToParent(x, y));
@@ -25,15 +26,27 @@ Truck::Truck(int x, int y, bool movingRight) {
 void Truck::advance(int phase) {
     if(!phase) return;
 
-    if(scene()->collidingItems(this).isEmpty()) {
-        // If item not colliding, advance truck left or right
+    QList<QGraphicsItem *> list = scene()->collidingItems(this) ;
+    bool isColliding = false;
+
+    // Check if truck is colliding with player
+    foreach(QGraphicsItem * i , list)
+    {
+        Player * item= dynamic_cast<Player *>(i);
+        if (item)
+        {
+            // If colliding with player, do collision
+            doCollision();
+            isColliding = true;
+        }
+    }
+
+    // If item not colliding, advance truck left or right
+    if (!isColliding) {
         if (movingRight)
             setPos(x() + speed, y());
         else
             setPos(x() - speed, y());
-    }
-    else {
-        doCollision();
     }
 
     // Remove truck if it's is out of bounds
