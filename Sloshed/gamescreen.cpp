@@ -27,12 +27,21 @@ GameScreen::GameScreen(QWidget *parent)
     gameplayScene->setSceneRect(0, 0, MainWindow::WIDTH, MainWindow::HEIGHT);
 
     // Set up player (Note: moved this here so we can make connect calls without crashing)
-    player = new Player();
-    player->setScale(0.6);
-    player->setTransformOriginPoint(player->boundingRect().width()/2 , player->boundingRect().height()/2);
-    gameplayScene->addItem(player);
+    addPlayer();
 
     // Timer for the whole scene and send trucks
+    initTimers();
+
+    // Turns off scrollbar horizontally or vertically
+    this->gameplayView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    this->gameplayView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+}
+
+/**
+ * Initializes the game timers.
+ * @brief GameScreen::initTimers
+ */
+void GameScreen::initTimers() {
     sceneTimer = new QTimer(this);
     truckTimer = new QTimer(this);
     mouseTimer = new QTimer(this);
@@ -42,14 +51,37 @@ GameScreen::GameScreen(QWidget *parent)
     connect(mouseTimer, &QTimer::timeout, this, &GameScreen::sendMousePosition);
     connect(hydrationTimer, &QTimer::timeout, this, &GameScreen::sendHydrationTimer);
     connect(player, &Player::hasCollided, this, &GameScreen::handleCollision);
+}
 
-    // Turns off scrollbar horizontally or vertically
-    this->gameplayView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    this->gameplayView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+/**
+ * Adds the player to the game.
+ * @brief GameScreen::addPlayer
+ */
+void GameScreen::addPlayer() {
+    player = new Player();
+    player->setScale(0.6);
+    player->setTransformOriginPoint(player->boundingRect().width()/2 , player->boundingRect().height()/2);
+    gameplayScene->addItem(player);
+}
+
+/**
+ * Stops the game and restarts it.
+ * @brief GameScreen::restartGame
+ * @param fromLevelOne True by default or if you want to start the game from level 1. False otherwise.
+ */
+void GameScreen::restartGame(bool fromLevelOne) {
+    stopGame();
+    gameplayScene->clear();
+    if (fromLevelOne)
+        level = 1;
+    addPlayer();
+    initTimers();
+    startGame();
 }
 
 /**
  * Starts trucks moving and spawning.
+ * Will NOT stop any old games.
  * @brief GameScreen::startGame
  */
 void GameScreen::startGame() {
@@ -110,9 +142,7 @@ void GameScreen::nextLevel() {
         sceneAdvanceDelay *= 0.8; // Values for levels: 25 20 16 13 11
     }
 
-    stopGame();
-    gameplayScene->clear();
-    startGame();
+    restartGame(false);
 }
 
 /**

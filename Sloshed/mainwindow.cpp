@@ -71,14 +71,28 @@ void MainWindow::GameStartScreen() {
 
 void MainWindow::on_startButton_clicked()
 {
-    startGame();
+    restartGame();
 }
 
+/**
+ * Starts or resumes the game.
+ * Does NOT end or pause previous games.
+ * @brief MainWindow::startGame
+ */
 void MainWindow::startGame() {
     this->setGraphicsEffect(0);
     ui->stackWindow->setCurrentIndex(3);
     ui->gameplayScreen->startGame();
+}
 
+/**
+ * Restarts the game from the beginning.
+ * @brief MainWindow::startGame
+ */
+void MainWindow::restartGame() {
+    this->setGraphicsEffect(0);
+    ui->stackWindow->setCurrentIndex(3);
+    ui->gameplayScreen->restartGame();
     ui->hydrationBar->setValue(100);
 }
 
@@ -102,8 +116,6 @@ void MainWindow::CollideScreen(){
     effect->blurRadius();
     this->setGraphicsEffect(effect);
 }
-
-
 
 //the console says "no matching signal for on_restartButton_clicked(); but i'm working on it
 void MainWindow::on_restartButton_clicked(){

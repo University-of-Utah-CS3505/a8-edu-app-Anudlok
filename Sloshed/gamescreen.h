@@ -22,6 +22,7 @@ class GameScreen : public QWidget
 public:
     explicit GameScreen(QWidget *parent = nullptr);
     void startGame();
+    void restartGame(bool fromLevelOne = true);
     void stopGame();
     void nextLevel();
 
@@ -31,6 +32,8 @@ signals:
   void sendCollideScreen();
 
 private:
+    void initTimers();
+    void addPlayer();
     void sendTruck();
     void placeWaterBottles();
     void sendMousePosition();

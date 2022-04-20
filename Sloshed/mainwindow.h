@@ -27,6 +27,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void startGame();
+    void restartGame();
     void GameStartScreen();
     void PauseScreen();
     void CollideScreen();
