@@ -26,12 +26,15 @@
       <height>900</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/GameImages/Images/BackgroundSketch1.png)</string>
+    </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="SceneWidget" name="startScreen">
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">background-image:url(:GameImages/Images/BackgroundSketch1.png</string>
      </property>
      <widget class="QPushButton" name="startButton">
       <property name="geometry">
@@ -53,32 +56,38 @@
     <widget class="QWidget" name="collideScreen"/>
     <widget class="QWidget" name="pauseScreen">
      <property name="styleSheet">
-      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+      <string notr="true">background-image: url(:/GameImages/Images/GameplaySketch1.png)</string>
      </property>
      <widget class="QPushButton" name="resumeButton">
       <property name="geometry">
        <rect>
         <x>160</x>
-        <y>70</y>
+        <y>240</y>
         <width>301</width>
-        <height>361</height>
+        <height>191</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/GameImages/Images/StartSketch1.png);</string>
+      </property>
       <property name="text">
-       <string>Resume</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="restartButton">
       <property name="geometry">
        <rect>
         <x>479</x>
-        <y>71</y>
+        <y>241</y>
         <width>301</width>
-        <height>361</height>
+        <height>191</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/GameImages/Images/StartSketch1.png);</string>
+      </property>
       <property name="text">
-       <string>Restart</string>
+       <string/>
       </property>
      </widget>
     </widget>
@@ -114,7 +123,7 @@
      <x>0</x>
      <y>0</y>
      <width>1300</width>
-     <height>26</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>

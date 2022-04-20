@@ -30,8 +30,8 @@ public:
     QStackedWidget *stackWindow;
     SceneWidget *startScreen;
     QPushButton *startButton;
-    SceneWidget *collideScreen;
-    SceneWidget *pauseScreen;
+    QWidget *collideScreen;
+    QWidget *pauseScreen;
     QPushButton *resumeButton;
     QPushButton *restartButton;
     GameScreen *gameplayScreen;
@@ -44,30 +44,35 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(1300, 900);
-        MainWindow->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/BackgroundSketch1.png)"));
+        MainWindow->setStyleSheet(QString::fromUtf8(""));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         stackWindow = new QStackedWidget(centralwidget);
         stackWindow->setObjectName(QString::fromUtf8("stackWindow"));
         stackWindow->setGeometry(QRect(0, 0, 1300, 900));
+        stackWindow->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/BackgroundSketch1.png)"));
         startScreen = new SceneWidget();
         startScreen->setObjectName(QString::fromUtf8("startScreen"));
+        startScreen->setStyleSheet(QString::fromUtf8("background-image:url(:GameImages/Images/BackgroundSketch1.png"));
         startButton = new QPushButton(startScreen);
         startButton->setObjectName(QString::fromUtf8("startButton"));
         startButton->setGeometry(QRect(480, 510, 319, 200));
-        startButton->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/StartSketch1.png)"));
+        startButton->setStyleSheet(QString::fromUtf8("image: url(:/GameImages/Images/StartSketch1.png);"));
         stackWindow->addWidget(startScreen);
-        collideScreen = new SceneWidget();
+        collideScreen = new QWidget();
         collideScreen->setObjectName(QString::fromUtf8("collideScreen"));
         stackWindow->addWidget(collideScreen);
-        pauseScreen = new SceneWidget();
+        pauseScreen = new QWidget();
         pauseScreen->setObjectName(QString::fromUtf8("pauseScreen"));
+        pauseScreen->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/GameplaySketch1.png)"));
         resumeButton = new QPushButton(pauseScreen);
         resumeButton->setObjectName(QString::fromUtf8("resumeButton"));
-        resumeButton->setGeometry(QRect(160, 70, 301, 361));
+        resumeButton->setGeometry(QRect(160, 240, 301, 191));
+        resumeButton->setStyleSheet(QString::fromUtf8("image: url(:/GameImages/Images/StartSketch1.png);"));
         restartButton = new QPushButton(pauseScreen);
         restartButton->setObjectName(QString::fromUtf8("restartButton"));
-        restartButton->setGeometry(QRect(479, 71, 301, 361));
+        restartButton->setGeometry(QRect(479, 241, 301, 191));
+        restartButton->setStyleSheet(QString::fromUtf8("image: url(:/GameImages/Images/StartSketch1.png);"));
         stackWindow->addWidget(pauseScreen);
         gameplayScreen = new GameScreen();
         gameplayScreen->setObjectName(QString::fromUtf8("gameplayScreen"));
@@ -82,7 +87,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1300, 17));
+        menubar->setGeometry(QRect(0, 0, 1300, 19));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -90,7 +95,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackWindow->setCurrentIndex(3);
+        stackWindow->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
