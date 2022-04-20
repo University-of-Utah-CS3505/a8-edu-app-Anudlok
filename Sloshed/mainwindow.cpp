@@ -62,7 +62,8 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::GameStartScreen() {
-
+   this->setGraphicsEffect(0);
+   ui->stackWindow->setCurrentIndex(0);
 }
 
 void MainWindow::on_startButton_clicked()
@@ -71,42 +72,46 @@ void MainWindow::on_startButton_clicked()
 }
 
 void MainWindow::startGame() {
-    ui->stackWindow->setCurrentIndex(1);
+    this->setGraphicsEffect(0);
+    ui->stackWindow->setCurrentIndex(3);
     ui->gameplayScreen->startGame();
 }
 
 void MainWindow::PauseScreen(){
     ui->gameplayScreen->stopGame();
-    QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
+   // QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
+    ui->stackWindow->setCurrentIndex(2);
     //insert code to stop all on screen movement here
-//    ui->stackWindow->addWidget(new SceneWidget());
-//    ui->stackWindow->setCurrentIndex(3);
+   // QWidget *pauseScreen = ui->stackWindow->widget(2);
     //blur game screen
-    effect->setBlurRadius(50);
+    //effect->setBlurRadius(20);
+   // effect->blurRadius();
+    //pauseScreen->setGraphicsEffect(effect);
+}
+void MainWindow::CollideScreen(){
+    ui->gameplayScreen->stopGame();
+    QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
+    ui->stackWindow->setCurrentIndex(0);
+    //blur game screen
+    effect->setBlurRadius(20);
     effect->blurRadius();
     this->setGraphicsEffect(effect);
-   //ok now add the buttons
-    QPushButton returnButton("return to game", ui->stackWindow->widget(3));
-    QPushButton restartButton("restart game", ui->stackWindow->widget(3));
-
 }
 
-/*
+
 
 //the console says "no matching signal for on_restartButton_clicked(); but i'm working on it
 void MainWindow::on_restartButton_clicked(){
     //probably have to reset all player movement
-    this->setGraphicsEffect(0); //0 removes all graphics effects?
+   // this->setGraphicsEffect(0);
     GameStartScreen();
 }
 //the console says "no matching signal for on_returnButton_clicked(); but i'm working on it
-void MainWindow::on_returnButton_clicked(){
+void MainWindow::on_resumeButton_clicked(){
     this->setGraphicsEffect(0);
-    ui->stackWindow->widget(1);
-    //restart all player movement here
+    startGame();
 }
 
-*/
 
 // https://www.qtcentre.org/threads/40779-keyboard-detecting-key-pressed
 // https://doc.qt.io/qt-5/qkeyevent.html
@@ -114,10 +119,13 @@ void MainWindow::on_returnButton_clicked(){
 void MainWindow::keyPressEvent(QKeyEvent * k){
     switch(k->key()){
     case Qt::Key_P:
-        PauseScreen();
+        //when its not on the game start screen or pause screen
+        if(ui->stackWindow->currentIndex()!=0 && ui->stackWindow->currentIndex()!=2)
+            PauseScreen();
         break;
     case Qt::Key_Escape:
-        PauseScreen();
+        if(ui->stackWindow->currentIndex()!=0 && ui->stackWindow->currentIndex()!=2)
+            PauseScreen();
         break;
     //case Qt::KeyUp:       <-format for key switch statements for when we add more game stuff
     //  break;

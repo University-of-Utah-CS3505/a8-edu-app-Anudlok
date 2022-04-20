@@ -29,15 +29,16 @@ public:
     void startGame();
     void GameStartScreen();
     void PauseScreen();
+    void CollideScreen();
     static int const WIDTH = 1300;
     static int const HEIGHT = 900;
 
 private slots:
     void on_startButton_clicked();
-    /* working on this so ignore it :)
+
     void on_restartButton_clicked();
-    void on_returnButton_clicked();
-    */
+    void on_resumeButton_clicked();
+
     void keyPressEvent(QKeyEvent *k);
 
 private:

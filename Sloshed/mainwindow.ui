@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="SceneWidget" name="startScreen">
      <widget class="QPushButton" name="startButton">
@@ -47,6 +47,35 @@
       </property>
      </widget>
     </widget>
+    <widget class="SceneWidget" name="collideScreen"/>
+    <widget class="SceneWidget" name="pauseScreen">
+     <widget class="QPushButton" name="resumeButton">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>70</y>
+        <width>301</width>
+        <height>361</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Resume</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="restartButton">
+      <property name="geometry">
+       <rect>
+        <x>479</x>
+        <y>71</y>
+        <width>301</width>
+        <height>361</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Restart</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="GameScreen" name="gameplayScreen"/>
    </widget>
   </widget>
@@ -56,7 +85,7 @@
      <x>0</x>
      <y>0</y>
      <width>1300</width>
-     <height>17</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>
