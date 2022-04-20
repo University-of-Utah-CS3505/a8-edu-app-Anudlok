@@ -30,9 +30,15 @@ GameScreen::GameScreen(QWidget *parent)
     sceneTimer = new QTimer(this);
     truckTimer = new QTimer(this);
     mouseTimer = new QTimer(this);
+    hydrationTimer = new QTimer(this);
     connect(sceneTimer, &QTimer::timeout, gameplayScene, &QGraphicsScene::advance);
     connect(truckTimer, &QTimer::timeout, this, &GameScreen::sendTruck);
     connect(mouseTimer, &QTimer::timeout, this, &GameScreen::sendMousePosition);
+    connect(hydrationTimer, &QTimer::timeout, this, &GameScreen::sendHydrationTimer);
+
+    // Turns off scrollbar horizontally or vertically
+    this->gameplayView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    this->gameplayView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 /**
@@ -43,6 +49,8 @@ void GameScreen::startGame() {
     sceneTimer->start(sceneAdvanceDelay);
     truckTimer->start(truckSpawnDelay);
     mouseTimer->start(mouseDelay);
+    hydrationTimer->start(400);
+    emit sendHydrationTimer();
 
     placeWaterBottles();
     player = new Player();

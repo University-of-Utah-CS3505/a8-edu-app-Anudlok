@@ -41,7 +41,12 @@ private slots:
 
     void keyPressEvent(QKeyEvent *k);
 
+
+
 private:
     Ui::MainWindow *ui;
+
+public slots:
+    void receiveHydrationTimer();
 };
 #endif // MAINWINDOW_H

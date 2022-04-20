@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="SceneWidget" name="startScreen">
      <widget class="QPushButton" name="startButton">
@@ -76,7 +76,30 @@
       </property>
      </widget>
     </widget>
-    <widget class="GameScreen" name="gameplayScreen"/>
+    <widget class="GameScreen" name="gameplayScreen">
+     <widget class="QProgressBar" name="hydrationBar">
+      <property name="geometry">
+       <rect>
+        <x>1220</x>
+        <y>20</y>
+        <width>51</width>
+        <height>451</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QProgressBar::chunk {background: r rgb(30, 169, 255)}</string>
+      </property>
+      <property name="value">
+       <number>100</number>
+      </property>
+      <property name="textVisible">
+       <bool>false</bool>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -85,7 +108,7 @@
      <x>0</x>
      <y>0</y>
      <width>1300</width>
-     <height>24</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>

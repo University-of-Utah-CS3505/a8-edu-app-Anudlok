@@ -26,6 +26,8 @@ public:
     void nextLevel();
 
 signals:
+  void sendHydrationTimer();
+  void receiveHydrationTimer();
 
 private:
     void sendTruck();
@@ -36,6 +38,7 @@ private:
     QTimer *sceneTimer;
     QTimer *truckTimer;
     QTimer* mouseTimer;
+    QTimer *hydrationTimer;
 
     // Variables to tweak gameplay
     int truckSpawnDelay = 2000;

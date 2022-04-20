@@ -54,6 +54,8 @@ MainWindow::MainWindow(QWidget *parent)
   //  effect->blurRadius();
   //  this->setGraphicsEffect(effect);
     //Test
+
+    connect(ui->gameplayScreen, &GameScreen::sendHydrationTimer, this, &MainWindow::receiveHydrationTimer);
 }
 
 MainWindow::~MainWindow()
@@ -75,6 +77,8 @@ void MainWindow::startGame() {
     this->setGraphicsEffect(0);
     ui->stackWindow->setCurrentIndex(3);
     ui->gameplayScreen->startGame();
+
+    ui->hydrationBar->setValue(100);
 }
 
 void MainWindow::PauseScreen(){
@@ -106,6 +110,7 @@ void MainWindow::on_restartButton_clicked(){
    // this->setGraphicsEffect(0);
     GameStartScreen();
 }
+
 //the console says "no matching signal for on_returnButton_clicked(); but i'm working on it
 void MainWindow::on_resumeButton_clicked(){
     this->setGraphicsEffect(0);
@@ -134,6 +139,7 @@ void MainWindow::keyPressEvent(QKeyEvent * k){
     }
 }
 
-
-
-
+void MainWindow::receiveHydrationTimer() {
+    int currVal = ui->hydrationBar->value();
+    ui->hydrationBar->setValue(currVal - 1);
+}
