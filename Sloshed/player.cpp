@@ -1,6 +1,17 @@
+/************************************************
+ * Truck class
+ * Class definition for Truck QGraphicsPixmapItem
+ * @author: Anna Timofeyenko, Gabby Culley,
+ *          Gaby Torres, Raynard Christian, Angela Mishler
+ * @date: 4/18/2022
+************************************************/
 #include "player.h"
 #include <QDebug>
 
+/**
+ * The Player constructor
+ * @brief Player::Player
+ */
 Player::Player()
 {
     setPos(mapToParent(610, 800));
@@ -9,6 +20,11 @@ Player::Player()
     angle = 20;
 }
 
+/**
+ * Updates the instance of player. Detects collisions with the truck.
+ * @brief Player::advance
+ * @param phase
+ */
 void Player::advance(int phase)
 {
     if(!phase) return;
@@ -21,11 +37,20 @@ void Player::advance(int phase)
     if (y() - y_pos + 60 == 0)
         speed_y = 0;
 
-    if(scene()->collidingItems(this).isEmpty()) {
+    if(scene()->collidingItems(this).isEmpty() && !isColliding) {
         setPos(x() - speed_x, y() - speed_y);
+    } else {
+        isColliding = true;
+        emit hasCollided();
     }
 }
 
+/**
+ * Gets the current position of the mouse.
+ * @brief Player::mousePosition
+ * @param x The X coordinate of the mouse
+ * @param y The Y coordinate of the mouse
+ */
 void Player::mousePosition(int x, int y) {
     x_pos = x;
     y_pos = y;

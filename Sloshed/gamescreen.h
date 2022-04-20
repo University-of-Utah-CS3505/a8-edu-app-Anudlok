@@ -28,11 +28,13 @@ public:
 signals:
   void sendHydrationTimer();
   void receiveHydrationTimer();
+  void sendCollideScreen();
 
 private:
     void sendTruck();
     void placeWaterBottles();
     void sendMousePosition();
+    void handleCollision();
     QGraphicsView *gameplayView;
     QGraphicsScene *gameplayScene;
     QTimer *sceneTimer;

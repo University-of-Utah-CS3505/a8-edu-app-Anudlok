@@ -13,6 +13,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
@@ -29,7 +30,12 @@ public:
     QStackedWidget *stackWindow;
     SceneWidget *startScreen;
     QPushButton *startButton;
+    SceneWidget *collideScreen;
+    SceneWidget *pauseScreen;
+    QPushButton *resumeButton;
+    QPushButton *restartButton;
     GameScreen *gameplayScreen;
+    QProgressBar *hydrationBar;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -51,8 +57,27 @@ public:
         startButton->setGeometry(QRect(480, 510, 319, 200));
         startButton->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/StartSketch1.png)"));
         stackWindow->addWidget(startScreen);
+        collideScreen = new SceneWidget();
+        collideScreen->setObjectName(QString::fromUtf8("collideScreen"));
+        stackWindow->addWidget(collideScreen);
+        pauseScreen = new SceneWidget();
+        pauseScreen->setObjectName(QString::fromUtf8("pauseScreen"));
+        resumeButton = new QPushButton(pauseScreen);
+        resumeButton->setObjectName(QString::fromUtf8("resumeButton"));
+        resumeButton->setGeometry(QRect(160, 70, 301, 361));
+        restartButton = new QPushButton(pauseScreen);
+        restartButton->setObjectName(QString::fromUtf8("restartButton"));
+        restartButton->setGeometry(QRect(479, 71, 301, 361));
+        stackWindow->addWidget(pauseScreen);
         gameplayScreen = new GameScreen();
         gameplayScreen->setObjectName(QString::fromUtf8("gameplayScreen"));
+        hydrationBar = new QProgressBar(gameplayScreen);
+        hydrationBar->setObjectName(QString::fromUtf8("hydrationBar"));
+        hydrationBar->setGeometry(QRect(1220, 20, 51, 451));
+        hydrationBar->setStyleSheet(QString::fromUtf8("QProgressBar::chunk {background: r rgb(30, 169, 255)}"));
+        hydrationBar->setValue(100);
+        hydrationBar->setTextVisible(false);
+        hydrationBar->setOrientation(Qt::Vertical);
         stackWindow->addWidget(gameplayScreen);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -65,7 +90,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackWindow->setCurrentIndex(1);
+        stackWindow->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -75,6 +100,8 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         startButton->setText(QString());
+        resumeButton->setText(QCoreApplication::translate("MainWindow", "Resume", nullptr));
+        restartButton->setText(QCoreApplication::translate("MainWindow", "Restart", nullptr));
     } // retranslateUi
 
 };

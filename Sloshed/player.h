@@ -7,9 +7,11 @@
 #include <QRandomGenerator>
 #include <QList>
 #include <QTimer>
+#include <QObject>
 
-class Player : public QGraphicsPixmapItem
+class Player : public QObject, public QGraphicsPixmapItem
 {
+    Q_OBJECT
 public:
     Player();
     void mousePosition(int x, int y);
@@ -23,6 +25,10 @@ private:
     qreal speed;
     int x_pos;
     int y_pos;
+    bool isColliding;
+
+signals:
+    void hasCollided();
 };
 
 #endif // PLAYER_H

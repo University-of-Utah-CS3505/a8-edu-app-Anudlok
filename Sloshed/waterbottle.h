@@ -15,9 +15,11 @@
 #include <QRandomGenerator>
 #include <QList>
 #include <QTimer>
+#include <QObject>
 
-class WaterBottle : public QGraphicsPixmapItem
+class WaterBottle : public QObject, public QGraphicsPixmapItem
 {
+    Q_OBJECT
 public:
     WaterBottle(int, int);
 

@@ -26,6 +26,12 @@ GameScreen::GameScreen(QWidget *parent)
     gameplayView->setScene(gameplayScene);
     gameplayScene->setSceneRect(0, 0, MainWindow::WIDTH, MainWindow::HEIGHT);
 
+    // Set up player (Note: moved this here so we can make connect calls without crashing)
+    player = new Player();
+    player->setScale(0.6);
+    player->setTransformOriginPoint(player->boundingRect().width()/2 , player->boundingRect().height()/2);
+    gameplayScene->addItem(player);
+
     // Timer for the whole scene and send trucks
     sceneTimer = new QTimer(this);
     truckTimer = new QTimer(this);
@@ -35,6 +41,7 @@ GameScreen::GameScreen(QWidget *parent)
     connect(truckTimer, &QTimer::timeout, this, &GameScreen::sendTruck);
     connect(mouseTimer, &QTimer::timeout, this, &GameScreen::sendMousePosition);
     connect(hydrationTimer, &QTimer::timeout, this, &GameScreen::sendHydrationTimer);
+    connect(player, &Player::hasCollided, this, &GameScreen::handleCollision);
 
     // Turns off scrollbar horizontally or vertically
     this->gameplayView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -53,10 +60,11 @@ void GameScreen::startGame() {
     emit sendHydrationTimer();
 
     placeWaterBottles();
-    player = new Player();
-    player->setScale(0.6);
-    player->setTransformOriginPoint(player->boundingRect().width()/2 , player->boundingRect().height()/2);
-    gameplayScene->addItem(player);
+//    player = new Player();
+//    player->setScale(0.6);
+//    player->setTransformOriginPoint(player->boundingRect().width()/2 , player->boundingRect().height()/2);
+//    gameplayScene->addItem(player);
+
 }
 
 /**
@@ -132,4 +140,14 @@ void GameScreen::sendMousePosition() {
     int x = this->mapFromGlobal(QCursor::pos()).x();
     int y = this->mapFromGlobal(QCursor::pos()).y();
     player->mousePosition(x, y);
+}
+
+/**
+ * Stops the game after a 1.5 second delay when the player collides with
+ * a truck. Emits a signal to bring up the CollideScreen in MainWindow.
+ * @brief GameScreen::handleCollision
+ */
+void GameScreen::handleCollision() {
+    QTimer::singleShot(1500, this, &GameScreen::stopGame);
+    emit sendCollideScreen();
 }

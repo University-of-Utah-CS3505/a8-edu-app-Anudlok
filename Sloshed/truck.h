@@ -14,9 +14,11 @@
 #include <QRandomGenerator>
 #include <QList>
 #include <QTimer>
+#include <QObject>
 
-class Truck : public QGraphicsPixmapItem
+class Truck : public QObject, public QGraphicsPixmapItem
 {
+    Q_OBJECT
 public:
     Truck(int, int, bool);
     static int const HEIGHT = 120;
@@ -25,7 +27,6 @@ public:
 protected:
     void advance(int phase);
     void move();
-    void doCollision();
     void remove();
 
 private:
@@ -34,8 +35,8 @@ private:
     qreal collideTime;
     QString imgPath = ":/GameImages/Images/EnemySketch1.png";
     QPixmap pixmap;
-    bool collided;
     bool movingRight;
+    bool isColliding;
 
 signals:
 

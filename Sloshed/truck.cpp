@@ -8,6 +8,13 @@
 #include "truck.h"
 #include "player.h"
 
+/**
+ * Truck constructor
+ * @brief Truck::Truck
+ * @param x The X coordinate of the Truck
+ * @param y The Y coordinate of the Truck
+ * @param movingRight
+ */
 Truck::Truck(int x, int y, bool movingRight) {
     setPos(mapToParent(x, y));
     setPixmap(imgPath);
@@ -17,17 +24,20 @@ Truck::Truck(int x, int y, bool movingRight) {
     // If truck is moving left, it should face opposite direction
     if (!movingRight)
         setRotation(rotation() + 180);
-
-    collided = false;
+    isColliding = false;
     speed = 20;
     angle = 20;
 }
 
+/**
+ * Updates the instance of the truck. Detects collisions with the player.
+ * @brief Truck::advance
+ * @param phase
+ */
 void Truck::advance(int phase) {
     if(!phase) return;
 
     QList<QGraphicsItem *> list = scene()->collidingItems(this) ;
-    bool isColliding = false;
 
     // Check if truck is colliding with player
     foreach(QGraphicsItem * i , list)
@@ -35,9 +45,7 @@ void Truck::advance(int phase) {
         Player * item= dynamic_cast<Player *>(i);
         if (item)
         {
-            // If colliding with player, do collision
-            doCollision();
-            isColliding = true;
+           isColliding = true;
         }
     }
 
@@ -47,22 +55,20 @@ void Truck::advance(int phase) {
             setPos(x() + speed, y());
         else
             setPos(x() - speed, y());
+    } else {
+        // If item is colliding, make it spin
+        setRotation(rotation() + angle);
     }
-
     // Remove truck if it's is out of bounds
     if (x() < 0 - WIDTH || x() > 1300 + WIDTH) {
         remove();
     }
 }
 
+/**
+ * Removes the truck from the scene.
+ * @brief Truck::remove
+ */
 void Truck::remove() {
     scene()->removeItem(this);
 }
-
-void Truck::doCollision() {
-    setRotation(rotation() + angle);
-    //emit pause game signal here?
-}
-
-
-

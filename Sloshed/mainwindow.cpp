@@ -56,6 +56,7 @@ MainWindow::MainWindow(QWidget *parent)
     //Test
 
     connect(ui->gameplayScreen, &GameScreen::sendHydrationTimer, this, &MainWindow::receiveHydrationTimer);
+    connect(ui->gameplayScreen, &GameScreen::sendCollideScreen, this, &MainWindow::CollideScreenDelay);
 }
 
 MainWindow::~MainWindow()
@@ -142,4 +143,13 @@ void MainWindow::keyPressEvent(QKeyEvent * k){
 void MainWindow::receiveHydrationTimer() {
     int currVal = ui->hydrationBar->value();
     ui->hydrationBar->setValue(currVal - 1);
+}
+
+/**
+ * Calls the collide screen after a 1.2 second delay (to be able to see trucks
+ * spin before the screen comes up).
+ * @brief MainWindow::CollideScreenDelay
+ */
+void MainWindow::CollideScreenDelay() {
+    QTimer::singleShot(1200, this, &MainWindow::CollideScreen);
 }

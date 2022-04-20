@@ -30,6 +30,7 @@ public:
     void GameStartScreen();
     void PauseScreen();
     void CollideScreen();
+    void CollideScreenDelay();
     static int const WIDTH = 1300;
     static int const HEIGHT = 900;
 
