@@ -98,7 +98,7 @@ void MainWindow::restartGame() {
 
 void MainWindow::PauseScreen(){
     ui->gameplayScreen->stopGame();
-   // QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
+    QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
     ui->stackWindow->setCurrentIndex(2);
     //insert code to stop all on screen movement here
    // QWidget *pauseScreen = ui->stackWindow->widget(2);
@@ -106,6 +106,7 @@ void MainWindow::PauseScreen(){
     //effect->setBlurRadius(20);
    // effect->blurRadius();
     //pauseScreen->setGraphicsEffect(effect);
+    ui->gameplayScreen->setGraphicsEffect(effect);
 }
 void MainWindow::CollideScreen(){
     ui->gameplayScreen->stopGame();

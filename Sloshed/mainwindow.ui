@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/GameImages/Images/BackgroundSketch1.png)</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QStackedWidget" name="stackWindow">
@@ -27,9 +27,12 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="SceneWidget" name="startScreen">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <widget class="QPushButton" name="startButton">
       <property name="geometry">
        <rect>
@@ -40,15 +43,18 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-image: url(:/GameImages/Images/StartSketch1.png)</string>
+       <string notr="true">image: url(:/GameImages/Images/StartSketch1.png);</string>
       </property>
       <property name="text">
        <string/>
       </property>
      </widget>
     </widget>
-    <widget class="SceneWidget" name="collideScreen"/>
-    <widget class="SceneWidget" name="pauseScreen">
+    <widget class="QWidget" name="collideScreen"/>
+    <widget class="QWidget" name="pauseScreen">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+     </property>
      <widget class="QPushButton" name="resumeButton">
       <property name="geometry">
        <rect>
@@ -108,7 +114,7 @@
      <x>0</x>
      <y>0</y>
      <width>1300</width>
-     <height>17</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

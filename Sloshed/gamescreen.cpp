@@ -23,6 +23,7 @@ GameScreen::GameScreen(QWidget *parent)
     qDebug() << "pos: " << gameplayView->pos();
     qDebug() << "size: " << gameplayView->size();
     gameplayScene = new QGraphicsScene(this);
+    gameplayView->setRenderHint(QPainter::SmoothPixmapTransform);
     gameplayView->setScene(gameplayScene);
     gameplayScene->setSceneRect(0, 0, MainWindow::WIDTH, MainWindow::HEIGHT);
 

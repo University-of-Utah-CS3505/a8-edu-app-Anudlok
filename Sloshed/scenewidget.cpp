@@ -17,6 +17,9 @@ SceneWidget::SceneWidget(QWidget *parent) : QWidget(parent),
     x(0), y(0),
     xSpeed(20), ySpeed(20)
 {
+    // Set background
+    setStyleSheet("background-image: url(:/GameImages/Images/BackgroundSketch1.png");
+
     // Define the ground body.
     b2BodyDef groundBodyDef;
     groundBodyDef.position.Set(0.0f, 20.0f);
@@ -112,7 +115,7 @@ void SceneWidget::paintEvent(QPaintEvent *) {
 
     x = x + xSpeed;
     y = y + ySpeed;
-    painter.drawImage((int)(x), (int)(y), image);
+    //painter.drawImage((int)(x), (int)(y), image);
 }
 
 void SceneWidget::updateWorld() {
