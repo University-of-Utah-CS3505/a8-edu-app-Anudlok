@@ -56,19 +56,13 @@ void Truck::advance(int phase) {
 }
 
 void Truck::remove() {
-    //if (!scene()->sceneRect().contains(boundingRect()) || collided) {
     scene()->removeItem(this);
-    delete this;
 }
 
 void Truck::doCollision() {
     setRotation(rotation() + angle);
-    collided = true;
-    //emit stopTrucks();
+    //emit pause game signal here?
 }
 
-bool Truck::isCollided() {
-    return collided;
-}
 
 

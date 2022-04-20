@@ -4,6 +4,7 @@
 #include <QPainter>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
+#include "player.h"
 /************************************************
  * Truck class
  * Class definition for Truck QGraphicsPixmapItem
@@ -22,6 +23,7 @@ public:
 
 protected:
     void advance(int phase);
+    void remove();
 
 private:
     QString imgPath = ":/GameImages/Images/PowerupSketch1.png";

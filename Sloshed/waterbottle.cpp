@@ -9,8 +9,20 @@ WaterBottle::WaterBottle(int x, int y)
 void WaterBottle::advance(int phase) {
     if(!phase) return;
 
-    if(scene()->collidingItems(this).isEmpty()) {
+    QList<QGraphicsItem *> list = scene()->collidingItems(this) ;
 
+    // Check if player is colliding with water bottle
+    foreach(QGraphicsItem * i , list)
+    {
+        // If player colliding with water bottle, remove from scene
+        Player * item= dynamic_cast<Player *>(i);
+        if (item)
+        {
+            remove();
+        }
     }
-        // If item not colliding, advance truck left or right
+}
+
+void WaterBottle::remove() {
+    scene()->removeItem(this);
 }

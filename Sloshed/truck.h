@@ -26,7 +26,6 @@ protected:
     void advance(int phase);
     void move();
     void doCollision();
-    bool isCollided();
     void remove();
 
 private:
@@ -39,7 +38,6 @@ private:
     bool movingRight;
 
 signals:
-    void stopTrucks();
 
 
 };
