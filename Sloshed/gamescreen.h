@@ -28,7 +28,6 @@ public:
 
 signals:
   void sendHydrationTimer();
-  void receiveHydrationTimer();
   void sendCollideScreen();
 
 private:

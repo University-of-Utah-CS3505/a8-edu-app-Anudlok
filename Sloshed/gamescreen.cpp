@@ -162,7 +162,7 @@ void GameScreen::placeWaterBottles() {
         int x = cols[QRandomGenerator::global()->bounded(6)];
 
         // Place water bottle
-        WaterBottle *bottle = new WaterBottle(x, y);
+        WaterBottle *bottle = new WaterBottle(nullptr, x, y);
         gameplayScene->addItem(bottle);
     }
 }

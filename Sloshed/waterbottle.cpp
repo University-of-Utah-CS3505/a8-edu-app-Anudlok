@@ -10,10 +10,12 @@
 /**
  * The WaterBottle constructor
  * @brief WaterBottle::WaterBottle
+ * @param parent The parent QObject
  * @param x The x coordinate of the water bottle
  * @param y The y coordinate of the water bottle
  */
-WaterBottle::WaterBottle(int x, int y)
+WaterBottle::WaterBottle(QObject *parent, int x, int y)
+    : QObject{parent}
 {
     setPos(mapToParent(x, y));
     setPixmap(imgPath);
@@ -47,4 +49,6 @@ void WaterBottle::advance(int phase) {
  */
 void WaterBottle::remove() {
     scene()->removeItem(this);
+
+    emit addWater();
 }

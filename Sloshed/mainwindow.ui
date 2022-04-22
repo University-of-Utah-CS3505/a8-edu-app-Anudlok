@@ -30,7 +30,7 @@
      <string notr="true">background-image: url(:/GameImages/Images/BackgroundSketch1.png)</string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="SceneWidget" name="startScreen">
      <property name="styleSheet">
@@ -68,10 +68,10 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/GameImages/Images/StartSketch1.png);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
-       <string/>
+       <string>Resume</string>
       </property>
      </widget>
      <widget class="QPushButton" name="restartButton">
@@ -84,10 +84,10 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/GameImages/Images/StartSketch1.png);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
-       <string/>
+       <string>Restart</string>
       </property>
      </widget>
     </widget>
@@ -123,7 +123,7 @@
      <x>0</x>
      <y>0</y>
      <width>1300</width>
-     <height>19</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

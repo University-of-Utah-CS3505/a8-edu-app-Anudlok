@@ -21,7 +21,7 @@ class WaterBottle : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    WaterBottle(int, int);
+    WaterBottle(QObject*, int, int);
 
 protected:
     void advance(int phase);
@@ -29,6 +29,9 @@ protected:
 
 private:
     QString imgPath = ":/GameImages/Images/PowerupSketch1.png";
+
+signals:
+    void addWater();
 };
 
 #endif // WATERBOTTLE_H

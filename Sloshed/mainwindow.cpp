@@ -57,6 +57,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->gameplayScreen, &GameScreen::sendHydrationTimer, this, &MainWindow::receiveHydrationTimer);
     connect(ui->gameplayScreen, &GameScreen::sendCollideScreen, this, &MainWindow::CollideScreenDelay);
+    connect(WaterBottle, &WaterBottle::addWater, this, &MainWindow::addWaterToBar);
 }
 
 MainWindow::~MainWindow()
@@ -83,6 +84,7 @@ void MainWindow::startGame() {
     this->setGraphicsEffect(0);
     ui->stackWindow->setCurrentIndex(3);
     ui->gameplayScreen->startGame();
+    changeBarToBlue();
 }
 
 /**
@@ -93,12 +95,13 @@ void MainWindow::restartGame() {
     this->setGraphicsEffect(0);
     ui->stackWindow->setCurrentIndex(3);
     ui->gameplayScreen->restartGame();
+    changeBarToBlue();
     ui->hydrationBar->setValue(100);
 }
 
 void MainWindow::PauseScreen(){
     ui->gameplayScreen->stopGame();
-    QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
+  //  QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
     ui->stackWindow->setCurrentIndex(2);
     //insert code to stop all on screen movement here
    // QWidget *pauseScreen = ui->stackWindow->widget(2);
@@ -106,7 +109,7 @@ void MainWindow::PauseScreen(){
     //effect->setBlurRadius(20);
    // effect->blurRadius();
     //pauseScreen->setGraphicsEffect(effect);
-    ui->gameplayScreen->setGraphicsEffect(effect);
+  //  ui->gameplayScreen->setGraphicsEffect(effect);
 }
 void MainWindow::CollideScreen(){
     ui->gameplayScreen->stopGame();
@@ -155,7 +158,24 @@ void MainWindow::keyPressEvent(QKeyEvent * k){
 
 void MainWindow::receiveHydrationTimer() {
     int currVal = ui->hydrationBar->value();
+
+    // Sets bar to purple below 50%
+    if (currVal == 50) {
+        changeBarToPurple();
+    }
+    else if (currVal > 50) {
+        changeBarToBlue();
+    }
+
     ui->hydrationBar->setValue(currVal - 1);
+}
+
+void MainWindow::changeBarToPurple() {
+    ui->hydrationBar->setStyleSheet("QProgressBar::chunk {background: r rgb(104, 21, 159)}");
+}
+
+void MainWindow::changeBarToBlue() {
+    ui->hydrationBar->setStyleSheet("QProgressBar::chunk {background: r rgb(30, 169, 255)}");
 }
 
 /**
