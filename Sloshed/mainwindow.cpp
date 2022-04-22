@@ -180,8 +180,8 @@ void MainWindow::changeBarToBlue() {
 
 void MainWindow::addWaterToBar() {
     int currVal = ui->hydrationBar->value();
-    currVal+= 50;
-    ui->hydrationBar->valueChanged(currVal);
+    currVal+= 10;
+    ui->hydrationBar->setValue(currVal);
 }
 
 /**
