@@ -42,15 +42,12 @@ private slots:
     void on_resumeButton_clicked();
     void addWaterToBar();
     void keyPressEvent(QKeyEvent *k);
-
+    void receiveHydrationTimer();
 
 
 private:
     Ui::MainWindow *ui;
     void changeBarToPurple();
     void changeBarToBlue();
-
-public slots:
-    void receiveHydrationTimer();
 };
 #endif // MAINWINDOW_H

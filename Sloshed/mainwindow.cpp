@@ -178,6 +178,12 @@ void MainWindow::changeBarToBlue() {
     ui->hydrationBar->setStyleSheet("QProgressBar::chunk {background: r rgb(30, 169, 255)}");
 }
 
+void MainWindow::addWaterToBar() {
+    int currVal = ui->hydrationBar->value();
+    currVal+= 50;
+    ui->hydrationBar->valueChanged(currVal);
+}
+
 /**
  * Calls the collide screen after a 1.2 second delay (to be able to see trucks
  * spin before the screen comes up).
