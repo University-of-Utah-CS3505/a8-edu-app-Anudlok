@@ -164,6 +164,7 @@ void GameScreen::placeWaterBottles() {
         // Place water bottle
         WaterBottle *bottle = new WaterBottle(nullptr, x, y);
         gameplayScene->addItem(bottle);
+        connect(bottle, &WaterBottle::addWater, this, &GameScreen::addWaterToBar);
     }
 }
 
@@ -181,4 +182,8 @@ void GameScreen::sendMousePosition() {
 void GameScreen::handleCollision() {
     QTimer::singleShot(1500, this, &GameScreen::stopGame);
     emit sendCollideScreen();
+}
+
+void GameScreen::addWaterToBar() {
+    emit addWater();
 }

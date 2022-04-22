@@ -57,7 +57,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->gameplayScreen, &GameScreen::sendHydrationTimer, this, &MainWindow::receiveHydrationTimer);
     connect(ui->gameplayScreen, &GameScreen::sendCollideScreen, this, &MainWindow::CollideScreenDelay);
-    connect(WaterBottle, &WaterBottle::addWater, this, &MainWindow::addWaterToBar);
+    connect(ui->gameplayScreen, &GameScreen::addWater, this, &MainWindow::addWaterToBar);
 }
 
 MainWindow::~MainWindow()

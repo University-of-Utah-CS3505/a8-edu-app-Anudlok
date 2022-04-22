@@ -26,9 +26,13 @@ public:
     void stopGame();
     void nextLevel();
 
+public slots:
+    void addWaterToBar();
+
 signals:
   void sendHydrationTimer();
   void sendCollideScreen();
+  void addWater();
 
 private:
     void initTimers();
