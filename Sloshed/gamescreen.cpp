@@ -26,6 +26,7 @@ GameScreen::GameScreen(QWidget *parent)
     gameplayView->setRenderHint(QPainter::SmoothPixmapTransform);
     gameplayView->setScene(gameplayScene);
     gameplayScene->setSceneRect(0, 0, MainWindow::WIDTH, MainWindow::HEIGHT);
+    emit updateLevelView(level);
 
     // Set up player (Note: moved this here so we can make connect calls without crashing)
     addPlayer();
@@ -75,6 +76,7 @@ void GameScreen::restartGame(bool fromLevelOne) {
     gameplayScene->clear();
     if (fromLevelOne)
         level = 1;
+        emit updateLevelView(level);
     addPlayer();
     initTimers();
     placeWaterBottles();
@@ -135,6 +137,7 @@ void GameScreen::nextLevel() {
         level++;
         truckSpawnDelay *= 0.70; // Values for levels: 2000 1400 980 686 480
         sceneAdvanceDelay *= 0.8; // Values for levels: 25 20 16 13 11
+        emit updateLevelView(level);
     }
 
     restartGame(false);

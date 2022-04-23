@@ -33,6 +33,7 @@ signals:
   void sendHydrationTimer();
   void sendCollideScreen();
   void addWater();
+  void updateLevelView(int);
 
 private:
     void initTimers();

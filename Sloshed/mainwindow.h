@@ -43,7 +43,7 @@ private slots:
     void addWaterToBar();
     void keyPressEvent(QKeyEvent *k);
     void receiveHydrationTimer();
-
+    void updateLevel(int level);
 
 private:
     Ui::MainWindow *ui;

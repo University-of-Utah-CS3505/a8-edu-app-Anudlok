@@ -46,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->gameplayScreen, &GameScreen::sendHydrationTimer, this, &MainWindow::receiveHydrationTimer);
     connect(ui->gameplayScreen, &GameScreen::sendCollideScreen, this, &MainWindow::CollideScreenDelay);
     connect(ui->gameplayScreen, &GameScreen::addWater, this, &MainWindow::addWaterToBar);
+    connect(ui->gameplayScreen, &GameScreen::updateLevelView, this, &MainWindow::updateLevel);
 }
 
 MainWindow::~MainWindow()
@@ -223,4 +224,13 @@ void MainWindow::blurScreen(int blurRadius) {
  */
 void MainWindow::CollideScreenDelay() {
     QTimer::singleShot(1200, this, &MainWindow::CollideScreen);
+}
+
+/**
+ * Updates the level label.
+ * @brief MainWindow::UpdateLevel
+ * @param level
+ */
+void MainWindow::updateLevel(int level) {
+    ui->levelLabel->setText(QString("Level %1").arg(level));
 }
