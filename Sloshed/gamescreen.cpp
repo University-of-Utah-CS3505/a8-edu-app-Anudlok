@@ -77,12 +77,13 @@ void GameScreen::restartGame(bool fromLevelOne) {
         level = 1;
     addPlayer();
     initTimers();
+    placeWaterBottles();
     startGame();
 }
 
 /**
- * Starts trucks moving and spawning.
- * Will NOT stop any old games.
+ * Starts the game from where it left off.
+ * Will NOT stop or reset any old games.
  * @brief GameScreen::startGame
  */
 void GameScreen::startGame() {
@@ -91,13 +92,6 @@ void GameScreen::startGame() {
     mouseTimer->start(mouseDelay);
     hydrationTimer->start(waterDelay);
     emit sendHydrationTimer();
-
-    placeWaterBottles();
-//    player = new Player();
-//    player->setScale(0.6);
-//    player->setTransformOriginPoint(player->boundingRect().width()/2 , player->boundingRect().height()/2);
-//    gameplayScene->addItem(player);
-
 }
 
 /**
