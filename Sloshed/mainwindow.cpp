@@ -20,11 +20,6 @@
 #include "scenewidget.h"
 #include "gamescreen.h"
 
-//QGraphicsScene - Container for game objects. A Player, a tree, etc. Think of it as a map or a world
-//QGraphicsItem - Object that you want to put into a scene. The player class must be derived from the QGraphicsItem class
-//QGraphicsItem --> QGraphicsRecItem (Just a rectangle that its derived from)
-//QGraphicsView - Used to visualize the scene
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow)
@@ -47,13 +42,6 @@ MainWindow::MainWindow(QWidget *parent)
     // Set up start screen
     ui->startButton->setParent(ui->stackWindow->widget(0));
     ui->stackWindow->setCurrentIndex(0);
-
-   //use code below to blur the screen
-  //  QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
-  //  effect->setBlurRadius(50);
-  //  effect->blurRadius();
-  //  this->setGraphicsEffect(effect);
-    //Test
 
     connect(ui->gameplayScreen, &GameScreen::sendHydrationTimer, this, &MainWindow::receiveHydrationTimer);
     connect(ui->gameplayScreen, &GameScreen::sendCollideScreen, this, &MainWindow::CollideScreenDelay);
@@ -85,6 +73,7 @@ void MainWindow::startGame() {
     ui->stackWindow->setCurrentIndex(3);
     ui->gameplayScreen->startGame();
     changeBarToBlue();
+    blurScreen(0);
 }
 
 /**
@@ -94,31 +83,27 @@ void MainWindow::startGame() {
 void MainWindow::restartGame() {
     this->setGraphicsEffect(0);
     ui->stackWindow->setCurrentIndex(3);
+    ui->hydrationBar->setValue(100);
     ui->gameplayScreen->restartGame();
     changeBarToBlue();
-    ui->hydrationBar->setValue(100);
+    blurScreen(0);
 }
 
 void MainWindow::PauseScreen(){
     ui->gameplayScreen->stopGame();
-  //  QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
     ui->stackWindow->setCurrentIndex(2);
     //insert code to stop all on screen movement here
    // QWidget *pauseScreen = ui->stackWindow->widget(2);
-    //blur game screen
-    //effect->setBlurRadius(20);
-   // effect->blurRadius();
-    //pauseScreen->setGraphicsEffect(effect);
-  //  ui->gameplayScreen->setGraphicsEffect(effect);
+
+    //blurScreen(*Insert number here*);
+
+    paused = true;
 }
 void MainWindow::CollideScreen(){
     ui->gameplayScreen->stopGame();
-    QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
     ui->stackWindow->setCurrentIndex(0);
     //blur game screen
-    effect->setBlurRadius(20);
-    effect->blurRadius();
-    this->setGraphicsEffect(effect);
+    blurScreen(20);
 }
 
 //the console says "no matching signal for on_restartButton_clicked(); but i'm working on it
@@ -126,12 +111,16 @@ void MainWindow::on_restartButton_clicked(){
     //probably have to reset all player movement
    // this->setGraphicsEffect(0);
     GameStartScreen();
+
+    paused = false;
 }
 
 //the console says "no matching signal for on_returnButton_clicked(); but i'm working on it
 void MainWindow::on_resumeButton_clicked(){
     this->setGraphicsEffect(0);
     startGame();
+
+    paused = false;
 }
 
 
@@ -156,32 +145,75 @@ void MainWindow::keyPressEvent(QKeyEvent * k){
     }
 }
 
+/**
+ * Recieves the signal from the gamescreen.cpp file and
+ * based on the value of the hydration bar, changes the
+ * color to purple (if at 50) or blue if greater than 50.
+ *
+ * Also continuously minuses 1 from the hydration bar during
+ * gameplay. Value for timer can be found in the gamescreen.cpp
+ * file.
+ *
+ * @brief MainWindow::receiveHydrationTimer
+ */
 void MainWindow::receiveHydrationTimer() {
-    int currVal = ui->hydrationBar->value();
+    if (paused) {
+        return;
+    }
 
-    // Sets bar to purple below 50%
+    int currVal = ui->hydrationBar->value();
+    ui->hydrationBar->setValue(currVal - 1);
+
+    // Sets bar to purple at 50%
     if (currVal == 50) {
         changeBarToPurple();
+
+        //blur game screen
+      //  blurScreen(5);
     }
     else if (currVal > 50) {
         changeBarToBlue();
     }
-
-    ui->hydrationBar->setValue(currVal - 1);
 }
 
+/**
+ * Changes the color of the hydration bar to purple.
+ * @brief MainWindow::changeBarToPurple
+ */
 void MainWindow::changeBarToPurple() {
     ui->hydrationBar->setStyleSheet("QProgressBar::chunk {background: r rgb(104, 21, 159)}");
 }
 
+/**
+ * Changes the color of the hydration bar to blue.
+ * @brief MainWindow::changeBarToBlue
+ */
 void MainWindow::changeBarToBlue() {
     ui->hydrationBar->setStyleSheet("QProgressBar::chunk {background: r rgb(30, 169, 255)}");
 }
 
+/**
+ * Adds 10 values of water to the hydration bar when a water bottle is picked up.
+ *
+ * Gets it's signals from tthe gamescreen.cpp file.
+ * @brief MainWindow::addWaterToBar
+ */
 void MainWindow::addWaterToBar() {
     int currVal = ui->hydrationBar->value();
     currVal+= 10;
     ui->hydrationBar->setValue(currVal);
+}
+
+/**
+ * Blurs the screen by the given radius integer.
+ * @brief MainWindow::blurScreen
+ * @param blurRadius - Blurs the screen by this radius
+ */
+void MainWindow::blurScreen(int blurRadius) {
+    QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
+    effect->setBlurRadius(blurRadius);
+    effect->blurRadius();
+    this->setGraphicsEffect(effect);
 }
 
 /**

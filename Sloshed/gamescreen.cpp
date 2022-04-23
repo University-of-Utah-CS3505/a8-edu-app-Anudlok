@@ -89,7 +89,7 @@ void GameScreen::startGame() {
     sceneTimer->start(sceneAdvanceDelay);
     truckTimer->start(truckSpawnDelay);
     mouseTimer->start(mouseDelay);
-    hydrationTimer->start(400);
+    hydrationTimer->start(waterDelay);
     emit sendHydrationTimer();
 
     placeWaterBottles();

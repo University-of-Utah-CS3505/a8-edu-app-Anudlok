@@ -52,6 +52,7 @@ private:
     int truckSpawnDelay = 2000;
     int sceneAdvanceDelay = 25;
     int mouseDelay = 100;
+    int waterDelay = 400;
     int level = 1;
     int const MAX_LEVEL = 5;
     Player *player;

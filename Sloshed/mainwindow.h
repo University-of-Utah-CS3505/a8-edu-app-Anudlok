@@ -49,5 +49,7 @@ private:
     Ui::MainWindow *ui;
     void changeBarToPurple();
     void changeBarToBlue();
+    void blurScreen(int blurRadius);
+    bool paused = false;
 };
 #endif // MAINWINDOW_H
