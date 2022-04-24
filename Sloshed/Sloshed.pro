@@ -8,6 +8,8 @@ CONFIG += c++11
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+QT += multimedia
+
 SOURCES += \
     Box2D/Collision/Shapes/b2ChainShape.cpp \
     Box2D/Collision/Shapes/b2CircleShape.cpp \
@@ -128,7 +130,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     Box2D/Box2DConfig.cmake \
-    Box2D/CMakeLists.txt
+    Box2D/CMakeLists.txt \
+    Sound/drinkingSound.mp4
     alien1.png
 
 RESOURCES += \

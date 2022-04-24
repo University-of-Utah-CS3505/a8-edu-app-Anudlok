@@ -19,6 +19,7 @@
 #include "player.h"
 #include "scenewidget.h"
 #include "gamescreen.h"
+#include <QSoundEffect>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -47,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->gameplayScreen, &GameScreen::sendCollideScreen, this, &MainWindow::CollideScreenDelay);
     connect(ui->gameplayScreen, &GameScreen::addWater, this, &MainWindow::addWaterToBar);
     connect(ui->gameplayScreen, &GameScreen::updateLevelView, this, &MainWindow::updateLevel);
+
 }
 
 MainWindow::~MainWindow()
@@ -204,6 +206,11 @@ void MainWindow::changeBarToBlue() {
  * @brief MainWindow::addWaterToBar
  */
 void MainWindow::addWaterToBar() {
+    effect.setSource(QUrl("qrc:/Sounds/Sound/drinkingSound.wav"));
+    effect.setLoopCount(1);
+    effect.setVolume(0.25f);
+    effect.play();
+
     int currVal = ui->hydrationBar->value();
     currVal+= 10;
     ui->hydrationBar->setValue(currVal);

@@ -18,4 +18,7 @@
         <file>Images/Truck.png</file>
         <file>Images/Win.png</file>
     </qresource>
+    <qresource prefix="/Sounds">
+        <file>Sound/drinkingSound.wav</file>
+    </qresource>
 </RCC>

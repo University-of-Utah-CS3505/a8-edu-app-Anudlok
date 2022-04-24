@@ -14,6 +14,7 @@
 #include "truck.h"
 #include "player.h"
 #include <QTimer>
+#include <QSoundEffect>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -47,6 +48,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QSoundEffect effect;
     void changeBarToPurple();
     void changeBarToBlue();
     void blurScreen(int blurRadius);
