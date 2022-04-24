@@ -14,7 +14,7 @@
  */
 Player::Player()
 {
-    setPos(mapToParent(400, 800));
+    setPos(mapToParent(355, 800));
     setPixmap(imgPath);
     speed = 3;
     angle = 20;
@@ -29,12 +29,12 @@ void Player::advance(int phase)
 {
     if(!phase) return;
 
-    int speed_x = (x() - x_pos + 60) / (abs(x() - x_pos + 60)) * speed;
-    int speed_y = (y() - y_pos + 60) / (abs(y() - y_pos + 60)) * speed;
+    int speed_x = (x() - mouse_x_pos + 60) / (abs(x() - mouse_x_pos + 60)) * speed;
+    int speed_y = (y() - mouse_y_pos + 60) / (abs(y() - mouse_y_pos + 60)) * speed;
 
-    if (x() - x_pos + 60 == 0)
+    if (x() - mouse_x_pos + 60 == 0)
         speed_x = 0;
-    if (y() - y_pos + 60 == 0)
+    if (y() - mouse_y_pos + 60 == 0)
         speed_y = 0;
 
     if(scene()->collidingItems(this).isEmpty() && !isColliding) {
@@ -57,12 +57,15 @@ void Player::advance(int phase)
  * @param y The Y coordinate of the mouse
  */
 void Player::mousePosition(int x, int y) {
-    x_pos = x;
-    y_pos = y;
+    mouse_x_pos = x;
+    mouse_y_pos = y;
 }
 
+/**
+ * Informs the GameScreen to end current level.
+ * @brief Player::endLevel
+ */
 void Player::endLevel() {
-    qDebug() << "emitting endLevel";
     emit nextLevel();
 }
 

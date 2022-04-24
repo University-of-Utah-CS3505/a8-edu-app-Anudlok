@@ -26,8 +26,8 @@ private:
     QString imgPath = ":/GameImages/Images/Player.png";
     qreal angle;
     qreal speed;
-    int x_pos;
-    int y_pos;
+    int mouse_x_pos;
+    int mouse_y_pos;
     bool isColliding;
 
 signals:

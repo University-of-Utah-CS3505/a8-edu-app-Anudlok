@@ -178,6 +178,10 @@ void GameScreen::placeWaterBottles() {
     }
 }
 
+/**
+ * Sends the current mouse position to the player object.
+ * @brief GameScreen::sendMousePosition
+ */
 void GameScreen::sendMousePosition() {
     int x = this->mapFromGlobal(QCursor::pos()).x();
     int y = this->mapFromGlobal(QCursor::pos()).y();
@@ -195,6 +199,10 @@ void GameScreen::handleCollision() {
     emit sendCollideScreen();
 }
 
+/**
+ * Adds water to the hydration bar.
+ * @brief GameScreen::addWaterToBar
+ */
 void GameScreen::addWaterToBar() {
     emit addWater();
 }
