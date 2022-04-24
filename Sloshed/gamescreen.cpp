@@ -190,6 +190,7 @@ void GameScreen::sendMousePosition() {
  */
 void GameScreen::handleCollision() {
     qDebug() << "handle collision in gamescreen";
+    // Delay before stopping game
     QTimer::singleShot(1500, this, &GameScreen::stopGame);
     emit sendCollideScreen();
 }

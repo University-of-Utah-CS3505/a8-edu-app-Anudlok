@@ -39,9 +39,10 @@ void Player::advance(int phase)
 
     if(scene()->collidingItems(this).isEmpty() && !isColliding) {
         setPos(x() - speed_x, y() - speed_y);
-    } else {
+    } else if (!isColliding) {
         isColliding = true;
         emit hasCollided();
+        qDebug() << "emitting has collided";
     }
 }
 
