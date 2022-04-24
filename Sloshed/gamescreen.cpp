@@ -123,9 +123,9 @@ void GameScreen::stopGame() {
  */
 void GameScreen::sendTruck() {
     // y coordinates of the 4 lanes
-    QList<int> lanes = {155, 315, 475, 635};
+    QList<int> lanes = {165, 300, 440, 575};
     // Get random lane
-    int laneNum = QRandomGenerator::global()->bounded(4);
+    int laneNum = QRandomGenerator::global()->bounded(lanes.size());
     // 0th and 3rd lane have trucks moving right. Other lanes move left.
     bool movingRight = laneNum % 2 == 0;
     // Place truck
@@ -161,14 +161,14 @@ void GameScreen::nextLevel() {
  */
 void GameScreen::placeWaterBottles() {
     // x coordinates
-    QList<int> cols = {100, 300, 500, 700, 900, 1100};
+    QList<int> cols = {60, 188, 316, 444, 572, 700};
     // y coordinates of the 4 lanes (center)
-    QList<int> lanes = {155, 315, 475, 635};
+    QList<int> lanes = {145, 280, 420, 555};
 
     // Place a bottle in each lane
     foreach (int y, lanes) {
         // Get random x coordinate
-        int x = cols[QRandomGenerator::global()->bounded(6)];
+        int x = cols[QRandomGenerator::global()->bounded(cols.size())];
 
         // Place water bottle
         WaterBottle *bottle = new WaterBottle(nullptr, x, y);
