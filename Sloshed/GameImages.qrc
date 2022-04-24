@@ -1,11 +1,21 @@
 <RCC>
     <qresource prefix="/GameImages">
-        <file>Images/BackgroundSketch1.png</file>
-        <file>Images/EnemySketch1.png</file>
-        <file>Images/GameplaySketch1.png</file>
-        <file>Images/LogoSketch2.png</file>
-        <file>Images/PowerupSketch1.png</file>
-        <file>Images/SpriteSketch1.png</file>
-        <file>Images/StartSketch1.png</file>
+        <file>Images/Background.png</file>
+        <file>Images/Bottle.png</file>
+        <file>Images/End.png</file>
+        <file>Images/Gameplay.png</file>
+        <file>Images/Gauge.png</file>
+        <file>Images/Instructions.png</file>
+        <file>Images/Logo.png</file>
+        <file>Images/Lose.png</file>
+        <file>Images/Pause.png</file>
+        <file>Images/Play.png</file>
+        <file>Images/Player.png</file>
+        <file>Images/Quit.png</file>
+        <file>Images/Reset.png</file>
+        <file>Images/Resume.png</file>
+        <file>Images/Trivia.png</file>
+        <file>Images/Truck.png</file>
+        <file>Images/Win.png</file>
     </qresource>
 </RCC>

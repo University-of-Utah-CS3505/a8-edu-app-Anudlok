@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1300</width>
-    <height>900</height>
+    <width>800</width>
+    <height>837</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">background-image: url(:/GameImages/Images/Gameplay.png)</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QStackedWidget" name="stackWindow">
@@ -22,72 +22,76 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1300</width>
-      <height>900</height>
+      <width>800</width>
+      <height>800</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/GameImages/Images/BackgroundSketch1.png)</string>
+     <string notr="true">background-image: url(:/GameImages/Images/Background.png)</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="SceneWidget" name="startScreen">
      <property name="styleSheet">
-      <string notr="true">background-image:url(:GameImages/Images/BackgroundSketch1.png)</string>
+      <string notr="true">background-image: url(:/GameImages/Images/Background.png)</string>
      </property>
      <widget class="QPushButton" name="startButton">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>510</y>
-        <width>319</width>
-        <height>200</height>
+        <x>270</x>
+        <y>630</y>
+        <width>275</width>
+        <height>125</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/GameImages/Images/StartSketch1.png);</string>
+       <string notr="true">image: url(:/GameImages/Images/Play.png)</string>
       </property>
       <property name="text">
        <string/>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="collideScreen"/>
+    <widget class="QWidget" name="collideScreen">
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/GameImages/Images/End.png)</string>
+     </property>
+    </widget>
     <widget class="QWidget" name="pauseScreen">
      <property name="styleSheet">
-      <string notr="true">background-image: url(:/GameImages/Images/GameplaySketch1.png)</string>
+      <string notr="true">background-image: url(:/GameImages/Images/End.png)</string>
      </property>
      <widget class="QPushButton" name="resumeButton">
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>240</y>
-        <width>301</width>
-        <height>191</height>
+        <x>110</x>
+        <y>440</y>
+        <width>275</width>
+        <height>125</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">image: url(:/GameImages/Images/Resume.png)</string>
       </property>
       <property name="text">
-       <string>Resume</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="restartButton">
       <property name="geometry">
        <rect>
-        <x>479</x>
-        <y>241</y>
-        <width>301</width>
-        <height>191</height>
+        <x>440</x>
+        <y>440</y>
+        <width>275</width>
+        <height>125</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">image: url(:/GameImages/Images/Reset.png)</string>
       </property>
       <property name="text">
-       <string>Restart</string>
+       <string/>
       </property>
      </widget>
     </widget>
@@ -95,10 +99,10 @@
      <widget class="QProgressBar" name="hydrationBar">
       <property name="geometry">
        <rect>
-        <x>1220</x>
-        <y>20</y>
-        <width>51</width>
-        <height>451</height>
+        <x>740</x>
+        <y>40</y>
+        <width>50</width>
+        <height>540</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -117,7 +121,7 @@
      <widget class="QLabel" name="levelLabel">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>-10</x>
         <y>30</y>
         <width>221</width>
         <height>60</height>
@@ -131,7 +135,6 @@
       </property>
       <property name="font">
        <font>
-        <family>Mongolian Baiti</family>
         <pointsize>36</pointsize>
        </font>
       </property>
@@ -145,6 +148,28 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QLabel" name="hydrateBarLogo">
+      <property name="geometry">
+       <rect>
+        <x>740</x>
+        <y>40</y>
+        <width>50</width>
+        <height>540</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/GameImages/Images/Gauge.png)</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <zorder>levelLabel</zorder>
+     <zorder>hydrationBar</zorder>
+     <zorder>hydrateBarLogo</zorder>
     </widget>
    </widget>
   </widget>
@@ -153,8 +178,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1300</width>
-     <height>26</height>
+     <width>800</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>

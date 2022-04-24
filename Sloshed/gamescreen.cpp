@@ -16,7 +16,7 @@
 GameScreen::GameScreen(QWidget *parent)
     : QWidget{parent}
 {
-    setStyleSheet("background-image: url(:/GameImages/Images/GameplaySketch1.png)");
+    setStyleSheet("background-image: url(:/GameImages/Images/Gameplay.png)");
     gameplayView = new QGraphicsView();
     gameplayView->setParent(this);
     gameplayView->resize(MainWindow::WIDTH, MainWindow::HEIGHT);
@@ -189,7 +189,7 @@ void GameScreen::sendMousePosition() {
  * @brief GameScreen::handleCollision
  */
 void GameScreen::handleCollision() {
-    qDebug() << "handle collision";
+    qDebug() << "handle collision in gamescreen";
     QTimer::singleShot(1500, this, &GameScreen::stopGame);
     emit sendCollideScreen();
 }

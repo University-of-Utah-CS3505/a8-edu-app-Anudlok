@@ -105,11 +105,11 @@ void MainWindow::PauseScreen(){
 }
 
 void MainWindow::CollideScreen(){
-    qDebug() << "collide screen";
+    qDebug() << "collide screen in mainwindow";
     ui->gameplayScreen->stopGame();
-    ui->stackWindow->setCurrentIndex(0);
     //blur game screen
     blurScreen(20);
+    ui->stackWindow->setCurrentIndex(0);
 }
 
 //the console says "no matching signal for on_restartButton_clicked(); but i'm working on it

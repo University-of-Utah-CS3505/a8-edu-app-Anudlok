@@ -32,8 +32,8 @@ public:
     void PauseScreen();
     void CollideScreen();
     void CollideScreenDelay();
-    static int const WIDTH = 1300;
-    static int const HEIGHT = 900;
+    static int const WIDTH = 800;
+    static int const HEIGHT = 800;
 
 private slots:
     void on_startButton_clicked();

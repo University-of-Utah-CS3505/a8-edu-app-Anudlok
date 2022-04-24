@@ -13,7 +13,7 @@
 SceneWidget::SceneWidget(QWidget *parent) : QWidget(parent),
     world(b2Vec2(0.0f, 10.0f)),
     timer(this),
-    image(":/GameImages/Images/LogoSketch2.png"), // Make a resource file - mac executables are in a hidden folder
+    image(":/GameImages/Images/Logo.png"), // Make a resource file - mac executables are in a hidden folder
     x(0), y(0),
     xSpeed(20), ySpeed(20)
 {
