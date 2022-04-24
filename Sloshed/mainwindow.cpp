@@ -234,3 +234,27 @@ void MainWindow::CollideScreenDelay() {
 void MainWindow::updateLevel(int level) {
     ui->levelLabel->setText(QString("Level %1").arg(level));
 }
+
+void MainWindow::on_answerButton1_clicked()
+{
+    //send button 1 clicked to triviascreen
+}
+
+
+void MainWindow::on_answerButton2_clicked()
+{
+     //send button 2 clicked to triviascreen
+}
+
+
+void MainWindow::on_answerButton3_clicked()
+{
+     //send button 3 clicked to triviascreen
+}
+
+
+void MainWindow::on_answerButton4_clicked()
+{
+     //send button 4 clicked to triviascreen
+}
+

@@ -46,6 +46,14 @@ private slots:
     void receiveHydrationTimer();
     void updateLevel(int level);
 
+    void on_answerButton1_clicked();
+
+    void on_answerButton2_clicked();
+
+    void on_answerButton3_clicked();
+
+    void on_answerButton4_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSoundEffect effect;
