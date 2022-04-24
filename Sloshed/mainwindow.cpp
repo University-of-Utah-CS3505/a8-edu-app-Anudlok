@@ -156,10 +156,15 @@ void MainWindow::keyPressEvent(QKeyEvent * k){
  */
 void MainWindow::receiveHydrationTimer() {
     int currVal = ui->hydrationBar->value();
+
+    if (currVal == 0) {
+      // Put a screen to a blurry game screen that has a label of loss and a button to restart
+    }
+
     ui->hydrationBar->setValue(currVal - 1);
 
     // Sets bar to purple at 50%
-    if (currVal == 50) { // what if this was <=?
+    if (currVal <= 50) {
         changeBarToPurple();
 
         //blur game screen
