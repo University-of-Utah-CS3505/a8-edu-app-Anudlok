@@ -95,25 +95,23 @@ void MainWindow::startGame() {
 void MainWindow::PauseScreen(){
     ui->gameplayScreen->pauseGame();
     ui->stackWindow->setCurrentIndex(2);
-    //insert code to stop all on screen movement here
-    // Can use the pauseScreen() method here (-Gabby)
-   // QWidget *pauseScreen = ui->stackWindow->widget(2);
-
-    //blurScreen(*Insert number here*);
 }
 
+/**
+ * @brief MainWindow::CollideScreen the screen that shows up when a player collides,
+ * displaying the trivia questions they must answer
+ */
 void MainWindow::CollideScreen(){
-    qDebug() << "collide screen in mainwindow";
+   // qDebug() << "collide screen in mainwindow";
     ui->gameplayScreen->stopGame();
     //blur game screen
-    blurScreen(20);
-    ui->stackWindow->setCurrentIndex(0);
+   // blurScreen(20);
+    ui->stackWindow->setCurrentIndex(1);
 }
 
-//the console says "no matching signal for on_restartButton_clicked(); but i'm working on it
 void MainWindow::on_restartButton_clicked(){
+
     //probably have to reset all player movement
-   // this->setGraphicsEffect(0);
     GameStartScreen();
 }
 
@@ -128,20 +126,9 @@ void MainWindow::on_resumeButton_clicked(){
 // https://doc.qt.io/qt-5/qkeyevent.html
 // https://stackoverflow.com/questions/12558988/qt-keypress-event
 void MainWindow::keyPressEvent(QKeyEvent * k){
-    switch(k->key()){
-    case Qt::Key_P:
-        //when its not on the game start screen or pause screen
+    if(k->key() == Qt::Key_Escape){
         if(ui->stackWindow->currentIndex()!=0 && ui->stackWindow->currentIndex()!=2)
             PauseScreen();
-        break;
-    case Qt::Key_Escape:
-        if(ui->stackWindow->currentIndex()!=0 && ui->stackWindow->currentIndex()!=2)
-            PauseScreen();
-        break;
-    //case Qt::KeyUp:       <-format for key switch statements for when we add more game stuff
-    //  break;
-    default:
-        break;
     }
 }
 

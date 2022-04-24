@@ -53,10 +53,26 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="collideScreen">
+    <widget class="TriviaScreen" name="collideScreen">
      <property name="styleSheet">
       <string notr="true">background-image: url(:/GameImages/Images/End.png)</string>
      </property>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>0</y>
+        <width>611</width>
+        <height>211</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image:url(:/GameImages/Images/Trivia.png)</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="pauseScreen">
      <property name="styleSheet">
@@ -204,7 +220,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>
@@ -221,6 +237,12 @@
    <class>GameScreen</class>
    <extends>QWidget</extends>
    <header>gamescreen.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TriviaScreen</class>
+   <extends>QWidget</extends>
+   <header>triviascreen.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

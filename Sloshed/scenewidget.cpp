@@ -67,8 +67,12 @@ SceneWidget::SceneWidget(QWidget *parent) : QWidget(parent),
 void SceneWidget::paintEvent(QPaintEvent *) {
     // Create a painter
     QPainter painter(this);
-    //b2Vec2 position = body->GetPosition();
+   // b2Vec2 position = body->GetPosition();
     //float angle = body->GetAngle();
+    //painter.drawImage((int)(position.x*20), (int)(position.y*20), image);
+
+   // painter.end();
+
 
     /*
      //Credit: https://www.youtube.com/watch?v=0j86zuqqTlQ

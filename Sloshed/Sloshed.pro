@@ -62,6 +62,7 @@ SOURCES += \
     mainwindow.cpp \
     player.cpp \
     scenewidget.cpp \
+    triviascreen.cpp \
     truck.cpp \
     waterbottle.cpp
 
@@ -117,6 +118,7 @@ HEADERS += \
     mainwindow.h \
     player.h \
     scenewidget.h \
+    triviascreen.h \
     truck.h \
     waterbottle.h
 
