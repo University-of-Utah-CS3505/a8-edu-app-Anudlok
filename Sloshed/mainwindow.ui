@@ -30,11 +30,11 @@
      <string notr="true">background-image: url(:/GameImages/Images/BackgroundSketch1.png)</string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="SceneWidget" name="startScreen">
      <property name="styleSheet">
-      <string notr="true">background-image:url(:GameImages/Images/BackgroundSketch1.png</string>
+      <string notr="true">background-image:url(:GameImages/Images/BackgroundSketch1.png)</string>
      </property>
      <widget class="QPushButton" name="startButton">
       <property name="geometry">
@@ -131,7 +131,7 @@
       </property>
       <property name="font">
        <font>
-        <family>Maiandra GD</family>
+        <family>Mongolian Baiti</family>
         <pointsize>36</pointsize>
        </font>
       </property>

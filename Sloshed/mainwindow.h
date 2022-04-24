@@ -26,8 +26,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void resumeGame();
     void startGame();
-    void restartGame();
     void GameStartScreen();
     void PauseScreen();
     void CollideScreen();
@@ -50,6 +50,6 @@ private:
     void changeBarToPurple();
     void changeBarToBlue();
     void blurScreen(int blurRadius);
-    bool paused = false;
+    bool isPurple = false;
 };
 #endif // MAINWINDOW_H

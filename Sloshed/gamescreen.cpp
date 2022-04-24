@@ -67,20 +67,20 @@ void GameScreen::addPlayer() {
 }
 
 /**
- * Stops the game and restarts it.
+ * Stops any old games and starts a new game. (Actually starts gameplay!)
  * @brief GameScreen::restartGame
  * @param fromLevelOne True by default or if you want to start the game from level 1. False otherwise.
  */
-void GameScreen::restartGame(bool fromLevelOne) {
+void GameScreen::startGame(bool fromLevelOne) {
+    qDebug() << "start game method";
     stopGame();
-    gameplayScene->clear();
     if (fromLevelOne)
         level = 1;
         emit updateLevelView(level);
     addPlayer();
     initTimers();
     placeWaterBottles();
-    startGame();
+    resumeGame();
 }
 
 /**
@@ -88,21 +88,33 @@ void GameScreen::restartGame(bool fromLevelOne) {
  * Will NOT stop or reset any old games.
  * @brief GameScreen::startGame
  */
-void GameScreen::startGame() {
+void GameScreen::resumeGame() {
     sceneTimer->start(sceneAdvanceDelay);
     truckTimer->start(truckSpawnDelay);
     mouseTimer->start(mouseDelay);
     hydrationTimer->start(waterDelay);
     emit sendHydrationTimer();
+    qDebug() << "done resuming game";
 }
 
 /**
- * Stops trucks from moving and spawning.
+ * Pauses the game. (Does NOT stop or reset game.)
  * @brief GameScreen::startGame
  */
-void GameScreen::stopGame() {
+void GameScreen::pauseGame() {
     sceneTimer->stop();
     truckTimer->stop();
+    mouseTimer->stop();
+    hydrationTimer->stop();
+}
+
+/**
+ * Stops the currently running game.
+ * @brief GameScreen::stopGame
+ */
+void GameScreen::stopGame() {
+    pauseGame();
+    gameplayScene->clear();
 }
 
 /**
@@ -140,7 +152,7 @@ void GameScreen::nextLevel() {
         emit updateLevelView(level);
     }
 
-    restartGame(false);
+    startGame(false);
 }
 
 /**
@@ -177,6 +189,7 @@ void GameScreen::sendMousePosition() {
  * @brief GameScreen::handleCollision
  */
 void GameScreen::handleCollision() {
+    qDebug() << "handle collision";
     QTimer::singleShot(1500, this, &GameScreen::stopGame);
     emit sendCollideScreen();
 }

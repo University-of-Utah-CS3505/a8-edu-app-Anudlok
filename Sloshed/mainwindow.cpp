@@ -55,13 +55,16 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::GameStartScreen() {
+    ui->gameplayScreen->stopGame(); // Fixes the collision bug?
+    qDebug() << "Game start screen";
    this->setGraphicsEffect(0);
    ui->stackWindow->setCurrentIndex(0);
 }
 
 void MainWindow::on_startButton_clicked()
 {
-    restartGame();
+    qDebug() << "pressed start";
+    startGame();
 }
 
 /**
@@ -69,10 +72,10 @@ void MainWindow::on_startButton_clicked()
  * Does NOT end or pause previous games.
  * @brief MainWindow::startGame
  */
-void MainWindow::startGame() {
+void MainWindow::resumeGame() {
     this->setGraphicsEffect(0);
-    ui->stackWindow->setCurrentIndex(3);
-    ui->gameplayScreen->startGame();
+    ui->stackWindow->setCurrentIndex(3); // move this?
+    ui->gameplayScreen->resumeGame();
     changeBarToBlue();
     blurScreen(0);
 }
@@ -81,26 +84,28 @@ void MainWindow::startGame() {
  * Restarts the game from the beginning.
  * @brief MainWindow::startGame
  */
-void MainWindow::restartGame() {
+void MainWindow::startGame() {
+    qDebug() << "start game";
+    //ui->gameplayScreen->stopGame(); // preventative measure
     this->setGraphicsEffect(0);
-    ui->stackWindow->setCurrentIndex(3);
+    ui->stackWindow->setCurrentIndex(3); // move this?
     ui->hydrationBar->setValue(100);
-    ui->gameplayScreen->restartGame();
+    ui->gameplayScreen->startGame(); // move this?
     changeBarToBlue();
-    blurScreen(0);
+    blurScreen(0);    
 }
 
 void MainWindow::PauseScreen(){
-    ui->gameplayScreen->stopGame();
+    ui->gameplayScreen->pauseGame();
     ui->stackWindow->setCurrentIndex(2);
     //insert code to stop all on screen movement here
    // QWidget *pauseScreen = ui->stackWindow->widget(2);
 
     //blurScreen(*Insert number here*);
-
-    paused = true;
 }
+
 void MainWindow::CollideScreen(){
+    qDebug() << "collide screen";
     ui->gameplayScreen->stopGame();
     ui->stackWindow->setCurrentIndex(0);
     //blur game screen
@@ -112,16 +117,12 @@ void MainWindow::on_restartButton_clicked(){
     //probably have to reset all player movement
    // this->setGraphicsEffect(0);
     GameStartScreen();
-
-    paused = false;
 }
 
 //the console says "no matching signal for on_returnButton_clicked(); but i'm working on it
 void MainWindow::on_resumeButton_clicked(){
     this->setGraphicsEffect(0);
-    startGame();
-
-    paused = false;
+    resumeGame();
 }
 
 
@@ -158,19 +159,15 @@ void MainWindow::keyPressEvent(QKeyEvent * k){
  * @brief MainWindow::receiveHydrationTimer
  */
 void MainWindow::receiveHydrationTimer() {
-    if (paused) {
-        return;
-    }
-
     int currVal = ui->hydrationBar->value();
     ui->hydrationBar->setValue(currVal - 1);
 
     // Sets bar to purple at 50%
-    if (currVal == 50) {
+    if (currVal == 50) { // what if this was <=?
         changeBarToPurple();
 
         //blur game screen
-      //  blurScreen(5);
+        blurScreen(5);
     }
     else if (currVal > 50) {
         changeBarToBlue();
@@ -182,7 +179,10 @@ void MainWindow::receiveHydrationTimer() {
  * @brief MainWindow::changeBarToPurple
  */
 void MainWindow::changeBarToPurple() {
-    ui->hydrationBar->setStyleSheet("QProgressBar::chunk {background: r rgb(104, 21, 159)}");
+    if (!isPurple) {
+        isPurple = true;
+        ui->hydrationBar->setStyleSheet("QProgressBar::chunk {background: r rgb(104, 21, 159)}");
+    }
 }
 
 /**
@@ -190,7 +190,10 @@ void MainWindow::changeBarToPurple() {
  * @brief MainWindow::changeBarToBlue
  */
 void MainWindow::changeBarToBlue() {
-    ui->hydrationBar->setStyleSheet("QProgressBar::chunk {background: r rgb(30, 169, 255)}");
+    if (isPurple) {
+        isPurple = false;
+        ui->hydrationBar->setStyleSheet("QProgressBar::chunk {background: r rgb(30, 169, 255)}");
+    }
 }
 
 /**
@@ -223,6 +226,7 @@ void MainWindow::blurScreen(int blurRadius) {
  * @brief MainWindow::CollideScreenDelay
  */
 void MainWindow::CollideScreenDelay() {
+    qDebug() << "collide delay";
     QTimer::singleShot(1200, this, &MainWindow::CollideScreen);
 }
 
