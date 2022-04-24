@@ -30,7 +30,7 @@
      <string notr="true">background-image: url(:/GameImages/Images/Background.png)</string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>1</number>
     </property>
     <widget class="SceneWidget" name="startScreen">
      <property name="styleSheet">
@@ -66,7 +66,7 @@
       <property name="geometry">
        <rect>
         <x>110</x>
-        <y>440</y>
+        <y>410</y>
         <width>275</width>
         <height>125</height>
        </rect>
@@ -82,7 +82,7 @@
       <property name="geometry">
        <rect>
         <x>440</x>
-        <y>440</y>
+        <y>410</y>
         <width>275</width>
         <height>125</height>
        </rect>
@@ -94,6 +94,31 @@
        <string/>
       </property>
      </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>771</width>
+        <height>751</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/GameImages/Images/Pause.png)</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+      </property>
+     </widget>
+     <zorder>label</zorder>
+     <zorder>resumeButton</zorder>
+     <zorder>restartButton</zorder>
     </widget>
     <widget class="GameScreen" name="gameplayScreen">
      <widget class="QProgressBar" name="hydrationBar">
