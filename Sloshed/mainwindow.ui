@@ -176,6 +176,7 @@
       </property>
       <property name="font">
        <font>
+        <family>Segoe UI</family>
         <pointsize>36</pointsize>
        </font>
       </property>
@@ -220,7 +221,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

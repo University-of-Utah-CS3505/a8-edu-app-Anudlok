@@ -58,6 +58,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::GameStartScreen() {
    this->setGraphicsEffect(0);
+    ui->stackWindow->setStyleSheet("background-image: url(:/GameImages/Images/Background.png)");
    ui->stackWindow->setCurrentIndex(0);
 }
 
@@ -106,6 +107,7 @@ void MainWindow::CollideScreen(){
     ui->gameplayScreen->stopGame();
     //blur game screen
    // blurScreen(20);
+    ui->stackWindow->setStyleSheet("background-image: url(:/GameImages/Images/End.png)");
     ui->stackWindow->setCurrentIndex(1);
 }
 

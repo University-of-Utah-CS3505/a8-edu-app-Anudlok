@@ -11,11 +11,11 @@ TriviaScreen::TriviaScreen(QWidget *parent)
     xSpeed(20), ySpeed(20)
 {
     // Set background
-    //setStyleSheet("background-image: url(:/GameImages/Images/BackgroundSketch1.png");
+    setStyleSheet("background-image: url(:/GameImages/Images/End.png)");
 
     // Define the ground body.
     b2BodyDef groundBodyDef;
-    groundBodyDef.position.Set(0.0f, 20.0f);
+    groundBodyDef.position.Set(5.0f, 25.0f); // formerly 0.0f, 20.0f
 
     // Call the body factory which allocates memory for the ground body
     // from a pool and creates the ground box shape (also from a pool).
@@ -34,7 +34,7 @@ TriviaScreen::TriviaScreen(QWidget *parent)
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(0.0f, 4.0f);
+    bodyDef.position.Set(5.0f, 10.0f); // formerly 0.0f, 4.0f
 
     body = world.CreateBody(&bodyDef);
 
@@ -60,9 +60,10 @@ TriviaScreen::TriviaScreen(QWidget *parent)
 void TriviaScreen::paintEvent(QPaintEvent *){
     // Create a painter
     QPainter painter(this);
+    painter.setFont(QFont("Monospace", 24));
     b2Vec2 position = body->GetPosition();
     float angle = body->GetAngle();
-    painter.drawImage((int)(position.x*20), (int)(position.y*20), image);
+    painter.drawText((int)(position.x*20), (int)(position.y*20), "Question???");
     painter.end();
 }
 
