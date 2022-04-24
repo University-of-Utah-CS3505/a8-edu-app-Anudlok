@@ -28,7 +28,7 @@ protected:
     void remove();
 
 private:
-    QString imgPath = ":/GameImages/Images/PowerupSketch1.png";
+    QString imgPath = ":/GameImages/Images/Bottle.png";
 
 signals:
     void addWater();

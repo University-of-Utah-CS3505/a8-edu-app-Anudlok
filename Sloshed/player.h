@@ -20,7 +20,7 @@ protected:
     void advance(int phase);
 
 private:
-    QString imgPath = ":/GameImages/Images/SpriteSketch1.png";
+    QString imgPath = ":/GameImages/Images/Player.png";
     qreal angle;
     qreal speed;
     int x_pos;

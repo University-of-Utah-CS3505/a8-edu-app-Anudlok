@@ -33,7 +33,7 @@ private:
     qreal angle;
     qreal speed;
     qreal collideTime;
-    QString imgPath = ":/GameImages/Images/EnemySketch1.png";
+    QString imgPath = ":/GameImages/Images/Truck.png";
     QPixmap pixmap;
     bool movingRight;
     bool isColliding;
