@@ -70,8 +70,6 @@ void TriviaScreen::paintEvent(QPaintEvent *) {
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &painter, this);
 
     // Draw bouncing "Trivia" image
-    //painter.setBrush(QBrush("white"));
-    //painter.setFont(QFont("Monospace", 24));
     b2Vec2 position = body->GetPosition();
     float angle = body->GetAngle();
     painter.drawImage((int)(position.x*20), (int)(position.y*20), image);
@@ -83,6 +81,33 @@ void TriviaScreen::updateWorld() {
     world.Step(1.0/60.0, 6, 2);
     update();
 }
+
+/**
+ * @brief TriviaScreen::populateTrivia called upon intialiazation of game, just populates trivia
+ */
+void TriviaScreen::populateTrivia(){
+    std::vector<QString> question = {"A standard drink is a unit of measurement. In the United States, a standard drink contains 0.6 fluid ounces of alcohol. Which of these drinks represents a standard drink?",
+                              "12 oz Bottle of Beer (true)",
+                              "5 oz glass of spiked punch (false)",
+                              "1 mixed drink (false)"};
+  triviaVector.push_back(question);
+}
+
+/**
+ * @brief TriviaScreen::randomizeTrivia randomizes the vector of answers to be displayed, returns vec
+ * @param questionVec input vector of questions and answers
+ * @param correctIndex pointer to an int of wehre the correct index is
+ * @return a vector of strings to input on trivia interface
+ */
+std::vector<QString> TriviaScreen::randomizeTrivia(std::vector<QString> questionVec, int *correctIndex){
+
+}
+
+
+
+
+
+
 // [ [question, 1, 2, 3, 4, correct answer],
 // [question1, question2,
   //[answer 1, andeer2

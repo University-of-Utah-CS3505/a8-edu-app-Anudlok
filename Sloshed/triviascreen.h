@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <Box2D/Box2D.h>
 #include <QTimer>
+#include <vector>
 
 
 class TriviaScreen : public QWidget
@@ -12,6 +13,7 @@ class TriviaScreen : public QWidget
 public:
     explicit TriviaScreen(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *);
+    void populateTrivia();
 
 signals:
 
@@ -23,6 +25,8 @@ private:
     b2Body* body;
     QTimer timer;
     QImage image;
+    std::vector<std::vector<QString>> triviaVector;
+    std::vector<QString> randomizeTrivia(std::vector<QString> questionVec, int *correctIndex);
     int x;
     int y;
     int xSpeed;
