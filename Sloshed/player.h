@@ -16,6 +16,9 @@ public:
     Player();
     void mousePosition(int x, int y);
 
+public slots:
+    void endLevel();
+
 protected:
     void advance(int phase);
 
@@ -29,6 +32,7 @@ private:
 
 signals:
     void hasCollided();
+    void nextLevel();
 };
 
 #endif // PLAYER_H

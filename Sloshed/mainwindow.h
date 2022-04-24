@@ -13,7 +13,7 @@
 #include <QGraphicsScene>
 #include "truck.h"
 #include "player.h"
-#include <Qtimer>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

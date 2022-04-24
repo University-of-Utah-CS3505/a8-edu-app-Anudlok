@@ -20,7 +20,7 @@ class Truck : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    Truck(int, int, bool);
+    Truck(int, int, int, bool);
     static int const HEIGHT = 120;
     static int const WIDTH = 360;
 

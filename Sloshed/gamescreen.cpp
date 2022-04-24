@@ -51,6 +51,7 @@ void GameScreen::initTimers() {
     connect(mouseTimer, &QTimer::timeout, this, &GameScreen::sendMousePosition);
     connect(hydrationTimer, &QTimer::timeout, this, &GameScreen::sendHydrationTimer);
     connect(player, &Player::hasCollided, this, &GameScreen::handleCollision);
+    connect(player, &Player::nextLevel, this, &GameScreen::nextLevel);
 }
 
 /**
@@ -73,8 +74,6 @@ void GameScreen::startGame(bool fromLevelOne) {
     stopGame();
     if (fromLevelOne) {
         level = 1;
-        truckSpawnDelay = MAX_SPAWN_DELAY;
-        sceneAdvanceDelay = MAX_ADVANCE_DELAY;
         emit updateLevelView(level);
     }
     addPlayer();
@@ -90,7 +89,7 @@ void GameScreen::startGame(bool fromLevelOne) {
  */
 void GameScreen::resumeGame() {
     sceneTimer->start(sceneAdvanceDelay);
-    truckTimer->start(truckSpawnDelay);
+    truckTimer->start(truckSpawnDelays[level - 1]);
     mouseTimer->start(mouseDelay);
     hydrationTimer->start(waterDelay);
     emit sendHydrationTimer();
@@ -127,12 +126,15 @@ void GameScreen::sendTruck() {
     int laneNum = QRandomGenerator::global()->bounded(lanes.size());
     // 0th and 3rd lane have trucks moving right. Other lanes move left.
     bool movingRight = laneNum % 2 == 0;
-    // Place truck
+    // Define truck attributes
     Truck *truck;
+    int y_pos = lanes[laneNum];
+    int speed = truckSpeeds[level - 1];
+    // Place truck
     if (movingRight)
-        truck = new Truck(0 - Truck::HEIGHT, lanes[laneNum], true);
+        truck = new Truck(0 - Truck::HEIGHT, y_pos, speed, true);
     else
-        truck = new Truck(MainWindow::WIDTH + Truck::WIDTH, lanes[laneNum], false);
+        truck = new Truck(MainWindow::WIDTH + Truck::WIDTH, y_pos, speed, false);
     // Set truck to transform (e.g. spin) from its center point
     truck->setTransformOriginPoint(truck->boundingRect().width()/2, truck->boundingRect().height()/2);
     gameplayScene->addItem(truck);
@@ -146,10 +148,10 @@ void GameScreen::nextLevel() {
     // Change truckSpawnDelay and sceneAdvanceDelay
     if (level < MAX_LEVEL) {
         level++;
-        truckSpawnDelay *= 0.70; // Values for levels: 2000 1400 980 686 480
-        sceneAdvanceDelay *= 0.8; // Values for levels: 25 20 16 13 11
         emit updateLevelView(level);
     }
+
+    // TODO: Add Congratulations screen when last level is completed
 
     startGame(false);
 }

@@ -14,7 +14,7 @@
  */
 Player::Player()
 {
-    setPos(mapToParent(610, 800));
+    setPos(mapToParent(400, 800));
     setPixmap(imgPath);
     speed = 3;
     angle = 20;
@@ -39,9 +39,14 @@ void Player::advance(int phase)
 
     if(scene()->collidingItems(this).isEmpty() && !isColliding) {
         setPos(x() - speed_x, y() - speed_y);
-    } else if (!isColliding) {
+    } else if (!isColliding) { // Needed so that hasCollided only emits once
         isColliding = true;
         emit hasCollided();
+    }
+
+    if (!isColliding && y() <= 30) {
+        isColliding = true; // So that player doesn't move and hasCollided doesn't emit
+        QTimer::singleShot(1000, this, &Player::endLevel);
     }
 }
 
@@ -54,6 +59,11 @@ void Player::advance(int phase)
 void Player::mousePosition(int x, int y) {
     x_pos = x;
     y_pos = y;
+}
+
+void Player::endLevel() {
+    qDebug() << "emitting endLevel";
+    emit nextLevel();
 }
 
 

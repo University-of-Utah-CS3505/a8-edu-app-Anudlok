@@ -15,7 +15,7 @@
  * @param y The Y coordinate of the Truck
  * @param movingRight
  */
-Truck::Truck(int x, int y, bool movingRight) {
+Truck::Truck(int x, int y, int _speed, bool movingRight) {
     setPos(mapToParent(x, y));
     setPixmap(imgPath);
 
@@ -25,7 +25,7 @@ Truck::Truck(int x, int y, bool movingRight) {
     if (!movingRight)
         setRotation(rotation() + 180);
     isColliding = false;
-    speed = 20;
+    speed = _speed;
     angle = 20;
 }
 

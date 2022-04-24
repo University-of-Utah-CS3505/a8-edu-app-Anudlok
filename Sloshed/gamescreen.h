@@ -25,10 +25,10 @@ public:
     void startGame(bool fromLevelOne = true);
     void pauseGame();
     void stopGame();
-    void nextLevel();
 
 public slots:
     void addWaterToBar();
+    void nextLevel();
 
 signals:
   void sendHydrationTimer();
@@ -51,10 +51,9 @@ private:
     QTimer *hydrationTimer;
 
     // Variables to tweak gameplay
-    int MAX_SPAWN_DELAY = 2000;
-    int MAX_ADVANCE_DELAY = 25;
-    int truckSpawnDelay = MAX_SPAWN_DELAY;
-    int sceneAdvanceDelay = MAX_ADVANCE_DELAY;
+    QList<int> truckSpawnDelays = {2000, 1400, 980, 686, 480};
+    QList<int> truckSpeeds = {20, 25, 30, 35, 40}; // Could also do 20, 25, 31, 38, 45
+    const int sceneAdvanceDelay = 25;
     int mouseDelay = 100;
     int waterDelay = 400;
     int level = 1;
