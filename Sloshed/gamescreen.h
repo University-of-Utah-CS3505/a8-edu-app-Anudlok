@@ -51,8 +51,10 @@ private:
     QTimer *hydrationTimer;
 
     // Variables to tweak gameplay
-    int truckSpawnDelay = 2000;
-    int sceneAdvanceDelay = 25;
+    int MAX_SPAWN_DELAY = 2000;
+    int MAX_ADVANCE_DELAY = 25;
+    int truckSpawnDelay = MAX_SPAWN_DELAY;
+    int sceneAdvanceDelay = MAX_ADVANCE_DELAY;
     int mouseDelay = 100;
     int waterDelay = 400;
     int level = 1;

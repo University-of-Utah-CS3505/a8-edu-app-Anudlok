@@ -20,8 +20,6 @@ GameScreen::GameScreen(QWidget *parent)
     gameplayView = new QGraphicsView();
     gameplayView->setParent(this);
     gameplayView->resize(MainWindow::WIDTH, MainWindow::HEIGHT);
-    qDebug() << "pos: " << gameplayView->pos();
-    qDebug() << "size: " << gameplayView->size();
     gameplayScene = new QGraphicsScene(this);
     gameplayView->setRenderHint(QPainter::SmoothPixmapTransform);
     gameplayView->setScene(gameplayScene);
@@ -72,11 +70,13 @@ void GameScreen::addPlayer() {
  * @param fromLevelOne True by default or if you want to start the game from level 1. False otherwise.
  */
 void GameScreen::startGame(bool fromLevelOne) {
-    qDebug() << "start game method";
     stopGame();
-    if (fromLevelOne)
+    if (fromLevelOne) {
         level = 1;
+        truckSpawnDelay = MAX_SPAWN_DELAY;
+        sceneAdvanceDelay = MAX_ADVANCE_DELAY;
         emit updateLevelView(level);
+    }
     addPlayer();
     initTimers();
     placeWaterBottles();
@@ -94,7 +94,6 @@ void GameScreen::resumeGame() {
     mouseTimer->start(mouseDelay);
     hydrationTimer->start(waterDelay);
     emit sendHydrationTimer();
-    qDebug() << "done resuming game";
 }
 
 /**
@@ -189,7 +188,6 @@ void GameScreen::sendMousePosition() {
  * @brief GameScreen::handleCollision
  */
 void GameScreen::handleCollision() {
-    qDebug() << "handle collision in gamescreen";
     // Delay before stopping game
     QTimer::singleShot(1500, this, &GameScreen::stopGame);
     emit sendCollideScreen();

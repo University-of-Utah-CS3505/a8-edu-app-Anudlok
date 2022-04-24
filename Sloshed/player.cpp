@@ -42,7 +42,6 @@ void Player::advance(int phase)
     } else if (!isColliding) {
         isColliding = true;
         emit hasCollided();
-        qDebug() << "emitting has collided";
     }
 }
 

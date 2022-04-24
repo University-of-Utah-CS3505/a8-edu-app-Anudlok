@@ -55,15 +55,12 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::GameStartScreen() {
-    ui->gameplayScreen->stopGame(); // Fixes the collision bug?
-    qDebug() << "Game start screen";
    this->setGraphicsEffect(0);
    ui->stackWindow->setCurrentIndex(0);
 }
 
 void MainWindow::on_startButton_clicked()
 {
-    qDebug() << "pressed start";
     startGame();
 }
 
@@ -85,8 +82,6 @@ void MainWindow::resumeGame() {
  * @brief MainWindow::startGame
  */
 void MainWindow::startGame() {
-    qDebug() << "start game";
-    //ui->gameplayScreen->stopGame(); // preventative measure
     this->setGraphicsEffect(0);
     ui->stackWindow->setCurrentIndex(3); // move this?
     ui->hydrationBar->setValue(100);
@@ -99,6 +94,7 @@ void MainWindow::PauseScreen(){
     ui->gameplayScreen->pauseGame();
     ui->stackWindow->setCurrentIndex(2);
     //insert code to stop all on screen movement here
+    // Can use the pauseScreen() method here (-Gabby)
    // QWidget *pauseScreen = ui->stackWindow->widget(2);
 
     //blurScreen(*Insert number here*);
@@ -226,7 +222,6 @@ void MainWindow::blurScreen(int blurRadius) {
  * @brief MainWindow::CollideScreenDelay
  */
 void MainWindow::CollideScreenDelay() {
-    qDebug() << "collide delay";
     QTimer::singleShot(1200, this, &MainWindow::CollideScreen);
 }
 
