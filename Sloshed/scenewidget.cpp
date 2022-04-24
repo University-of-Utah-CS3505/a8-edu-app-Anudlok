@@ -9,6 +9,8 @@
 #include "scenewidget.h"
 #include <QPainter>
 #include <QDebug>
+#include <QStyle>
+#include <QStyleOption>
 
 SceneWidget::SceneWidget(QWidget *parent) : QWidget(parent),
     world(b2Vec2(0.0f, 10.0f)),
@@ -73,6 +75,10 @@ void SceneWidget::paintEvent(QPaintEvent *) {
 
    // painter.end();
 
+    // Draw custom style sheet
+    QStyleOption opt;
+    opt.initFrom(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &painter, this);
 
     /*
      //Credit: https://www.youtube.com/watch?v=0j86zuqqTlQ

@@ -17,6 +17,7 @@
         <file>Images/Trivia.png</file>
         <file>Images/Truck.png</file>
         <file>Images/Win.png</file>
+        <file>Images/TransparentBG</file>
     </qresource>
     <qresource prefix="/Sounds">
         <file>Sound/drinkingSound.wav</file>

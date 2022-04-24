@@ -21,6 +21,7 @@ class GameScreen : public QWidget
     Q_OBJECT
 public:
     explicit GameScreen(QWidget *parent = nullptr);
+    void paintEvent(QPaintEvent *);
     void resumeGame();
     void startGame(bool fromLevelOne = true);
     void pauseGame();

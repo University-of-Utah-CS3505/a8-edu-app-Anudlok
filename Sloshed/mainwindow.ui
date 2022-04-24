@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/GameImages/Images/Gameplay.png)</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QStackedWidget" name="stackWindow">
@@ -35,7 +35,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/GameImages/Images/Background.png)</string>
+     <string notr="true"/>
     </property>
     <property name="currentIndex">
      <number>1</number>
@@ -84,20 +84,24 @@
      <widget class="QLabel" name="questionLabel">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>120</x>
         <y>200</y>
-        <width>561</width>
-        <height>151</height>
+        <width>560</width>
+        <height>150</height>
        </rect>
       </property>
       <property name="autoFillBackground">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">Background-Color:rgb(27, 32, 32)</string>
+       <string notr="true">background-image: url(:/GameImages/Images/TransparentBG);
+border-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
      </widget>
     </widget>
@@ -164,6 +168,9 @@
      <zorder>restartButton</zorder>
     </widget>
     <widget class="GameScreen" name="gameplayScreen">
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/GameImages/Images/Gameplay.png);</string>
+     </property>
      <widget class="QProgressBar" name="hydrationBar">
       <property name="geometry">
        <rect>
@@ -248,7 +255,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

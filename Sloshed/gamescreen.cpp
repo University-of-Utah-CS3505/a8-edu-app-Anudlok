@@ -7,6 +7,8 @@
  * @date: 4/18/2022
 ************************************************/
 #include "gamescreen.h"
+#include <QStyle>
+#include <QStyleOption>
 
 /**
  * GameScreen constructor
@@ -16,7 +18,7 @@
 GameScreen::GameScreen(QWidget *parent)
     : QWidget{parent}
 {
-    setStyleSheet("background-image: url(:/GameImages/Images/Gameplay.png)");
+    //setStyleSheet("background-image: url(:/GameImages/Images/Gameplay.png)");
     gameplayView = new QGraphicsView();
     gameplayView->setParent(this);
     gameplayView->resize(MainWindow::WIDTH, MainWindow::HEIGHT);
@@ -205,4 +207,16 @@ void GameScreen::handleCollision() {
  */
 void GameScreen::addWaterToBar() {
     emit addWater();
+}
+
+/**
+ * Paints the GameScreen's style sheet.
+ * @brief GameScreen::paintEvent
+ */
+void GameScreen::paintEvent(QPaintEvent * e) {
+    // Draw custom style sheet
+    QStyleOption opt;
+    opt.initFrom(this);
+    QPainter p(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
