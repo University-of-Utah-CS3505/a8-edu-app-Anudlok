@@ -63,13 +63,31 @@ void TriviaScreen::paintEvent(QPaintEvent *){
     painter.setFont(QFont("Monospace", 24));
     b2Vec2 position = body->GetPosition();
     float angle = body->GetAngle();
-    painter.drawText((int)(position.x*20), (int)(position.y*20), "Question???");
+    painter.drawText((int)(position.x*20), (int)(position.y*20), "triviaQuestions.getQuestion()");
     painter.end();
 }
 
 void TriviaScreen::updateWorld() {
     // It is generally best to keep the time step and iterations fixed.
     world.Step(1.0/60.0, 6, 2);
-
     update();
 }
+// [ [question, 1, 2, 3, 4, correct answer],
+// [question1, question2,
+  //[answer 1, andeer2
+//randomly generate a number
+//store index 3
+//get answer: pull anser[3]
+//get options: pull 3 randomly generated # indeces
+        //answer[r1[ answer[r2]
+//shuffle and show asnwers
+//read player answer
+// question1.getQuestion()
+// question1.getNextAnswer()
+
+//send back something
+//auto generate a numnber between 0-length of number of questions
+//mod that number by 4
+//hashmap<key int, string array>
+//[question, 1 , 2, 3, 4]
+

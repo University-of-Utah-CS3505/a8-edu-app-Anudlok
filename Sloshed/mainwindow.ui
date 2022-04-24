@@ -26,6 +26,14 @@
       <height>800</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-image: url(:/GameImages/Images/Background.png)</string>
     </property>
@@ -57,7 +65,7 @@
      <property name="styleSheet">
       <string notr="true">background-image: url(:/GameImages/Images/End.png)</string>
      </property>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="triviaLabel">
       <property name="geometry">
        <rect>
         <x>90</x>
@@ -71,6 +79,25 @@
       </property>
       <property name="text">
        <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="questionLabel">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>200</y>
+        <width>561</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">Background-Color:rgb(27, 32, 32)</string>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
       </property>
      </widget>
     </widget>
@@ -221,7 +248,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>
