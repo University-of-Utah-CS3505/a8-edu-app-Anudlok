@@ -4,6 +4,7 @@
 #include <QStyle>
 #include <QStyleOption>
 #include <QDebug>
+#include <QRandomGenerator>
 
 TriviaScreen::TriviaScreen(QWidget *parent)
     : QWidget(parent),
@@ -58,6 +59,8 @@ TriviaScreen::TriviaScreen(QWidget *parent)
     body->CreateFixture(&fixtureDef);
     connect(&timer, &QTimer::timeout, this, &TriviaScreen::updateWorld);
     timer.start(50);
+
+    populateTrivia();
 }
 
 void TriviaScreen::paintEvent(QPaintEvent *) {
@@ -94,13 +97,45 @@ void TriviaScreen::populateTrivia(){
 }
 
 /**
- * @brief TriviaScreen::randomizeTrivia randomizes the vector of answers to be displayed, returns vec
+ * Randomizes the vector of answers to be displayed, returns vector of answers.
+ * The correctIndex reference outputs the index of the correct answer in the returned vector.
+ *
+ * How to use references:
+ *    int i = 0;
+ *    int& correctIndex = i;
+ *    answerVector = randomizeTrivia(questionVec, correctIndex);
+ *
+ * @brief TriviaScreen::randomizeTrivia
  * @param questionVec input vector of questions and answers
- * @param correctIndex pointer to an int of wehre the correct index is
+ * @param correctIndex reference to an int of wehre the correct index is
  * @return a vector of strings to input on trivia interface
  */
-std::vector<QString> TriviaScreen::randomizeTrivia(std::vector<QString> questionVec, int *correctIndex){
+std::vector<QString> TriviaScreen::randomizeTrivia(std::vector<QString> questionVec, int &correctIndex){
+    // Set i0, i1, and i2 to be UNIQUE random indices between 0 and 2 (inclusive).
+    int i0 = QRandomGenerator::global()->bounded(3);
+    int i1 = QRandomGenerator::global()->bounded(2);
+    if (i1 == i0) { // i1 can't be 2, so if i1 == i0, then i0 != 2
+        i1 = 2; // since i0 != 2, i1 is now 2
+        // Note that this gives i1 exactly a 1 in 3 chance to equal 2
+    }
+    int i2 = 0;
+    if (i2 == i1 || i2 == i0) {
+        i2 = 1;
+    }
+    if (i2 == i1 || i2 == i0) {
+        i2 = 2;
+    }
 
+    // The correct answer will be at index i0 in the new array
+    correctIndex = i0;
+
+    // Add answers to a vector and return
+    std::vector<QString> answerVec = {"", "", ""};
+    answerVec[i0] = questionVec[0];
+    answerVec[i1] = questionVec[1];
+    answerVec[i2] = questionVec[2];
+
+    return answerVec;
 }
 
 

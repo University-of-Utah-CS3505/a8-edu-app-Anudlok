@@ -26,7 +26,7 @@ private:
     QTimer timer;
     QImage image;
     std::vector<std::vector<QString>> triviaVector;
-    std::vector<QString> randomizeTrivia(std::vector<QString> questionVec, int *correctIndex);
+    std::vector<QString> randomizeTrivia(std::vector<QString> questionVec, int &correctIndex);
     int x;
     int y;
     int xSpeed;
