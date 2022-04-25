@@ -33,10 +33,10 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">background-image: url(:/GameImages/Images/End.png)</string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>5</number>
     </property>
     <widget class="SceneWidget" name="startScreen">
      <property name="styleSheet">
@@ -283,7 +283,7 @@ border-color: rgb(255, 255, 255);</string>
      <zorder>hydrationBar</zorder>
      <zorder>hydrateBarLogo</zorder>
     </widget>
-    <widget class="QWidget" name="LoseScreen">
+    <widget class="QWidget" name="loseScreen">
      <property name="styleSheet">
       <string notr="true">background-image: url(:/GameImages/Images/End.png)</string>
      </property>
@@ -307,7 +307,7 @@ border-color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>260</x>
-        <y>430</y>
+        <y>410</y>
         <width>275</width>
         <height>125</height>
        </rect>
@@ -317,6 +317,40 @@ border-color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="crashedScreen">
+     <widget class="QPushButton" name="crashedResetButton">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>410</y>
+        <width>275</width>
+        <height>125</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/GameImages/Images/Reset.png)</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="crashedLabel">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>170</y>
+        <width>621</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/GameImages/Images/Lose.png)</string>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
       </property>
      </widget>
     </widget>

@@ -50,9 +50,12 @@ public:
     QProgressBar *hydrationBar;
     QLabel *levelLabel;
     QLabel *hydrateBarLogo;
-    QWidget *LoseScreen;
+    QWidget *loseScreen;
     QLabel *intoxLabel;
     QPushButton *resetButton;
+    QWidget *crashedScreen;
+    QPushButton *crashedResetButton;
+    QLabel *crashedLabel;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -70,7 +73,7 @@ public:
         QFont font;
         stackWindow->setFont(font);
         stackWindow->setAutoFillBackground(false);
-        stackWindow->setStyleSheet(QString::fromUtf8(""));
+        stackWindow->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/End.png)"));
         startScreen = new SceneWidget();
         startScreen->setObjectName(QString::fromUtf8("startScreen"));
         startScreen->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/Background.png)"));
@@ -173,18 +176,29 @@ public:
         levelLabel->raise();
         hydrationBar->raise();
         hydrateBarLogo->raise();
-        LoseScreen = new QWidget();
-        LoseScreen->setObjectName(QString::fromUtf8("LoseScreen"));
-        LoseScreen->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/End.png)"));
-        intoxLabel = new QLabel(LoseScreen);
+        loseScreen = new QWidget();
+        loseScreen->setObjectName(QString::fromUtf8("loseScreen"));
+        loseScreen->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/End.png)"));
+        intoxLabel = new QLabel(loseScreen);
         intoxLabel->setObjectName(QString::fromUtf8("intoxLabel"));
         intoxLabel->setGeometry(QRect(90, 170, 621, 221));
         intoxLabel->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/Intoxicated.png)"));
-        resetButton = new QPushButton(LoseScreen);
+        resetButton = new QPushButton(loseScreen);
         resetButton->setObjectName(QString::fromUtf8("resetButton"));
-        resetButton->setGeometry(QRect(260, 430, 275, 125));
+        resetButton->setGeometry(QRect(260, 410, 275, 125));
         resetButton->setStyleSheet(QString::fromUtf8("image: url(:/GameImages/Images/Reset.png)"));
-        stackWindow->addWidget(LoseScreen);
+        stackWindow->addWidget(loseScreen);
+        crashedScreen = new QWidget();
+        crashedScreen->setObjectName(QString::fromUtf8("crashedScreen"));
+        crashedResetButton = new QPushButton(crashedScreen);
+        crashedResetButton->setObjectName(QString::fromUtf8("crashedResetButton"));
+        crashedResetButton->setGeometry(QRect(260, 410, 275, 125));
+        crashedResetButton->setStyleSheet(QString::fromUtf8("image: url(:/GameImages/Images/Reset.png)"));
+        crashedLabel = new QLabel(crashedScreen);
+        crashedLabel->setObjectName(QString::fromUtf8("crashedLabel"));
+        crashedLabel->setGeometry(QRect(90, 170, 621, 221));
+        crashedLabel->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/Lose.png)"));
+        stackWindow->addWidget(crashedScreen);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -196,7 +210,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackWindow->setCurrentIndex(3);
+        stackWindow->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -218,6 +232,8 @@ public:
         hydrateBarLogo->setText(QString());
         intoxLabel->setText(QString());
         resetButton->setText(QString());
+        crashedResetButton->setText(QString());
+        crashedLabel->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
     } // retranslateUi
 
 };

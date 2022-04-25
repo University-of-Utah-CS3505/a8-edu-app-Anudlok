@@ -62,7 +62,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::GameStartScreen() {
-   this->setGraphicsEffect(0);
+    blurScreen(0);
    //ui->stackWindow->setStyleSheet("background-image: url(:/GameImages/Images/Background.png)");
    ui->stackWindow->setCurrentIndex(0);
 }
@@ -78,7 +78,6 @@ void MainWindow::on_startButton_clicked()
  * @brief MainWindow::startGame
  */
 void MainWindow::resumeGame() {
-    this->setGraphicsEffect(0);
     ui->stackWindow->setCurrentIndex(3); // move this?
     ui->gameplayScreen->resumeGame();
     changeBarToBlue();
@@ -90,7 +89,6 @@ void MainWindow::resumeGame() {
  * @brief MainWindow::startGame
  */
 void MainWindow::startGame() {
-    this->setGraphicsEffect(0);
     ui->stackWindow->setCurrentIndex(3); // move this?
     ui->gameplayScreen->startGame(); // move this?
     changeBarToBlue();
@@ -120,6 +118,11 @@ void MainWindow::LoseScreen() {
     ui->stackWindow->setCurrentIndex(4);
 }
 
+void MainWindow::crashedScreen() {
+    ui->gameplayScreen->stopGame();
+    ui->stackWindow->setCurrentIndex(5);
+}
+
 void MainWindow::on_restartButton_clicked(){
 
     //probably have to reset all player movement
@@ -128,7 +131,7 @@ void MainWindow::on_restartButton_clicked(){
 
 //the console says "no matching signal for on_returnButton_clicked(); but i'm working on it
 void MainWindow::on_resumeButton_clicked(){
-    this->setGraphicsEffect(0);
+    blurScreen(0);
     resumeGame();
 }
 
@@ -277,6 +280,12 @@ void MainWindow::on_answerButton4_clicked()
 
 void MainWindow::on_resetButton_clicked()
 {
-    startGame();
+    GameStartScreen();
+}
+
+
+void MainWindow::on_crashedResetButton_clicked()
+{
+    GameStartScreen();
 }
 
