@@ -80,6 +80,7 @@ void GameScreen::startGame(bool fromLevelOne) {
     }
     addPlayer();
     initTimers();
+    emit resetWater();
     placeWaterBottles();
     resumeGame();
 }

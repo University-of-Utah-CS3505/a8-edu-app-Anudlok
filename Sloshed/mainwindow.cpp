@@ -46,9 +46,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->gameplayScreen, &GameScreen::sendHydrationTimer, this, &MainWindow::receiveHydrationTimer);
     connect(ui->gameplayScreen, &GameScreen::sendCollideScreen, this, &MainWindow::CollideScreenDelay);
+    connect(ui->gameplayScreen, &GameScreen::resetWater, this, &MainWindow::resetHydrationBar);
     connect(ui->gameplayScreen, &GameScreen::addWater, this, &MainWindow::addWaterToBar);
     connect(ui->gameplayScreen, &GameScreen::updateLevelView, this, &MainWindow::updateLevel);
-
 }
 
 MainWindow::~MainWindow()
@@ -87,7 +87,6 @@ void MainWindow::resumeGame() {
 void MainWindow::startGame() {
     this->setGraphicsEffect(0);
     ui->stackWindow->setCurrentIndex(3); // move this?
-    ui->hydrationBar->setValue(100);
     ui->gameplayScreen->startGame(); // move this?
     changeBarToBlue();
     blurScreen(0);    
@@ -203,6 +202,14 @@ void MainWindow::addWaterToBar() {
     int currVal = ui->hydrationBar->value();
     currVal+= 10;
     ui->hydrationBar->setValue(currVal);
+}
+
+/**
+ * Resets hydration bar to 100%.
+ * @brief MainWindow::resetWater
+ */
+void MainWindow::resetHydrationBar() {
+    ui->hydrationBar->setValue(100);
 }
 
 /**

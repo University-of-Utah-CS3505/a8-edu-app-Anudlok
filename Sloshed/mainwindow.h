@@ -42,6 +42,7 @@ private slots:
     void on_restartButton_clicked();
     void on_resumeButton_clicked();
     void addWaterToBar();
+    void resetHydrationBar();
     void keyPressEvent(QKeyEvent *k);
     void receiveHydrationTimer();
     void updateLevel(int level);

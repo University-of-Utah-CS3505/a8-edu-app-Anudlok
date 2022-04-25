@@ -14,7 +14,7 @@
  */
 Player::Player()
 {
-    setPos(mapToParent(355, 800));
+    setPos(mapToParent(345, 705));
     setPixmap(imgPath);
     speed = 3;
     angle = 20;

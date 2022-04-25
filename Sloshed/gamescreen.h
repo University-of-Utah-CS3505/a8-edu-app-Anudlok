@@ -34,6 +34,7 @@ public slots:
 signals:
   void sendHydrationTimer();
   void sendCollideScreen();
+  void resetWater();
   void addWater();
   void updateLevelView(int);
 
