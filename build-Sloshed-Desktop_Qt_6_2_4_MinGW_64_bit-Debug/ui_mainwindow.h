@@ -50,6 +50,9 @@ public:
     QProgressBar *hydrationBar;
     QLabel *levelLabel;
     QLabel *hydrateBarLogo;
+    QWidget *LoseScreen;
+    QLabel *intoxLabel;
+    QPushButton *resetButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -170,10 +173,22 @@ public:
         levelLabel->raise();
         hydrationBar->raise();
         hydrateBarLogo->raise();
+        LoseScreen = new QWidget();
+        LoseScreen->setObjectName(QString::fromUtf8("LoseScreen"));
+        LoseScreen->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/End.png)"));
+        intoxLabel = new QLabel(LoseScreen);
+        intoxLabel->setObjectName(QString::fromUtf8("intoxLabel"));
+        intoxLabel->setGeometry(QRect(90, 170, 621, 221));
+        intoxLabel->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/Intoxicated.png)"));
+        resetButton = new QPushButton(LoseScreen);
+        resetButton->setObjectName(QString::fromUtf8("resetButton"));
+        resetButton->setGeometry(QRect(260, 430, 275, 125));
+        resetButton->setStyleSheet(QString::fromUtf8("image: url(:/GameImages/Images/Reset.png)"));
+        stackWindow->addWidget(LoseScreen);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 19));
+        menubar->setGeometry(QRect(0, 0, 800, 17));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -181,7 +196,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackWindow->setCurrentIndex(0);
+        stackWindow->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -201,6 +216,8 @@ public:
         label->setText(QString());
         levelLabel->setText(QCoreApplication::translate("MainWindow", "Level 1", nullptr));
         hydrateBarLogo->setText(QString());
+        intoxLabel->setText(QString());
+        resetButton->setText(QString());
     } // retranslateUi
 
 };

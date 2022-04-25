@@ -18,6 +18,7 @@
         <file>Images/Truck.png</file>
         <file>Images/Win.png</file>
         <file>Images/TransparentBG</file>
+        <file>Images/Intoxicated.png</file>
     </qresource>
     <qresource prefix="/Sounds">
         <file>Sound/drinkingSound.wav</file>

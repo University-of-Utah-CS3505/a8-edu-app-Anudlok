@@ -33,6 +33,7 @@ public:
     void PauseScreen();
     void CollideScreen();
     void CollideScreenDelay();
+    void LoseScreen();
     static int const WIDTH = 800;
     static int const HEIGHT = 800;
 
@@ -54,6 +55,8 @@ private slots:
     void on_answerButton3_clicked();
 
     void on_answerButton4_clicked();
+
+    void on_resetButton_clicked();
 
 private:
     Ui::MainWindow *ui;

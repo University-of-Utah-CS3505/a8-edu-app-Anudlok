@@ -110,6 +110,11 @@ void MainWindow::CollideScreen(){
     ui->stackWindow->setCurrentIndex(1);
 }
 
+void MainWindow::LoseScreen() {
+    ui->gameplayScreen->stopGame();
+    ui->stackWindow->setCurrentIndex(4);
+}
+
 void MainWindow::on_restartButton_clicked(){
 
     //probably have to reset all player movement
@@ -148,7 +153,7 @@ void MainWindow::receiveHydrationTimer() {
     int currVal = ui->hydrationBar->value();
 
     if (currVal <= 0) {
-        CollideScreen();
+        LoseScreen();
       // Put a screen to a blurry game screen that has a label of loss and a button to restart
     }
 
@@ -183,6 +188,7 @@ void MainWindow::changeBarToPurple() {
  */
 void MainWindow::changeBarToBlue() {
     if (isPurple) {
+        blurScreen(0);
         isPurple = false;
         ui->hydrationBar->setStyleSheet("QProgressBar::chunk {background: r rgb(30, 169, 255)}");
     }
@@ -264,5 +270,11 @@ void MainWindow::on_answerButton3_clicked()
 void MainWindow::on_answerButton4_clicked()
 {
      //send button 4 clicked to triviascreen
+}
+
+
+void MainWindow::on_resetButton_clicked()
+{
+    startGame();
 }
 
