@@ -29,6 +29,12 @@ private:
     int mouse_x_pos;
     int mouse_y_pos;
     bool isColliding;
+    int const SCREEN_SIZE = 800;
+    int width;
+    int height;
+    double const SCALE_FACTOR = 0.6;
+
+    void checkBoundaries();
 
 signals:
     void hasCollided();

@@ -62,8 +62,9 @@ void GameScreen::initTimers() {
  */
 void GameScreen::addPlayer() {
     player = new Player();
-    player->setScale(0.6);
+
     player->setTransformOriginPoint(player->boundingRect().width()/2 , player->boundingRect().height()/2);
+    player->setScale(0.6);
     gameplayScene->addItem(player);
 }
 

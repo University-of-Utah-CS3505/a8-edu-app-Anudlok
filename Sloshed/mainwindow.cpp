@@ -147,7 +147,8 @@ void MainWindow::keyPressEvent(QKeyEvent * k){
 void MainWindow::receiveHydrationTimer() {
     int currVal = ui->hydrationBar->value();
 
-    if (currVal == 0) {
+    if (currVal <= 0) {
+        CollideScreen();
       // Put a screen to a blurry game screen that has a label of loss and a button to restart
     }
 

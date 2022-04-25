@@ -1,10 +1,12 @@
 /************************************************
+ *
  * Truck class
  * Class definition for Truck QGraphicsPixmapItem
  * @author: Anna Timofeyenko, Gabby Culley,
  *          Gaby Torres, Raynard Christian, Angela Mishler
  * @date: 4/18/2022
 ************************************************/
+
 #include "player.h"
 #include <QDebug>
 
@@ -14,8 +16,11 @@
  */
 Player::Player()
 {
+
     setPos(mapToParent(345, 705));
     setPixmap(imgPath);
+    width = pixmap().width();
+    height = pixmap().height();
     speed = 3;
     angle = 20;
 }
@@ -32,6 +37,8 @@ void Player::advance(int phase)
     int speed_x = (x() - mouse_x_pos + 60) / (abs(x() - mouse_x_pos + 60)) * speed;
     int speed_y = (y() - mouse_y_pos + 60) / (abs(y() - mouse_y_pos + 60)) * speed;
 
+    checkBoundaries();
+
     if (x() - mouse_x_pos + 60 == 0)
         speed_x = 0;
     if (y() - mouse_y_pos + 60 == 0)
@@ -45,6 +52,7 @@ void Player::advance(int phase)
     }
 
     if (!isColliding && y() <= 30) {
+        //speed = 0;
         isColliding = true; // So that player doesn't move and hasCollided doesn't emit
         QTimer::singleShot(1000, this, &Player::endLevel);
     }
@@ -69,4 +77,15 @@ void Player::endLevel() {
     emit nextLevel();
 }
 
+void Player::checkBoundaries() {
 
+    // Check if player is too far right
+    if (x() >= SCREEN_SIZE - width*SCALE_FACTOR)
+        setPos(SCREEN_SIZE - width*SCALE_FACTOR, y());
+    // Check if player is too far left
+    if (x() <= 0 - width/2*SCALE_FACTOR)
+        setPos(0 - width/2*SCALE_FACTOR, y());
+    // Check if player is too low
+    if (y() >= SCREEN_SIZE - height*SCALE_FACTOR)
+        setPos(x(), SCREEN_SIZE - height*SCALE_FACTOR);
+}
