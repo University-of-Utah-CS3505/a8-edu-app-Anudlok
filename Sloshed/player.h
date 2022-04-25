@@ -8,6 +8,7 @@
 #include <QList>
 #include <QTimer>
 #include <QObject>
+#include "truck.h"
 
 class Player : public QObject, public QGraphicsPixmapItem
 {

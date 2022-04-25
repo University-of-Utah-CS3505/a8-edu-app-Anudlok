@@ -44,15 +44,23 @@ void Player::advance(int phase)
     if (y() - mouse_y_pos + 60 == 0)
         speed_y = 0;
 
-    if(scene()->collidingItems(this).isEmpty() && !isColliding) {
+    QList<QGraphicsItem *> list = scene()->collidingItems(this) ;
+
+    if(!isColliding) {  // Needed so that hasCollided only emits once
         setPos(x() - speed_x, y() - speed_y);
-    } else if (!isColliding) { // Needed so that hasCollided only emits once
-        isColliding = true;
-        emit hasCollided();
+        foreach(QGraphicsItem * i , list)
+        {
+            // If player colliding with truck, remove from scene
+            Truck *item= dynamic_cast<Truck *>(i);
+            if (item)
+            {
+                isColliding = true;
+                emit hasCollided();
+            }
+        }
     }
 
     if (!isColliding && y() <= 30) {
-        //speed = 0;
         isColliding = true; // So that player doesn't move and hasCollided doesn't emit
         QTimer::singleShot(1000, this, &Player::endLevel);
     }

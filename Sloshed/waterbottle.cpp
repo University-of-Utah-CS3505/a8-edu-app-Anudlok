@@ -48,7 +48,6 @@ void WaterBottle::advance(int phase) {
  * @brief WaterBottle::remove
  */
 void WaterBottle::remove() {
-    scene()->removeItem(this);
-
     emit addWater();
+    scene()->removeItem(this);
 }
