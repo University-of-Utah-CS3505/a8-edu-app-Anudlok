@@ -15,6 +15,7 @@
 #include "player.h"
 #include <QTimer>
 #include <QSoundEffect>
+#include <QGraphicsBlurEffect>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -61,6 +62,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QSoundEffect effect;
+    QGraphicsBlurEffect *blurEffect = new QGraphicsBlurEffect();
     void changeBarToPurple();
     void changeBarToBlue();
     void blurScreen(int blurRadius);

@@ -14,12 +14,12 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsView>
 #include <QPalette>
-#include <QGraphicsBlurEffect>
 #include <QKeyEvent>
 #include "player.h"
 #include "scenewidget.h"
 #include "gamescreen.h"
 #include <QSoundEffect>
+#include <QGraphicsBlurEffect>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -154,7 +154,6 @@ void MainWindow::receiveHydrationTimer() {
 
     if (currVal <= 0) {
         LoseScreen();
-      // Put a screen to a blurry game screen that has a label of loss and a button to restart
     }
 
     ui->hydrationBar->setValue(currVal - 1);
@@ -225,10 +224,9 @@ void MainWindow::resetHydrationBar() {
  * @param blurRadius - Blurs the screen by this radius
  */
 void MainWindow::blurScreen(int blurRadius) {
-    QGraphicsBlurEffect *effect = new QGraphicsBlurEffect;
-    effect->setBlurRadius(blurRadius);
-    effect->blurRadius();
-    this->setGraphicsEffect(effect);
+    blurEffect->setBlurRadius(blurRadius);
+    blurEffect->blurRadius();
+    this->setGraphicsEffect(blurEffect);
 }
 
 /**
