@@ -84,7 +84,7 @@ void MainWindow::on_startButton_clicked()
 /**
  * Starts or resumes the game.
  * Does NOT end or pause previous games.
- * @brief MainWindow::startGame
+ * @brief MainWindow::resumeGame
  */
 void MainWindow::resumeGame() {
     ui->stackWindow->setCurrentIndex(3); // move this?
@@ -106,7 +106,7 @@ void MainWindow::startGame(bool setting) {
 
 /**
  * Shows a screen when the player pauses the game.
- * @brief MainWindow::WinScreen
+ * @brief MainWindow::PauseScreen
  */
 void MainWindow::PauseScreen(){
     ui->gameplayScreen->pauseGame();
@@ -129,7 +129,7 @@ void MainWindow::CollideScreen(){
 
 /**
  * Shows an "INTOXICATED" screen when the player dies due to dehydration.
- * @brief MainWindow::WinScreen
+ * @brief MainWindow::LoseScreen
  */
 void MainWindow::LoseScreen() {
     ui->gameplayScreen->stopGame();
@@ -138,7 +138,7 @@ void MainWindow::LoseScreen() {
 
 /**
  * Shows a "CRASHED" screen when the player collides with a truck and loses trivia.
- * @brief MainWindow::WinScreen
+ * @brief MainWindow::crashedScreen
  */
 void MainWindow::crashedScreen() {
     ui->gameplayScreen->stopGame();
@@ -264,7 +264,7 @@ void MainWindow::addWaterToBar() {
 
 /**
  * Resets hydration bar to 100%.
- * @brief MainWindow::resetWater
+ * @brief MainWindow::resetHydrationBar
  */
 void MainWindow::resetHydrationBar() {
     ui->hydrationBar->setValue(100);
