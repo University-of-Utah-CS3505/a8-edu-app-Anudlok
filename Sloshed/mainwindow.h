@@ -29,7 +29,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void resumeGame();
-    void startGame();
+    void startGame(bool);
     void GameStartScreen();
     void PauseScreen();
     void CollideScreen();
@@ -56,8 +56,6 @@ private slots:
 
     void on_answerButton3_clicked();
 
-    void on_answerButton4_clicked();
-
     void on_resetButton_clicked();
 
     void on_crashedResetButton_clicked();
@@ -66,9 +64,11 @@ private:
     Ui::MainWindow *ui;
     QSoundEffect effect;
     QGraphicsBlurEffect *blurEffect = new QGraphicsBlurEffect();
+   void checkButtonAnswer(int buttonNum);
     void changeBarToPurple();
     void changeBarToBlue();
     void blurScreen(int blurRadius);
     bool isPurple = false;
+    int attempts;
 };
 #endif // MAINWINDOW_H

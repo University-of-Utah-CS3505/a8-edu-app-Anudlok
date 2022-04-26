@@ -14,6 +14,7 @@ TriviaScreen::TriviaScreen(QWidget *parent)
     x(0), y(0),
     xSpeed(20), ySpeed(20)
 {
+    populateTrivia();
     // Set background
     //setStyleSheet("background-image: url(:/GameImages/Images/End.png)");
 
@@ -89,11 +90,41 @@ void TriviaScreen::updateWorld() {
  * @brief TriviaScreen::populateTrivia called upon intialiazation of game, just populates trivia
  */
 void TriviaScreen::populateTrivia(){
-    std::vector<QString> question = {"A standard drink is a unit of measurement. In the United States, a standard drink contains 0.6 fluid ounces of alcohol. Which of these drinks represents a standard drink?",
-                              "12 oz Bottle of Beer (true)",
-                              "5 oz glass of spiked punch (false)",
-                              "1 mixed drink (false)"};
-  triviaVector.push_back(question);
+  triviaVector.push_back(std::vector<QString>{"A standard drink is a unit of measurement. In the United States, a standard drink contains 0.6 fluid ounces of alcohol. Which of these drinks represents a standard drink?",
+                                         "12 oz Bottle of Beer",
+                                         "5 oz glass of spiked punch",
+                                         "1 mixed drink"});
+  triviaVector.push_back(std::vector<QString>{"Most hard alcohol (like vodka and rum) is approximately how high in percentage of alcohol?",
+                                              "40%",
+                                              "20%",
+                                              "5%"});
+  triviaVector.push_back(std::vector<QString>{"What do you think is the top reason given by students who choose to not drink?",
+                                              "They are going to drive",
+                                              "They dont want to spend the money",
+                                              "They dont have to drink to have a good time"});
+  triviaVector.push_back(std::vector<QString>{"What percentage of college students don’t drink at all?",
+                                              "36%",
+                                              "67%",
+                                              "12%"});
+  /*
+  triviaVector.push_back(std::vector<QString>{"",
+                                              "",
+                                              "",
+                                              ""});
+                                              */
+}
+
+/**
+ * @brief TriviaScreen::giveMeARandomQuestion run by mainwindow and prompts trivia screen to send a random question
+ * @return a vector of Qstrings with teh possible answers
+ */
+std::vector<QString> TriviaScreen::giveMeARandomQuestion(){
+   int questionIndex = QRandomGenerator::global()->bounded(3); //20 is size of trivia vector
+   return randomizeTrivia(triviaVector.at(questionIndex));
+}
+
+bool TriviaScreen::checkAnswer(int answerNum){
+        return answerNum == correctIndex;
 }
 
 /**
@@ -110,7 +141,7 @@ void TriviaScreen::populateTrivia(){
  * @param correctIndex reference to an int of wehre the correct index is
  * @return a vector of strings to input on trivia interface
  */
-std::vector<QString> TriviaScreen::randomizeTrivia(std::vector<QString> questionVec, int &correctIndex){
+std::vector<QString> TriviaScreen::randomizeTrivia(std::vector<QString> questionVec){
     // Set i0, i1, and i2 to be UNIQUE random indices between 0 and 2 (inclusive).
     int i0 = QRandomGenerator::global()->bounded(3);
     int i1 = QRandomGenerator::global()->bounded(2);
@@ -127,38 +158,13 @@ std::vector<QString> TriviaScreen::randomizeTrivia(std::vector<QString> question
     }
 
     // The correct answer will be at index i0 in the new array
-    correctIndex = i0;
+    correctIndex = i0+1;
 
     // Add answers to a vector and return
-    std::vector<QString> answerVec = {"", "", ""};
-    answerVec[i0] = questionVec[0];
-    answerVec[i1] = questionVec[1];
-    answerVec[i2] = questionVec[2];
+    std::vector<QString> answerVec = {questionVec[0],"", "", ""};
+    answerVec[i0+1] = questionVec[1];
+    answerVec[i1+1] = questionVec[2];
+    answerVec[i2+1] = questionVec[3];
 
     return answerVec;
 }
-
-
-
-
-
-
-// [ [question, 1, 2, 3, 4, correct answer],
-// [question1, question2,
-  //[answer 1, andeer2
-//randomly generate a number
-//store index 3
-//get answer: pull anser[3]
-//get options: pull 3 randomly generated # indeces
-        //answer[r1[ answer[r2]
-//shuffle and show asnwers
-//read player answer
-// question1.getQuestion()
-// question1.getNextAnswer()
-
-//send back something
-//auto generate a numnber between 0-length of number of questions
-//mod that number by 4
-//hashmap<key int, string array>
-//[question, 1 , 2, 3, 4]
-

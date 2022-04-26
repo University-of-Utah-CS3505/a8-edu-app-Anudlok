@@ -23,7 +23,7 @@ public:
     explicit GameScreen(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *);
     void resumeGame();
-    void startGame(bool fromLevelOne = true);
+    void startGame(bool fromLevelOne);
     void pauseGame();
     void stopGame();
 

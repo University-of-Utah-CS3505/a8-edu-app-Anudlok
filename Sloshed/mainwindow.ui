@@ -36,7 +36,7 @@
      <string notr="true">background-image: url(:/GameImages/Images/End.png)</string>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>1</number>
     </property>
     <widget class="SceneWidget" name="startScreen">
      <property name="styleSheet">
@@ -121,16 +121,6 @@ border-color: rgb(255, 255, 255);</string>
        </item>
        <item>
         <widget class="QPushButton" name="answerButton3">
-         <property name="styleSheet">
-          <string notr="true">background-image: url(:/GameImages/Images/TransparentBG);</string>
-         </property>
-         <property name="text">
-          <string>answer3</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="answerButton4">
          <property name="styleSheet">
           <string notr="true">background-image: url(:/GameImages/Images/TransparentBG);</string>
          </property>
@@ -362,7 +352,7 @@ border-color: rgb(255, 255, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>17</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

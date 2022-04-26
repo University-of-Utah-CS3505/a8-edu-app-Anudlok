@@ -69,7 +69,7 @@ void MainWindow::GameStartScreen() {
 
 void MainWindow::on_startButton_clicked()
 {
-    startGame();
+    startGame(true);
 }
 
 /**
@@ -88,9 +88,9 @@ void MainWindow::resumeGame() {
  * Restarts the game from the beginning.
  * @brief MainWindow::startGame
  */
-void MainWindow::startGame() {
+void MainWindow::startGame(bool setting) {
     ui->stackWindow->setCurrentIndex(3); // move this?
-    ui->gameplayScreen->startGame(); // move this?
+    ui->gameplayScreen->startGame(setting); // move this?
     changeBarToBlue();
     blurScreen(0);    
 }
@@ -105,12 +105,13 @@ void MainWindow::PauseScreen(){
  * displaying the trivia questions they must answer
  */
 void MainWindow::CollideScreen(){
-   // qDebug() << "collide screen in mainwindow";
     ui->gameplayScreen->stopGame();
-    //blur game screen
-   // blurScreen(20);
-    //ui->stackWindow->setStyleSheet("background-image: url(:/GameImages/Images/End.png)");
     ui->stackWindow->setCurrentIndex(1);
+   std::vector<QString> trivia =  ui->collideScreen->giveMeARandomQuestion();
+   ui->questionLabel->setText(trivia[0]);
+   ui->answerButton1->setText(trivia[1]);
+   ui->answerButton2->setText(trivia[2]);
+   ui->answerButton3->setText(trivia[3]);
 }
 
 void MainWindow::LoseScreen() {
@@ -256,25 +257,29 @@ void MainWindow::updateLevel(int level) {
 
 void MainWindow::on_answerButton1_clicked()
 {
-    //send button 1 clicked to triviascreen
+    checkButtonAnswer(1);
+}
+void MainWindow::checkButtonAnswer(int buttonNum){
+    attempts++;
+    if(ui->collideScreen->checkAnswer(buttonNum)){ //if correct, resume
+        startGame(false);
+    }
+    else if(attempts%2 == 0){ //if incorrect and first attempt, let them try again but disconnect the button
+     //if incorrect and second attempt
+           crashedScreen();
+    }
 }
 
 
 void MainWindow::on_answerButton2_clicked()
 {
-     //send button 2 clicked to triviascreen
+    checkButtonAnswer(2);
 }
 
 
 void MainWindow::on_answerButton3_clicked()
 {
-     //send button 3 clicked to triviascreen
-}
-
-
-void MainWindow::on_answerButton4_clicked()
-{
-     //send button 4 clicked to triviascreen
+    checkButtonAnswer(3);
 }
 
 
