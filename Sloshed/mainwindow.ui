@@ -36,7 +36,7 @@
      <string notr="true">background-image: url(:/GameImages/Images/End.png)</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="SceneWidget" name="startScreen">
      <property name="styleSheet">
@@ -330,9 +330,23 @@ background-image: url(:/GameImages/Images/TransparentBG);</string>
        <string/>
       </property>
      </widget>
+     <widget class="QLabel" name="blackoutLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>800</width>
+        <height>800</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
      <zorder>levelLabel</zorder>
      <zorder>hydrationBar</zorder>
      <zorder>hydrateBarLogo</zorder>
+     <zorder>blackoutLabel</zorder>
     </widget>
     <widget class="QWidget" name="loseScreen">
      <property name="styleSheet">
@@ -480,7 +494,7 @@ background-image: url(:/GameImages/Images/TransparentBG);</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>

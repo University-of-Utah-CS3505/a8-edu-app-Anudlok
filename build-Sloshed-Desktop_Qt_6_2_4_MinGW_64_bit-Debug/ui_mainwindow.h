@@ -50,6 +50,7 @@ public:
     QProgressBar *hydrationBar;
     QLabel *levelLabel;
     QLabel *hydrateBarLogo;
+    QLabel *blackoutLabel;
     QWidget *loseScreen;
     QLabel *intoxLabel;
     QPushButton *resetButton;
@@ -197,10 +198,14 @@ public:
         hydrateBarLogo->setGeometry(QRect(740, 40, 50, 540));
         hydrateBarLogo->setAutoFillBackground(false);
         hydrateBarLogo->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/Gauge.png)"));
+        blackoutLabel = new QLabel(gameplayScreen);
+        blackoutLabel->setObjectName(QString::fromUtf8("blackoutLabel"));
+        blackoutLabel->setGeometry(QRect(0, 0, 800, 800));
         stackWindow->addWidget(gameplayScreen);
         levelLabel->raise();
         hydrationBar->raise();
         hydrateBarLogo->raise();
+        blackoutLabel->raise();
         loseScreen = new QWidget();
         loseScreen->setObjectName(QString::fromUtf8("loseScreen"));
         loseScreen->setStyleSheet(QString::fromUtf8("background-image: url(:/GameImages/Images/End.png)"));
@@ -253,7 +258,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 21));
+        menubar->setGeometry(QRect(0, 0, 800, 17));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -261,7 +266,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackWindow->setCurrentIndex(0);
+        stackWindow->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -281,6 +286,7 @@ public:
         label->setText(QString());
         levelLabel->setText(QCoreApplication::translate("MainWindow", "Level 1/10", nullptr));
         hydrateBarLogo->setText(QString());
+        blackoutLabel->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         intoxLabel->setText(QString());
         resetButton->setText(QString());
         crashedResetButton->setText(QString());

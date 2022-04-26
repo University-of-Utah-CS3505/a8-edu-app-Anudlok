@@ -50,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->gameplayScreen, &GameScreen::addWater, this, &MainWindow::addWaterToBar);
     connect(ui->gameplayScreen, &GameScreen::updateLevelView, this, &MainWindow::updateLevel);
     connect(ui->gameplayScreen, &GameScreen::wonGame, this, &MainWindow::WinScreen);
+    ui->blackoutLabel->setVisible(false);
 
     // Set up glug glug sound
     effect.setSource(QUrl("qrc:/Sounds/Sound/drinkingSound.wav"));
@@ -236,12 +237,16 @@ void MainWindow::receiveHydrationTimer() {
     // Sets bar to purple at 50%
     if (currVal <= 50) {
         changeBarToPurple();
+        ui->blackoutLabel->setStyleSheet("background-image: url(:/GameImages/Images/Blackout1.png)");
+        ui->blackoutLabel->setVisible(true);
 
         //blur game screen
         blurScreen(5);
     }
     else if (currVal > 50) {
+        ui->blackoutLabel->setVisible(false);
         changeBarToBlue();
+
     }
 }
 

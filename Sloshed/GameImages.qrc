@@ -19,6 +19,9 @@
         <file>Images/Win.png</file>
         <file>Images/TransparentBG</file>
         <file>Images/Intoxicated.png</file>
+        <file>Images/Blackout1.png</file>
+        <file>Images/Blackout2.png</file>
+        <file>Images/Blackout3.png</file>
     </qresource>
     <qresource prefix="/Sounds">
         <file>Sound/drinkingSound.wav</file>
