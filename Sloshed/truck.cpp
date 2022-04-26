@@ -72,3 +72,7 @@ void Truck::advance(int phase) {
 void Truck::remove() {
     scene()->removeItem(this);
 }
+
+void Truck::changeSpeed(int speedChange) {
+    speed += speedChange;
+}

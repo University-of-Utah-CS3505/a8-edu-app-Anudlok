@@ -23,6 +23,7 @@ class Player : public QObject, public QGraphicsPixmapItem
 public:
     Player();
     void mousePosition(int x, int y);
+    void changeSpeed(int speed);
 
 public slots:
     void endLevel();

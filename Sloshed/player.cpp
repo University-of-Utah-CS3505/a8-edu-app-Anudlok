@@ -31,14 +31,14 @@ void Player::advance(int phase)
 {
     if(!phase) return;
 
-    int speed_x = (x() - mouse_x_pos + 60) / (abs(x() - mouse_x_pos + 60)) * speed;
-    int speed_y = (y() - mouse_y_pos + 60) / (abs(y() - mouse_y_pos + 60)) * speed;
+    int speed_x = (x() - mouse_x_pos + 45) / (abs(x() - mouse_x_pos + 45)) * speed;
+    int speed_y = (y() - mouse_y_pos + 45) / (abs(y() - mouse_y_pos + 45)) * speed;
 
     checkBoundaries();
 
-    if (x() - mouse_x_pos + 60 == 0)
+    if (x() - mouse_x_pos + 45 == 0)
         speed_x = 0;
-    if (y() - mouse_y_pos + 60 == 0)
+    if (y() - mouse_y_pos + 45 == 0)
         speed_y = 0;
 
     QList<QGraphicsItem *> list = scene()->collidingItems(this) ;
@@ -97,4 +97,8 @@ void Player::checkBoundaries() {
     // Check if player is too low
     if (y() >= SCREEN_SIZE - height*SCALE_FACTOR)
         setPos(x(), SCREEN_SIZE - height*SCALE_FACTOR);
+}
+
+void Player::changeSpeed(int speedChange) {
+    speed = speedChange;
 }

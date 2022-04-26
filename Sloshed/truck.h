@@ -23,6 +23,7 @@ public:
     Truck(int, int, int, bool);
     static int const HEIGHT = 120;
     static int const WIDTH = 360;
+    void changeSpeed(int speedChange);
 
 protected:
     void advance(int phase);

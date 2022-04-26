@@ -26,6 +26,7 @@ public:
     void startGame(bool fromLevelOne);
     void pauseGame();
     void stopGame();
+    void changeSpeed(int level);
 
 public slots:
     void addWaterToBar();

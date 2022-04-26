@@ -234,19 +234,36 @@ void MainWindow::receiveHydrationTimer() {
 
     ui->hydrationBar->setValue(currVal - 1);
 
-    // Sets bar to purple at 50%
-    if (currVal <= 50) {
-        changeBarToPurple();
-        ui->blackoutLabel->setStyleSheet("background-image: url(:/GameImages/Images/Blackout1.png)");
+    // Sets the blackout level with different levels
+    if (currVal <= 25) {
+        ui->blackoutLabel->setStyleSheet("background-image: url(:/GameImages/Images/Blackout3.png)");
         ui->blackoutLabel->setVisible(true);
+
+        ui->gameplayScreen->changeSpeed(1);
+
+        blurScreen(7);
+    } // Sets bar to purple at 50%
+    else if (currVal <= 50) {
+        changeBarToPurple();
+        ui->blackoutLabel->setStyleSheet("background-image: url(:/GameImages/Images/Blackout2.png)");
+        ui->blackoutLabel->setVisible(true);
+
+        ui->gameplayScreen->changeSpeed(2);
 
         //blur game screen
         blurScreen(5);
     }
-    else if (currVal > 50) {
+    else if (currVal <= 75) {
+        ui->blackoutLabel->setStyleSheet("background-image: url(:/GameImages/Images/Blackout1.png)");
+        ui->blackoutLabel->setVisible(true);
+
+        //blur game screen
+        blurScreen(3);
+    }
+    else {
         ui->blackoutLabel->setVisible(false);
         changeBarToBlue();
-
+        blurScreen(0);
     }
 }
 
