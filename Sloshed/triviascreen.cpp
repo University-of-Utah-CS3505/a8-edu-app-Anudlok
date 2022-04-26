@@ -106,12 +106,72 @@ void TriviaScreen::populateTrivia(){
                                               "36%",
                                               "67%",
                                               "12%"});
-  /*
-  triviaVector.push_back(std::vector<QString>{"",
-                                              "",
-                                              "",
+  triviaVector.push_back(std::vector<QString>{"Which of these types of drinks can speed up alcohol absorption?",
+                                              "Carbonated mixers",
+                                              "Sweet Mixers",
+                                              "Caffeinated Beverages"});
+  triviaVector.push_back(std::vector<QString>{"True or False; Eating something substantial like a burger or pasta before or while drinking can cause alcohol to spend more time in the stomach where it is absorbed much more slowly?",
+                                              "True",
+                                              "False",
                                               ""});
-                                              */
+  triviaVector.push_back(std::vector<QString>{"The ___ a person drinks, the ___ their BAC rises.",
+                                              "Faster",
+                                              "Slower",
+                                              ""});
+  triviaVector.push_back(std::vector<QString>{"True or False; Time is the only way to lower BAC.",
+                                              "True",
+                                              "False",
+                                              ""});
+  triviaVector.push_back(std::vector<QString>{"BAC typically rises quickly for females than males",
+                                              "True",
+                                              "False",
+                                              ""});
+  triviaVector.push_back(std::vector<QString>{"In which BAC levels will you experience confusion, dizziness or slurred speech?",
+                                              ".11-.20",
+                                              ".05-.10",
+                                              ".21-.35"});
+  triviaVector.push_back(std::vector<QString>{"True or False; Mixing alcohol with energy drinks will not mask the feeling of alcohol impairment.",
+                                              "False",
+                                              "True",
+                                              ""});
+  triviaVector.push_back(std::vector<QString>{"Drinking alcohol _____ reduce the the effectiveness of oral contraceptives.",
+                                              "Does not",
+                                              "Does",
+                                              ""});
+  triviaVector.push_back(std::vector<QString>{"A person is ___ responsible for obtaining clear consent for sexual activity regardlesss of whether they have been drinking alcohol",
+                                              "Always",
+                                              "Never",
+                                              ""});
+  triviaVector.push_back(std::vector<QString>{"What time period for a college student is most vulnerable for heavy drinking and alcohol-related consequences?",
+                                              "First 6 weeks of freshman year",
+                                              "Every finals week ",
+                                              "Last 6 weeks of senior year"});
+  //stopped at mixing alcohol with substances
+  triviaVector.push_back(std::vector<QString>{"True or False; When alcohol is combined with opioids it magnifies and amplifies the effects of opioids to a dangerous level.",
+                                              "True",
+                                              "False",
+                                               ""});
+  triviaVector.push_back(std::vector<QString>{"Which of these effects do Alcohol and Adderall have on the heart when combined?",
+                                              "All of the above",
+                                              "Increased blood pressure",
+                                              "Increased heart rate"});
+  triviaVector.push_back(std::vector<QString>{"Antidepressants and alcohol ___ the impacts of each other.",
+                                              "Magnify",
+                                              "Lessen ",
+                                              ""});
+  triviaVector.push_back(std::vector<QString>{"Which of these puts extreme pressure and stress on the heart?",
+                                              "Mixing alcohol and cocaine ",
+                                              "Drinking a shot after a beer",
+                                              "Running after drinking a beer"});
+
+  triviaVector.push_back(std::vector<QString>{"*Which of these are common side effects when mixing Marijuana and Alcohol?",
+                                              "All of the above",
+                                              "Compromised judgment",
+                                              "Decreased attention, perception and memory"});
+  triviaVector.push_back(std::vector<QString>{"True or False: Marijuana suppresses the gag reflex and may leave intoxicated individuals unable to throw up, causing alcohol poisoning.",
+                                              "True",
+                                              "False ",
+                                              ""});
 }
 
 /**
@@ -119,7 +179,7 @@ void TriviaScreen::populateTrivia(){
  * @return a vector of Qstrings with teh possible answers
  */
 std::vector<QString> TriviaScreen::giveMeARandomQuestion(){
-   int questionIndex = QRandomGenerator::global()->bounded(3); //20 is size of trivia vector
+   int questionIndex = QRandomGenerator::global()->bounded(20); //20 is size of trivia vector
    return randomizeTrivia(triviaVector.at(questionIndex));
 }
 
