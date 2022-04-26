@@ -1,3 +1,10 @@
+/************************************************
+ * WaterBottle class
+ * Class definition for WaterBottle QGraphicsPixmapItem
+ * @author: Anna Timofeyenko, Gabby Culley,
+ *          Gaby Torres, Raynard Christian, Angela Mishler
+ * @date: 4/18/2022
+************************************************/
 #ifndef WATERBOTTLE_H
 #define WATERBOTTLE_H
 

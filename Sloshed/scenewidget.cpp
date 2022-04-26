@@ -12,6 +12,11 @@
 #include <QStyle>
 #include <QStyleOption>
 
+/**
+ * SceneWidget constructor
+ * @brief SceneWidget::SceneWidget
+ * @param parent
+ */
 SceneWidget::SceneWidget(QWidget *parent) : QWidget(parent),
     world(b2Vec2(0.0f, 10.0f)),
     timer(this),
@@ -66,6 +71,10 @@ SceneWidget::SceneWidget(QWidget *parent) : QWidget(parent),
     timer.start(50);
 }
 
+/**
+ * Redraws the logo in its new position
+ * @brief SceneWidget::paintEvent
+ */
 void SceneWidget::paintEvent(QPaintEvent *) {
     // Create a painter
     QPainter painter(this);
@@ -128,6 +137,10 @@ void SceneWidget::paintEvent(QPaintEvent *) {
     painter.drawImage((int)(x), (int)(y), image);
 }
 
+/**
+ * Updates the Box2D world/objects.
+ * @brief SceneWidget::updateWorld
+ */
 void SceneWidget::updateWorld() {
     // It is generally best to keep the time step and iterations fixed.
     world.Step(1.0/60.0, 6, 2);

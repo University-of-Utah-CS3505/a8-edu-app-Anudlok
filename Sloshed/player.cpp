@@ -1,12 +1,10 @@
 /************************************************
- *
- * Truck class
- * Class definition for Truck QGraphicsPixmapItem
+ * Player class
+ * Class definition for Player QGraphicsPixmapItem
  * @author: Anna Timofeyenko, Gabby Culley,
  *          Gaby Torres, Raynard Christian, Angela Mishler
  * @date: 4/18/2022
 ************************************************/
-
 #include "player.h"
 #include <QDebug>
 
@@ -16,7 +14,6 @@
  */
 Player::Player()
 {
-
     setPos(mapToParent(345, 705));
     setPixmap(imgPath);
     width = pixmap().width();
@@ -85,6 +82,10 @@ void Player::endLevel() {
     emit nextLevel();
 }
 
+/**
+ * Makes sure the player's position is within the screen boundaries.
+ * @brief Player::checkBoundaries
+ */
 void Player::checkBoundaries() {
 
     // Check if player is too far right
