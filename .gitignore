@@ -1,4 +1,6 @@
 *.idx
+*.o
+*.exe
 *.stash
 *.json
 *.Debug
