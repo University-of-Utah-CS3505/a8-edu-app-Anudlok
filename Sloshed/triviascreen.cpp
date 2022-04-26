@@ -110,7 +110,7 @@ void TriviaScreen::populateTrivia(){
                                               "Carbonated mixers",
                                               "Sweet Mixers",
                                               "Caffeinated Beverages"});
-  triviaVector.push_back(std::vector<QString>{"True or False; Eating something substantial like a burger or pasta before or while drinking can cause alcohol to spend more time in the stomach where it is absorbed much more slowly?",
+  triviaVector.push_back(std::vector<QString>{"True or False: Eating something substantial like a burger or pasta before or while drinking can cause alcohol to spend more time in the stomach where it is absorbed much more slowly?",
                                               "True",
                                               "False",
                                               ""});
@@ -118,7 +118,7 @@ void TriviaScreen::populateTrivia(){
                                               "Faster",
                                               "Slower",
                                               ""});
-  triviaVector.push_back(std::vector<QString>{"True or False; Time is the only way to lower BAC.",
+  triviaVector.push_back(std::vector<QString>{"True or False: Time is the only way to lower BAC.",
                                               "True",
                                               "False",
                                               ""});
@@ -130,7 +130,7 @@ void TriviaScreen::populateTrivia(){
                                               ".11-.20",
                                               ".05-.10",
                                               ".21-.35"});
-  triviaVector.push_back(std::vector<QString>{"True or False; Mixing alcohol with energy drinks will not mask the feeling of alcohol impairment.",
+  triviaVector.push_back(std::vector<QString>{"True or False: Mixing alcohol with energy drinks will not mask the feeling of alcohol impairment.",
                                               "False",
                                               "True",
                                               ""});
@@ -147,7 +147,7 @@ void TriviaScreen::populateTrivia(){
                                               "Every finals week ",
                                               "Last 6 weeks of senior year"});
   //stopped at mixing alcohol with substances
-  triviaVector.push_back(std::vector<QString>{"True or False; When alcohol is combined with opioids it magnifies and amplifies the effects of opioids to a dangerous level.",
+  triviaVector.push_back(std::vector<QString>{"True or False: When alcohol is combined with opioids it magnifies and amplifies the effects of opioids to a dangerous level.",
                                               "True",
                                               "False",
                                                ""});

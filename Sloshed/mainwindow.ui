@@ -36,7 +36,7 @@
      <string notr="true">background-image: url(:/GameImages/Images/End.png)</string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>1</number>
     </property>
     <widget class="SceneWidget" name="startScreen">
      <property name="styleSheet">
@@ -66,33 +66,49 @@
      <widget class="QLabel" name="questionLabel">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>230</y>
-        <width>560</width>
-        <height>150</height>
+        <x>30</x>
+        <y>220</y>
+        <width>741</width>
+        <height>211</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Britannic Bold</family>
+        <pointsize>20</pointsize>
+       </font>
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
       <property name="styleSheet">
        <string notr="true">background-image: url(:/GameImages/Images/TransparentBG);
-border-color: rgb(255, 255, 255);</string>
+color: rgb(255, 255, 255);
+background-color: rgb(162, 0, 255);</string>
       </property>
       <property name="lineWidth">
        <number>1</number>
       </property>
       <property name="text">
-       <string>question</string>
+       <string>True or False: Eating something substantial like a burger or pasta before or while drinking can cause alcohol to spend more time in the stomach where it is absorbed much more slowly?</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="margin">
+       <number>15</number>
       </property>
      </widget>
      <widget class="QFrame" name="verticalFrame">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>390</y>
-        <width>771</width>
-        <height>381</height>
+        <x>50</x>
+        <y>430</y>
+        <width>701</width>
+        <height>341</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -101,18 +117,32 @@ border-color: rgb(255, 255, 255);</string>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QPushButton" name="answerButton1">
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">background-image: url(:/GameImages/Images/TransparentBG);</string>
+          <string notr="true">color: rgb(149, 153, 162);
+color: rgb(212, 220, 135);
+background-color: rgb(71, 77, 86);</string>
          </property>
          <property name="text">
-          <string>answer1</string>
+          <string>They dont have to drink to have a good time</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="answerButton2">
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">background-image: url(:/GameImages/Images/TransparentBG);</string>
+          <string notr="true">color: rgb(149, 153, 162);
+color: rgb(212, 220, 135);
+background-color: rgb(71, 77, 86);</string>
          </property>
          <property name="text">
           <string>answer2</string>
@@ -121,8 +151,15 @@ border-color: rgb(255, 255, 255);</string>
        </item>
        <item>
         <widget class="QPushButton" name="answerButton3">
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">background-image: url(:/GameImages/Images/TransparentBG);</string>
+          <string notr="true">color: rgb(149, 153, 162);
+color: rgb(212, 220, 135);
+background-color: rgb(71, 77, 86);</string>
          </property>
          <property name="text">
           <string>answer3</string>
