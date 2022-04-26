@@ -18,7 +18,6 @@
 GameScreen::GameScreen(QWidget *parent)
     : QWidget{parent}
 {
-    //setStyleSheet("background-image: url(:/GameImages/Images/Gameplay.png)");
     gameplayView = new QGraphicsView();
     gameplayView->setParent(this);
     gameplayView->resize(MainWindow::WIDTH, MainWindow::HEIGHT);
@@ -215,7 +214,7 @@ void GameScreen::addWaterToBar() {
  * Paints the GameScreen's style sheet.
  * @brief GameScreen::paintEvent
  */
-void GameScreen::paintEvent(QPaintEvent * e) {
+void GameScreen::paintEvent(QPaintEvent *) {
     // Draw custom style sheet
     QStyleOption opt;
     opt.initFrom(this);
@@ -223,6 +222,11 @@ void GameScreen::paintEvent(QPaintEvent * e) {
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
 
+/**
+ * Changes the player's speed
+ * @brief GameScreen::changeSpeed
+ * @param level
+ */
 void GameScreen::changeSpeed(int level) {
     player->changeSpeed(level);
 }

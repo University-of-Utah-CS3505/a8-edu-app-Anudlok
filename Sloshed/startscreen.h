@@ -1,32 +1,30 @@
 /************************************************
- * SceneWidget class
- * Class definition for SceneWidget QWidget
+ * StartScreen class
+ * Class definition for StartScreen QWidget
  * Window
  * @author: Anna Timofeyenko, Gabby Culley,
  *          Gaby Torres, Raynard Christian, Angela Mishler
  * @date: 4/9/2022
 ************************************************/
-#ifndef SCENEWIDGET_H
-#define SCENEWIDGET_H
+#ifndef STARTSCREEN_H
+#define STARTSCREEN_H
 
 #include <QWidget>
 #include <Box2D/Box2D.h>
 #include <QTimer>
 
-class SceneWidget : public QWidget
+class StartScreen : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SceneWidget(QWidget *parent = nullptr);
+    explicit StartScreen(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *);
 signals:
 
 public slots:
-    void updateWorld();
+    void updateLogo();
 
 private:
-    b2World world;
-    b2Body* body;
     QTimer timer;
     QImage image;
     int x;
@@ -35,4 +33,4 @@ private:
     int ySpeed;
 };
 
-#endif // SCENEWIDGET_H
+#endif // STARTSCREEN_H

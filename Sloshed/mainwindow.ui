@@ -36,9 +36,9 @@
      <string notr="true">background-image: url(:/GameImages/Images/End.png)</string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
-    <widget class="SceneWidget" name="startScreen">
+    <widget class="StartScreen" name="startScreen">
      <property name="styleSheet">
       <string notr="true">background-image: url(:/GameImages/Images/Background.png)</string>
      </property>
@@ -494,19 +494,13 @@ background-image: url(:/GameImages/Images/TransparentBG);</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>17</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>SceneWidget</class>
-   <extends>QWidget</extends>
-   <header>SceneWidget.h</header>
-   <container>1</container>
-  </customwidget>
   <customwidget>
    <class>GameScreen</class>
    <extends>QWidget</extends>
@@ -517,6 +511,12 @@ background-image: url(:/GameImages/Images/TransparentBG);</string>
    <class>TriviaScreen</class>
    <extends>QWidget</extends>
    <header>triviascreen.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>StartScreen</class>
+   <extends>QWidget</extends>
+   <header location="global">startscreen.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

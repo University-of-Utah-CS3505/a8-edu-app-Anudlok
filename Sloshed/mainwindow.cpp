@@ -16,7 +16,7 @@
 #include <QPalette>
 #include <QKeyEvent>
 #include "player.h"
-#include "scenewidget.h"
+#include "startscreen.h"
 #include "gamescreen.h"
 #include <QSoundEffect>
 #include <QGraphicsBlurEffect>
