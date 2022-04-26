@@ -36,7 +36,7 @@
      <string notr="true">background-image: url(:/GameImages/Images/End.png)</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="SceneWidget" name="startScreen">
      <property name="styleSheet">
@@ -223,9 +223,9 @@ border-color: rgb(255, 255, 255);</string>
      <widget class="QLabel" name="levelLabel">
       <property name="geometry">
        <rect>
-        <x>-10</x>
+        <x>20</x>
         <y>30</y>
-        <width>221</width>
+        <width>271</width>
         <height>60</height>
        </rect>
       </property>
@@ -241,10 +241,10 @@ border-color: rgb(255, 255, 255);</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(245, 245, 245); background-color: rgb(124, 124, 124);</string>
+       <string notr="true">color: rgb(245, 245, 245); background-image: url(:/GameImages/Images/TransparentBG)</string>
       </property>
       <property name="text">
-       <string>Level 1</string>
+       <string>Level 1/10</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -352,7 +352,7 @@ border-color: rgb(255, 255, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

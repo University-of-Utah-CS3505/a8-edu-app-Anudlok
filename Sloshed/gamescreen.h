@@ -53,13 +53,13 @@ private:
     QTimer *hydrationTimer;
 
     // Variables to tweak gameplay
-    QList<int> truckSpawnDelays = {2000, 1400, 980, 686, 480};
-    QList<int> truckSpeeds = {20, 25, 30, 35, 40}; // Could also do 20, 25, 31, 38, 45
+    QList<int> truckSpawnDelays = {2000, 2000, 1600, 1600, 1300, 1300, 1140, 1140, 1000, 1000}; // Old: 2000, 1400, 980, 686, 480
+    QList<int> truckSpeeds = {20, 21, 21, 22, 22, 23, 23, 24, 24, 25}; // Old: 20, 25, 30, 35, 40
     const int sceneAdvanceDelay = 25;
     int mouseDelay = 100;
     int waterDelay = 400;
     int level = 1;
-    int const MAX_LEVEL = 5;
+    int const MAX_LEVEL = 10;
     Player *player;
 };
 
