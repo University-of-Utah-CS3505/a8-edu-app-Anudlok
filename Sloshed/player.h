@@ -1,3 +1,10 @@
+/************************************************
+ * Player class
+ * Class definition for Player QGraphicsPixmapItem
+ * @author: Anna Timofeyenko, Gabby Culley,
+ *          Gaby Torres, Raynard Christian, Angela Mishler
+ * @date: 4/18/2022
+************************************************/
 #ifndef PLAYER_H
 #define PLAYER_H
 

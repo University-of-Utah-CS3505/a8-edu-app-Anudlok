@@ -1,3 +1,10 @@
+/************************************************
+ * TriviaScreen class
+ * Class definition for TriviaScreen QWidget
+ * @author: Anna Timofeyenko, Gabby Culley,
+ *          Gaby Torres, Raynard Christian, Angela Mishler
+ * @date: 4/24/2022
+************************************************/
 #ifndef TRIVIASCREEN_H
 #define TRIVIASCREEN_H
 

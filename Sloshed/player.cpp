@@ -1,7 +1,6 @@
 /************************************************
- *
- * Truck class
- * Class definition for Truck QGraphicsPixmapItem
+ * Player class
+ * Class definition for Player QGraphicsPixmapItem
  * @author: Anna Timofeyenko, Gabby Culley,
  *          Gaby Torres, Raynard Christian, Angela Mishler
  * @date: 4/18/2022

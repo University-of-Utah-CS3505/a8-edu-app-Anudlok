@@ -1,6 +1,6 @@
 /************************************************
- * Truck class
- * Class definition for Truck QGraphicsPixmapItem
+ * WaterBottle class
+ * Class definition for WaterBottle QGraphicsPixmapItem
  * @author: Anna Timofeyenko, Gabby Culley,
  *          Gaby Torres, Raynard Christian, Angela Mishler
  * @date: 4/18/2022

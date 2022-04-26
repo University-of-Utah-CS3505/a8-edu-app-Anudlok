@@ -1,3 +1,10 @@
+/************************************************
+ * TriviaScreen class
+ * Class definition for TriviaScreen QWidget
+ * @author: Anna Timofeyenko, Gabby Culley,
+ *          Gaby Torres, Raynard Christian, Angela Mishler
+ * @date: 4/24/2022
+************************************************/
 #include "triviascreen.h"
 #include "qgraphicseffect.h"
 #include <QPainter>
@@ -6,6 +13,13 @@
 #include <QDebug>
 #include <QRandomGenerator>
 
+/**
+ * Constructor for TriviaScreen.
+ * Initializes variables, especially the images and Box2D objects.
+ * Also populates the trivia vector.
+ * @brief TriviaScreen::TriviaScreen
+ * @param parent
+ */
 TriviaScreen::TriviaScreen(QWidget *parent)
     : QWidget(parent),
     world(b2Vec2(0.0f, 10.0f)),
@@ -64,6 +78,10 @@ TriviaScreen::TriviaScreen(QWidget *parent)
     populateTrivia();
 }
 
+/**
+ * Draws the style sheet and redraws the bouncing "Trivia" image.
+ * @brief TriviaScreen::paintEvent
+ */
 void TriviaScreen::paintEvent(QPaintEvent *) {
     // Create a painter
     QPainter painter(this);
@@ -80,6 +98,10 @@ void TriviaScreen::paintEvent(QPaintEvent *) {
     painter.end();
 }
 
+/**
+ * Updates the Box2D world to make the "Trivia" image bounce.
+ * @brief TriviaScreen::updateWorld
+ */
 void TriviaScreen::updateWorld() {
     // It is generally best to keep the time step and iterations fixed.
     world.Step(1.0/60.0, 6, 2);
@@ -87,7 +109,7 @@ void TriviaScreen::updateWorld() {
 }
 
 /**
- * @brief TriviaScreen::populateTrivia called upon intialiazation of game, just populates trivia
+ * @brief TriviaScreen::populateTrivia called upon initialization of game, populates trivia vector with questions and answers
  */
 void TriviaScreen::populateTrivia(){
   triviaVector.push_back(std::vector<QString>{"A standard drink is a unit of measurement. In the United States, a standard drink contains 0.6 fluid ounces of alcohol. Which of these drinks represents a standard drink?",
@@ -183,6 +205,11 @@ std::vector<QString> TriviaScreen::giveMeARandomQuestion(){
    return randomizeTrivia(triviaVector.at(questionIndex));
 }
 
+/**
+ * @brief TriviaScreen::checkAnswer checks whether the given answer is correct
+ * @param answerNum
+ * @return
+ */
 bool TriviaScreen::checkAnswer(int answerNum){
         return answerNum == correctIndex;
 }
