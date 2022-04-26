@@ -223,6 +223,11 @@ void GameScreen::paintEvent(QPaintEvent * e) {
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
 
-void GameScreen::changeSpeed(int level) {
-    player->changeSpeed(level);
+/**
+ * Changes the player's speed to a new value
+ * @brief GameScreen::changeSpeed
+ * @param speed the new speed value for player
+ */
+void GameScreen::changeSpeed(int speed) {
+    player->changeSpeed(speed);
 }
