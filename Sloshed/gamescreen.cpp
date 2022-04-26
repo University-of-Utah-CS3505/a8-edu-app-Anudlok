@@ -223,10 +223,10 @@ void GameScreen::paintEvent(QPaintEvent *) {
 }
 
 /**
- * Changes the player's speed
+ * Changes the player's speed to a new value
  * @brief GameScreen::changeSpeed
- * @param level
+ * @param speed the new speed value for player
  */
-void GameScreen::changeSpeed(int level) {
-    player->changeSpeed(level);
+void GameScreen::changeSpeed(int speed) {
+    player->changeSpeed(speed);
 }

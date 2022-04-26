@@ -99,6 +99,11 @@ void Player::checkBoundaries() {
         setPos(x(), SCREEN_SIZE - height*SCALE_FACTOR);
 }
 
+/**
+ * Changes the player's speed
+ * @brief Player::changeSpeed
+ * @param speedChange The new speed
+ */
 void Player::changeSpeed(int speedChange) {
     speed = speedChange;
 }

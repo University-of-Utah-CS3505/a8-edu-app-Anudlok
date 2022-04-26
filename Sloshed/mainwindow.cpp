@@ -239,8 +239,10 @@ void MainWindow::receiveHydrationTimer() {
         ui->blackoutLabel->setStyleSheet("background-image: url(:/GameImages/Images/Blackout3.png)");
         ui->blackoutLabel->setVisible(true);
 
+        //changes the player's speed
         ui->gameplayScreen->changeSpeed(1);
 
+        //blur game screen
         blurScreen(7);
     } // Sets bar to purple at 50%
     else if (currVal <= 50) {
