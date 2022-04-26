@@ -145,7 +145,7 @@ void GameScreen::sendTruck() {
 }
 
 /**
- * Advances the game to the next level.
+ * Advances the game to the next level, or if level 10 is beat, tells MainWindow the game is won.
  * @brief GameScreen::nextLevel
  */
 void GameScreen::nextLevel() {
@@ -153,11 +153,11 @@ void GameScreen::nextLevel() {
     if (level < MAX_LEVEL) {
         level++;
         emit updateLevelView(level);
+        startGame(false);
     }
-
-    // TODO: Add Congratulations screen when last level is completed
-
-    startGame(false);
+    else {
+        emit wonGame();
+    }
 }
 
 /**

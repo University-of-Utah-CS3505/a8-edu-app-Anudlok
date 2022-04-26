@@ -36,7 +36,7 @@
      <string notr="true">background-image: url(:/GameImages/Images/End.png)</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>6</number>
     </property>
     <widget class="SceneWidget" name="startScreen">
      <property name="styleSheet">
@@ -52,7 +52,9 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/GameImages/Images/Play.png)</string>
+       <string notr="true">image: url(:/GameImages/Images/Play.png);
+background-color: rgba(255, 255, 255, 0);
+background-image: url(:/GameImages/Images/TransparentBG);</string>
       </property>
       <property name="text">
        <string/>
@@ -183,7 +185,9 @@ background-color: rgb(71, 77, 86);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/GameImages/Images/Resume.png)</string>
+       <string notr="true">image: url(:/GameImages/Images/Resume.png);
+background-color: rgba(255, 255, 255, 0);
+background-image: url(:/GameImages/Images/TransparentBG);</string>
       </property>
       <property name="text">
        <string/>
@@ -199,7 +203,9 @@ background-color: rgb(71, 77, 86);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/GameImages/Images/Reset.png)</string>
+       <string notr="true">image: url(:/GameImages/Images/Reset.png);
+background-color: rgba(255, 255, 255, 0);
+background-image: url(:/GameImages/Images/TransparentBG);</string>
       </property>
       <property name="text">
        <string/>
@@ -340,7 +346,9 @@ background-color: rgb(71, 77, 86);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/GameImages/Images/Reset.png)</string>
+       <string notr="true">image: url(:/GameImages/Images/Reset.png);
+background-color: rgba(255, 255, 255, 0);
+background-image: url(:/GameImages/Images/TransparentBG);</string>
       </property>
       <property name="text">
        <string/>
@@ -358,7 +366,9 @@ background-color: rgb(71, 77, 86);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/GameImages/Images/Reset.png)</string>
+       <string notr="true">image: url(:/GameImages/Images/Reset.png);
+background-color: rgba(255, 255, 255, 0);
+background-image: url(:/GameImages/Images/TransparentBG);</string>
       </property>
       <property name="text">
        <string/>
@@ -377,7 +387,70 @@ background-color: rgb(71, 77, 86);</string>
        <string notr="true">background-image: url(:/GameImages/Images/Lose.png)</string>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="winScreen">
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/GameImages/Images/End.png);</string>
+     </property>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>120</y>
+        <width>601</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/GameImages/Images/Win.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="winResetButton">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>370</y>
+        <width>281</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/GameImages/Images/Reset.png); 
+background-color: rgba(255, 255, 255, 0);
+background-image: url(:/GameImages/Images/TransparentBG);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="winQuitButton">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>520</y>
+        <width>281</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/GameImages/Images/Quit.png); 
+background-color: rgba(255, 255, 255, 0);
+background-image: url(:/GameImages/Images/TransparentBG);</string>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>

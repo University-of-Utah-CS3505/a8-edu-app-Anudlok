@@ -49,6 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->gameplayScreen, &GameScreen::resetWater, this, &MainWindow::resetHydrationBar);
     connect(ui->gameplayScreen, &GameScreen::addWater, this, &MainWindow::addWaterToBar);
     connect(ui->gameplayScreen, &GameScreen::updateLevelView, this, &MainWindow::updateLevel);
+    connect(ui->gameplayScreen, &GameScreen::wonGame, this, &MainWindow::WinScreen);
 
     // Set up glug glug sound
     effect.setSource(QUrl("qrc:/Sounds/Sound/drinkingSound.wav"));
@@ -61,12 +62,20 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/**
+ * Shows the game's start screen.
+ * @brief MainWindow::GameStartScreen
+ */
 void MainWindow::GameStartScreen() {
     blurScreen(0);
    //ui->stackWindow->setStyleSheet("background-image: url(:/GameImages/Images/Background.png)");
    ui->stackWindow->setCurrentIndex(0);
 }
 
+/**
+ * Slot for when the player presses the start button.
+ * @brief MainWindow::on_startButton_clicked
+ */
 void MainWindow::on_startButton_clicked()
 {
     startGame(true);
@@ -95,6 +104,10 @@ void MainWindow::startGame(bool setting) {
     blurScreen(0);    
 }
 
+/**
+ * Shows a screen when the player pauses the game.
+ * @brief MainWindow::WinScreen
+ */
 void MainWindow::PauseScreen(){
     ui->gameplayScreen->pauseGame();
     ui->stackWindow->setCurrentIndex(2);
@@ -114,32 +127,63 @@ void MainWindow::CollideScreen(){
    ui->answerButton3->setText(trivia[3]);
 }
 
+/**
+ * Shows an "INTOXICATED" screen when the player dies due to dehydration.
+ * @brief MainWindow::WinScreen
+ */
 void MainWindow::LoseScreen() {
     ui->gameplayScreen->stopGame();
     ui->stackWindow->setCurrentIndex(4);
 }
 
+/**
+ * Shows a "CRASHED" screen when the player collides with a truck and loses trivia.
+ * @brief MainWindow::WinScreen
+ */
 void MainWindow::crashedScreen() {
     ui->gameplayScreen->stopGame();
     ui->stackWindow->setCurrentIndex(5);
 }
 
+/**
+ * Shows an "ARRIVED" screen when the player wins the game.
+ * @brief MainWindow::WinScreen
+ */
+void MainWindow::WinScreen() {
+    ui->gameplayScreen->stopGame();
+    ui->stackWindow->setCurrentIndex(6);
+}
+
+/**
+ * Slot for "Restart" button in the pause screen.
+ * @brief MainWindow::on_restartButton_clicked
+ */
 void MainWindow::on_restartButton_clicked(){
 
     //probably have to reset all player movement
     GameStartScreen();
 }
 
-//the console says "no matching signal for on_returnButton_clicked(); but i'm working on it
+/**
+ * Slot for "Resume" button in the pause screen.
+ * @brief MainWindow::on_restartButton_clicked
+ */
 void MainWindow::on_resumeButton_clicked(){
     blurScreen(0);
     resumeGame();
 }
 
-
-// https://www.qtcentre.org/threads/40779-keyboard-detecting-key-pressed
-// https://doc.qt.io/qt-5/qkeyevent.html
-// https://stackoverflow.com/questions/12558988/qt-keypress-event
+/**
+ * Handles key presses. Specifically, pauses the game when the escape key is pressed.
+ *
+ * Sources:
+ * https://www.qtcentre.org/threads/40779-keyboard-detecting-key-pressed
+ * https://doc.qt.io/qt-5/qkeyevent.html
+ * https://stackoverflow.com/questions/12558988/qt-keypress-event
+ *
+ * @brief MainWindow::keyPressEvent
+ * @param k
+ */
 void MainWindow::keyPressEvent(QKeyEvent * k){
     if(k->key() == Qt::Key_Escape){
         if(ui->stackWindow->currentIndex()!=0 && ui->stackWindow->currentIndex()!=2)
@@ -255,10 +299,11 @@ void MainWindow::updateLevel(int level) {
     ui->levelLabel->setText(QString("Level %1/10").arg(level));
 }
 
-void MainWindow::on_answerButton1_clicked()
-{
-    checkButtonAnswer(1);
-}
+/**
+ * Checks if the clicked answer is correct.
+ * @brief MainWindow::checkButtonAnswer
+ * @param buttonNum
+ */
 void MainWindow::checkButtonAnswer(int buttonNum){
     attempts++;
     if(ui->collideScreen->checkAnswer(buttonNum)){ //if correct, resume
@@ -270,27 +315,66 @@ void MainWindow::checkButtonAnswer(int buttonNum){
     }
 }
 
+/**
+ * Slot when answer #1 is clicked.
+ * @brief MainWindow::on_answerButton1_clicked
+ */
+void MainWindow::on_answerButton1_clicked()
+{
+    checkButtonAnswer(1);
+}
 
+/**
+ * Slot when answer #2 is clicked.
+ * @brief MainWindow::on_answerButton2_clicked
+ */
 void MainWindow::on_answerButton2_clicked()
 {
     checkButtonAnswer(2);
 }
 
-
+/**
+ * Slot when answer #3 is clicked.
+ * @brief MainWindow::on_answerButton3_clicked
+ */
 void MainWindow::on_answerButton3_clicked()
 {
     checkButtonAnswer(3);
 }
 
-
+/**
+ * Slot when the reset button on the lose screen is clicked.
+ * @brief MainWindow::on_resetButton_clicked
+ */
 void MainWindow::on_resetButton_clicked()
 {
     GameStartScreen();
 }
 
-
+/**
+ * Slot when the reset button on the crashed screen is clicked.
+ * @brief MainWindow::on_crashedResetButton_clicked
+ */
 void MainWindow::on_crashedResetButton_clicked()
 {
     GameStartScreen();
+}
+
+/**
+ * Slot when the reset button on the win screen is clicked.
+ * @brief MainWindow::on_winResetButton_clicked
+ */
+void MainWindow::on_winResetButton_clicked()
+{
+    GameStartScreen();
+}
+
+/**
+ * Slot when the quit button on the win screen is clicked.
+ * @brief MainWindow::on_winQuitButton_clicked
+ */
+void MainWindow::on_winQuitButton_clicked()
+{
+    QCoreApplication::quit();
 }
 

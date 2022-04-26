@@ -37,6 +37,7 @@ signals:
   void resetWater();
   void addWater();
   void updateLevelView(int);
+  void wonGame();
 
 private:
     void initTimers();
