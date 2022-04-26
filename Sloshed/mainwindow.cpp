@@ -257,6 +257,8 @@ void MainWindow::receiveHydrationTimer() {
         ui->blackoutLabel->setStyleSheet("background-image: url(:/GameImages/Images/Blackout1.png)");
         ui->blackoutLabel->setVisible(true);
 
+        ui->gameplayScreen->changeSpeed(3);
+
         //blur game screen
         blurScreen(3);
     }
@@ -264,6 +266,8 @@ void MainWindow::receiveHydrationTimer() {
         ui->blackoutLabel->setVisible(false);
         changeBarToBlue();
         blurScreen(0);
+
+        ui->gameplayScreen->changeSpeed(3);
     }
 }
 
