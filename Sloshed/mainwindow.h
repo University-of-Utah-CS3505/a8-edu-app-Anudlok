@@ -74,6 +74,8 @@ private:
     void changeBarToBlue();
     void blurScreen(int blurRadius);
     bool isPurple = false;
+    bool instructionsPoppedUp = false;
     int attempts;
+    void mousePressEvent(QMouseEvent *event);
 };
 #endif // MAINWINDOW_H

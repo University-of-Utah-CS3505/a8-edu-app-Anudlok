@@ -36,7 +36,7 @@
      <string notr="true">background-image: url(:/GameImages/Images/End.png)</string>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>0</number>
     </property>
     <widget class="SceneWidget" name="startScreen">
      <property name="styleSheet">
@@ -60,6 +60,25 @@ background-image: url(:/GameImages/Images/TransparentBG);</string>
        <string/>
       </property>
      </widget>
+     <widget class="QLabel" name="instructionsLabel">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>801</width>
+        <height>811</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/GameImages/Images/Instructions.png)</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
     <widget class="TriviaScreen" name="collideScreen">
      <property name="styleSheet">
@@ -76,7 +95,6 @@ background-image: url(:/GameImages/Images/TransparentBG);</string>
       </property>
       <property name="font">
        <font>
-        <family>Britannic Bold</family>
         <pointsize>20</pointsize>
        </font>
       </property>
@@ -462,7 +480,7 @@ background-image: url(:/GameImages/Images/TransparentBG);</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

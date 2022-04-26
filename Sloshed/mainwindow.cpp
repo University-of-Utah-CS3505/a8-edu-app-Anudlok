@@ -55,6 +55,8 @@ MainWindow::MainWindow(QWidget *parent)
     effect.setSource(QUrl("qrc:/Sounds/Sound/drinkingSound.wav"));
     effect.setLoopCount(1);
     effect.setVolume(0.25f);
+
+    ui->instructionsLabel->hide();
 }
 
 MainWindow::~MainWindow()
@@ -78,7 +80,8 @@ void MainWindow::GameStartScreen() {
  */
 void MainWindow::on_startButton_clicked()
 {
-    startGame(true);
+    ui->instructionsLabel->show();
+    instructionsPoppedUp = true;
 }
 
 /**
@@ -98,6 +101,7 @@ void MainWindow::resumeGame() {
  * @brief MainWindow::startGame
  */
 void MainWindow::startGame(bool setting) {
+    ui->instructionsLabel->hide();
     ui->stackWindow->setCurrentIndex(3); // move this?
     ui->gameplayScreen->startGame(setting); // move this?
     changeBarToBlue();
@@ -118,6 +122,7 @@ void MainWindow::PauseScreen(){
  * displaying the trivia questions they must answer
  */
 void MainWindow::CollideScreen(){
+    blurScreen(0);
     ui->gameplayScreen->stopGame();
     ui->stackWindow->setCurrentIndex(1);
    std::vector<QString> trivia =  ui->collideScreen->giveMeARandomQuestion();
@@ -188,6 +193,23 @@ void MainWindow::keyPressEvent(QKeyEvent * k){
     if(k->key() == Qt::Key_Escape){
         if(ui->stackWindow->currentIndex()!=0 && ui->stackWindow->currentIndex()!=2)
             PauseScreen();
+    }
+}
+
+/**
+ * Detects mouse clicks, specifically on the instructions popUp screen
+ * which then hides the instructions and starts the game.
+ *
+ * @brief MainWindow::mousePressEvent
+ * @param event
+ */
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    if (instructionsPoppedUp) {
+        if (event->buttons() == Qt::LeftButton) {
+            startGame(true);
+            instructionsPoppedUp = false;
+        }
     }
 }
 
@@ -276,9 +298,10 @@ void MainWindow::resetHydrationBar() {
  * @param blurRadius - Blurs the screen by this radius
  */
 void MainWindow::blurScreen(int blurRadius) {
-    blurEffect->setBlurRadius(blurRadius);
-    blurEffect->blurRadius();
-    this->setGraphicsEffect(blurEffect);
+    if (blurEffect->blurRadius() != blurRadius) {
+        blurEffect->setBlurRadius(blurRadius);
+        this->setGraphicsEffect(blurEffect);
+    }
 }
 
 /**
