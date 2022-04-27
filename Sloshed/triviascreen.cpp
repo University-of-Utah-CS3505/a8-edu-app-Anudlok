@@ -29,8 +29,6 @@ TriviaScreen::TriviaScreen(QWidget *parent)
     xSpeed(20), ySpeed(20)
 {
     populateTrivia();
-    // Set background
-    //setStyleSheet("background-image: url(:/GameImages/Images/End.png)");
 
     // Define the ground body.
     b2BodyDef groundBodyDef;
@@ -93,7 +91,6 @@ void TriviaScreen::paintEvent(QPaintEvent *) {
 
     // Draw bouncing "Trivia" image
     b2Vec2 position = body->GetPosition();
-    float angle = body->GetAngle();
     painter.drawImage((int)(position.x*20), (int)(position.y*20), image);
     painter.end();
 }
@@ -186,7 +183,7 @@ void TriviaScreen::populateTrivia(){
                                               "Drinking a shot after a beer",
                                               "Running after drinking a beer"});
 
-  triviaVector.push_back(std::vector<QString>{"*Which of these are common side effects when mixing Marijuana and Alcohol?",
+  triviaVector.push_back(std::vector<QString>{"Which of these are common side effects when mixing Marijuana and Alcohol?",
                                               "All of the above",
                                               "Compromised judgment",
                                               "Decreased attention, perception and memory"});

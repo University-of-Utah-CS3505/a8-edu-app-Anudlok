@@ -28,18 +28,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->resize(WIDTH, HEIGHT);
 
-    // The stack window contains each of the gameplay screens.
-    // Index 0 is the start screen
-    // Index 1 is the gameplay screen
-    // We can add other screens to future widgets.
-
-    // Note: To add a SceneWidget to the mainwindow.ui, add a QWidget (SceneWidget's parent class)
-    // to the UI, right-click the QWidget, and click Promote to -> SceneWidget.
-
-    // If you want to add new custom classes that inherits from QWidget, you'll need to add
-    // the promoted class to the mainwindow.ui first. Right-click the QWidget, click Promote to...,
-    // and add your custom class in the window that pops up.
-
     // Set up start screen
     ui->startButton->setParent(ui->stackWindow->widget(0));
     ui->stackWindow->setCurrentIndex(0);
@@ -52,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->gameplayScreen, &GameScreen::wonGame, this, &MainWindow::WinScreen);
     ui->blackoutLabel->setVisible(false);
 
-    // Set up glug glug sound
+    // Set up drinking (gluglug) sound
     effect.setSource(QUrl("qrc:/Sounds/Sound/drinkingSound.wav"));
     effect.setLoopCount(1);
     effect.setVolume(0.25f);
@@ -166,8 +154,6 @@ void MainWindow::WinScreen() {
  * @brief MainWindow::on_restartButton_clicked
  */
 void MainWindow::on_restartButton_clicked(){
-
-    //probably have to reset all player movement
     GameStartScreen();
 }
 
@@ -237,13 +223,13 @@ void MainWindow::receiveHydrationTimer() {
 
     // Sets the blackout level with different levels
     if (currVal <= 25) {
+        changeBarToPurple();
         ui->blackoutLabel->setStyleSheet("background-image: url(:/GameImages/Images/Blackout3.png)");
         ui->blackoutLabel->setVisible(true);
 
         //changes the player's speed
         ui->gameplayScreen->changeSpeed(1);
 
-        //blur game screen
         blurScreen(7);
     } // Sets bar to purple at 50%
     else if (currVal <= 50) {
@@ -253,16 +239,15 @@ void MainWindow::receiveHydrationTimer() {
 
         ui->gameplayScreen->changeSpeed(2);
 
-        //blur game screen
         blurScreen(5);
     }
     else if (currVal <= 75) {
+        changeBarToBlue();
         ui->blackoutLabel->setStyleSheet("background-image: url(:/GameImages/Images/Blackout1.png)");
         ui->blackoutLabel->setVisible(true);
 
         ui->gameplayScreen->changeSpeed(3);
 
-        //blur game screen
         blurScreen(3);
     }
     else {
@@ -308,8 +293,10 @@ void MainWindow::addWaterToBar() {
 
     int currVal = ui->hydrationBar->value();
     currVal+= 10;
+
     if (currVal > 100)
         currVal = 100;
+
     ui->hydrationBar->setValue(currVal);
 }
 
@@ -357,13 +344,11 @@ void MainWindow::updateLevel(int level) {
  * @param buttonNum
  */
 void MainWindow::checkButtonAnswer(int buttonNum){
-    attempts++;
     if(ui->collideScreen->checkAnswer(buttonNum)){ //if correct, resume
         startGame(false);
     }
-    else if(attempts%2 == 0){ //if incorrect and first attempt, let them try again but disconnect the button
-     //if incorrect and second attempt
-           crashedScreen();
+    else {
+        crashedScreen();
     }
 }
 

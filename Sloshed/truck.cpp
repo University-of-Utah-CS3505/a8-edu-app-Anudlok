@@ -72,12 +72,3 @@ void Truck::advance(int phase) {
 void Truck::remove() {
     scene()->removeItem(this);
 }
-
-/**
- * Changes the truck's speed
- * @brief Truck::changeSpeed
- * @param speedChange The new speed
- */
-void Truck::changeSpeed(int speedChange) {
-    speed = speedChange;
-}

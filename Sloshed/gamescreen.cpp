@@ -133,11 +133,13 @@ void GameScreen::sendTruck() {
     Truck *truck;
     int y_pos = lanes[laneNum];
     int speed = truckSpeeds[level - 1];
+
     // Place truck
     if (movingRight)
         truck = new Truck(0 - Truck::HEIGHT, y_pos, speed, true);
     else
         truck = new Truck(MainWindow::WIDTH + Truck::WIDTH, y_pos, speed, false);
+
     // Set truck to transform (e.g. spin) from its center point
     truck->setTransformOriginPoint(truck->boundingRect().width()/2, truck->boundingRect().height()/2);
     gameplayScene->addItem(truck);
