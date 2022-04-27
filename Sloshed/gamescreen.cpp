@@ -76,11 +76,11 @@ void GameScreen::startGame(bool fromLevelOne) {
     stopGame();
     if (fromLevelOne) {
         level = 1;
+        emit resetWater();
         emit updateLevelView(level);
     }
     addPlayer();
     initTimers();
-    emit resetWater();
     placeWaterBottles();
     resumeGame();
 }

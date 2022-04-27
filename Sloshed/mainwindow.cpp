@@ -71,7 +71,6 @@ MainWindow::~MainWindow()
  */
 void MainWindow::GameStartScreen() {
     blurScreen(0);
-   //ui->stackWindow->setStyleSheet("background-image: url(:/GameImages/Images/Background.png)");
    ui->stackWindow->setCurrentIndex(0);
 }
 
@@ -147,6 +146,7 @@ void MainWindow::LoseScreen() {
  * @brief MainWindow::crashedScreen
  */
 void MainWindow::crashedScreen() {
+    blurScreen(0);
     ui->gameplayScreen->stopGame();
     ui->stackWindow->setCurrentIndex(5);
 }
@@ -156,6 +156,7 @@ void MainWindow::crashedScreen() {
  * @brief MainWindow::WinScreen
  */
 void MainWindow::WinScreen() {
+    blurScreen(0);
     ui->gameplayScreen->stopGame();
     ui->stackWindow->setCurrentIndex(6);
 }
