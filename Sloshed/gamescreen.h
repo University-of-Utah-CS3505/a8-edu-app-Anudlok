@@ -23,9 +23,10 @@ public:
     explicit GameScreen(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *);
     void resumeGame();
-    void startGame(bool fromLevelOne = true);
+    void startGame(bool fromLevelOne);
     void pauseGame();
     void stopGame();
+    void changeSpeed(int speed);
 
 public slots:
     void addWaterToBar();
@@ -37,6 +38,7 @@ signals:
   void resetWater();
   void addWater();
   void updateLevelView(int);
+  void wonGame();
 
 private:
     void initTimers();
@@ -53,13 +55,13 @@ private:
     QTimer *hydrationTimer;
 
     // Variables to tweak gameplay
-    QList<int> truckSpawnDelays = {2000, 1400, 980, 686, 480};
-    QList<int> truckSpeeds = {20, 25, 30, 35, 40}; // Could also do 20, 25, 31, 38, 45
+    QList<int> truckSpawnDelays = {2000, 2000, 1600, 1600, 1300, 1300, 1140};
+    QList<int> truckSpeeds = {20, 21, 21, 22, 22, 23, 23};
     const int sceneAdvanceDelay = 25;
     int mouseDelay = 100;
     int waterDelay = 400;
     int level = 1;
-    int const MAX_LEVEL = 5;
+    int const MAX_LEVEL = 7;
     Player *player;
 };
 

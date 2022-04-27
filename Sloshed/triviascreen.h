@@ -1,3 +1,10 @@
+/************************************************
+ * TriviaScreen class
+ * Class definition for TriviaScreen QWidget
+ * @author: Anna Timofeyenko, Gabby Culley,
+ *          Gaby Torres, Raynard Christian, Angela Mishler
+ * @date: 4/24/2022
+************************************************/
 #ifndef TRIVIASCREEN_H
 #define TRIVIASCREEN_H
 
@@ -13,7 +20,8 @@ class TriviaScreen : public QWidget
 public:
     explicit TriviaScreen(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *);
-    void populateTrivia();
+    std::vector<QString> giveMeARandomQuestion();
+    bool checkAnswer(int);
 
 signals:
 
@@ -26,12 +34,13 @@ private:
     QTimer timer;
     QImage image;
     std::vector<std::vector<QString>> triviaVector;
-    std::vector<QString> randomizeTrivia(std::vector<QString> questionVec, int &correctIndex);
+    std::vector<QString> randomizeTrivia(std::vector<QString> questionVec);
+    void populateTrivia();
     int x;
     int y;
     int xSpeed;
     int ySpeed;
-
+    int correctIndex;
 };
 
 #endif // TRIVIASCREEN_H

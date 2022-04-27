@@ -1,12 +1,10 @@
 /************************************************
- *
- * Truck class
- * Class definition for Truck QGraphicsPixmapItem
+ * Player class
+ * Class definition for Player QGraphicsPixmapItem
  * @author: Anna Timofeyenko, Gabby Culley,
  *          Gaby Torres, Raynard Christian, Angela Mishler
  * @date: 4/18/2022
 ************************************************/
-
 #include "player.h"
 #include <QDebug>
 
@@ -16,7 +14,6 @@
  */
 Player::Player()
 {
-
     setPos(mapToParent(345, 705));
     setPixmap(imgPath);
     width = pixmap().width();
@@ -34,14 +31,14 @@ void Player::advance(int phase)
 {
     if(!phase) return;
 
-    int speed_x = (x() - mouse_x_pos + 60) / (abs(x() - mouse_x_pos + 60)) * speed;
-    int speed_y = (y() - mouse_y_pos + 60) / (abs(y() - mouse_y_pos + 60)) * speed;
+    int speed_x = (x() - mouse_x_pos + 45) / (abs(x() - mouse_x_pos + 45)) * speed;
+    int speed_y = (y() - mouse_y_pos + 45) / (abs(y() - mouse_y_pos + 45)) * speed;
 
     checkBoundaries();
 
-    if (x() - mouse_x_pos + 60 == 0)
+    if (x() - mouse_x_pos + 45 == 0)
         speed_x = 0;
-    if (y() - mouse_y_pos + 60 == 0)
+    if (y() - mouse_y_pos + 45 == 0)
         speed_y = 0;
 
     QList<QGraphicsItem *> list = scene()->collidingItems(this) ;
@@ -85,6 +82,10 @@ void Player::endLevel() {
     emit nextLevel();
 }
 
+/**
+ * Makes sure the player's position is within the screen boundaries.
+ * @brief Player::checkBoundaries
+ */
 void Player::checkBoundaries() {
 
     // Check if player is too far right
@@ -96,4 +97,13 @@ void Player::checkBoundaries() {
     // Check if player is too low
     if (y() >= SCREEN_SIZE - height*SCALE_FACTOR)
         setPos(x(), SCREEN_SIZE - height*SCALE_FACTOR);
+}
+
+/**
+ * Changes the player's speed
+ * @brief Player::changeSpeed
+ * @param speedChange The new speed
+ */
+void Player::changeSpeed(int speedChange) {
+    speed = speedChange;
 }

@@ -33,12 +33,12 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">background-image: url(:/GameImages/Images/End.png)</string>
     </property>
     <property name="currentIndex">
      <number>3</number>
     </property>
-    <widget class="SceneWidget" name="startScreen">
+    <widget class="StartScreen" name="startScreen">
      <property name="styleSheet">
       <string notr="true">background-image: url(:/GameImages/Images/Background.png)</string>
      </property>
@@ -52,7 +52,28 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/GameImages/Images/Play.png)</string>
+       <string notr="true">image: url(:/GameImages/Images/Play.png);
+background-color: rgba(255, 255, 255, 0);
+background-image: url(:/GameImages/Images/TransparentBG);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="instructionsLabel">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>801</width>
+        <height>811</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/GameImages/Images/Instructions.png)</string>
       </property>
       <property name="text">
        <string/>
@@ -66,33 +87,48 @@
      <widget class="QLabel" name="questionLabel">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>230</y>
-        <width>560</width>
-        <height>150</height>
+        <x>30</x>
+        <y>220</y>
+        <width>741</width>
+        <height>211</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
       <property name="styleSheet">
        <string notr="true">background-image: url(:/GameImages/Images/TransparentBG);
-border-color: rgb(255, 255, 255);</string>
+color: rgb(255, 255, 255);
+background-color: rgb(162, 0, 255);</string>
       </property>
       <property name="lineWidth">
        <number>1</number>
       </property>
       <property name="text">
-       <string>question</string>
+       <string>True or False: Eating something substantial like a burger or pasta before or while drinking can cause alcohol to spend more time in the stomach where it is absorbed much more slowly?</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="margin">
+       <number>15</number>
       </property>
      </widget>
      <widget class="QFrame" name="verticalFrame">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>390</y>
-        <width>771</width>
-        <height>381</height>
+        <x>50</x>
+        <y>430</y>
+        <width>701</width>
+        <height>341</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -101,18 +137,32 @@ border-color: rgb(255, 255, 255);</string>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QPushButton" name="answerButton1">
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">background-image: url(:/GameImages/Images/TransparentBG);</string>
+          <string notr="true">color: rgb(149, 153, 162);
+color: rgb(212, 220, 135);
+background-color: rgb(71, 77, 86);</string>
          </property>
          <property name="text">
-          <string>answer1</string>
+          <string>They dont have to drink to have a good time</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="answerButton2">
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">background-image: url(:/GameImages/Images/TransparentBG);</string>
+          <string notr="true">color: rgb(149, 153, 162);
+color: rgb(212, 220, 135);
+background-color: rgb(71, 77, 86);</string>
          </property>
          <property name="text">
           <string>answer2</string>
@@ -121,18 +171,15 @@ border-color: rgb(255, 255, 255);</string>
        </item>
        <item>
         <widget class="QPushButton" name="answerButton3">
-         <property name="styleSheet">
-          <string notr="true">background-image: url(:/GameImages/Images/TransparentBG);</string>
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
          </property>
-         <property name="text">
-          <string>answer3</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="answerButton4">
          <property name="styleSheet">
-          <string notr="true">background-image: url(:/GameImages/Images/TransparentBG);</string>
+          <string notr="true">color: rgb(149, 153, 162);
+color: rgb(212, 220, 135);
+background-color: rgb(71, 77, 86);</string>
          </property>
          <property name="text">
           <string>answer3</string>
@@ -156,7 +203,9 @@ border-color: rgb(255, 255, 255);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/GameImages/Images/Resume.png)</string>
+       <string notr="true">image: url(:/GameImages/Images/Resume.png);
+background-color: rgba(255, 255, 255, 0);
+background-image: url(:/GameImages/Images/TransparentBG);</string>
       </property>
       <property name="text">
        <string/>
@@ -172,7 +221,9 @@ border-color: rgb(255, 255, 255);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/GameImages/Images/Reset.png)</string>
+       <string notr="true">image: url(:/GameImages/Images/Reset.png);
+background-color: rgba(255, 255, 255, 0);
+background-image: url(:/GameImages/Images/TransparentBG);</string>
       </property>
       <property name="text">
        <string/>
@@ -233,9 +284,9 @@ border-color: rgb(255, 255, 255);</string>
      <widget class="QLabel" name="levelLabel">
       <property name="geometry">
        <rect>
-        <x>-10</x>
+        <x>20</x>
         <y>30</y>
-        <width>221</width>
+        <width>271</width>
         <height>60</height>
        </rect>
       </property>
@@ -251,10 +302,10 @@ border-color: rgb(255, 255, 255);</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(245, 245, 245); background-color: rgb(124, 124, 124);</string>
+       <string notr="true">color: rgb(245, 245, 245); background-image: url(:/GameImages/Images/TransparentBG)</string>
       </property>
       <property name="text">
-       <string>Level 1</string>
+       <string>Level 1/7</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -279,11 +330,25 @@ border-color: rgb(255, 255, 255);</string>
        <string/>
       </property>
      </widget>
+     <widget class="QLabel" name="blackoutLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>800</width>
+        <height>800</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
      <zorder>levelLabel</zorder>
      <zorder>hydrationBar</zorder>
      <zorder>hydrateBarLogo</zorder>
+     <zorder>blackoutLabel</zorder>
     </widget>
-    <widget class="QWidget" name="LoseScreen">
+    <widget class="QWidget" name="loseScreen">
      <property name="styleSheet">
       <string notr="true">background-image: url(:/GameImages/Images/End.png)</string>
      </property>
@@ -307,13 +372,114 @@ border-color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>260</x>
-        <y>430</y>
+        <y>410</y>
         <width>275</width>
         <height>125</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/GameImages/Images/Reset.png)</string>
+       <string notr="true">image: url(:/GameImages/Images/Reset.png);
+background-color: rgba(255, 255, 255, 0);
+background-image: url(:/GameImages/Images/TransparentBG);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="crashedScreen">
+     <widget class="QPushButton" name="crashedResetButton">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>410</y>
+        <width>275</width>
+        <height>125</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/GameImages/Images/Reset.png);
+background-color: rgba(255, 255, 255, 0);
+background-image: url(:/GameImages/Images/TransparentBG);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="crashedLabel">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>170</y>
+        <width>621</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/GameImages/Images/Lose.png)</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="winScreen">
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/GameImages/Images/End.png);</string>
+     </property>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>120</y>
+        <width>601</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/GameImages/Images/Win.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="winResetButton">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>370</y>
+        <width>281</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/GameImages/Images/Reset.png); 
+background-color: rgba(255, 255, 255, 0);
+background-image: url(:/GameImages/Images/TransparentBG);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="winQuitButton">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>520</y>
+        <width>281</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/GameImages/Images/Quit.png); 
+background-color: rgba(255, 255, 255, 0);
+background-image: url(:/GameImages/Images/TransparentBG);</string>
       </property>
       <property name="text">
        <string/>
@@ -328,19 +494,13 @@ border-color: rgb(255, 255, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>17</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>SceneWidget</class>
-   <extends>QWidget</extends>
-   <header>SceneWidget.h</header>
-   <container>1</container>
-  </customwidget>
   <customwidget>
    <class>GameScreen</class>
    <extends>QWidget</extends>
@@ -351,6 +511,12 @@ border-color: rgb(255, 255, 255);</string>
    <class>TriviaScreen</class>
    <extends>QWidget</extends>
    <header>triviascreen.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>StartScreen</class>
+   <extends>QWidget</extends>
+   <header location="global">startscreen.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

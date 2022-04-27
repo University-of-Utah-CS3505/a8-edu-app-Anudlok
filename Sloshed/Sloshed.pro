@@ -61,7 +61,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     player.cpp \
-    scenewidget.cpp \
+    startscreen.cpp \
     triviascreen.cpp \
     truck.cpp \
     waterbottle.cpp
@@ -117,7 +117,7 @@ HEADERS += \
     gamescreen.h \
     mainwindow.h \
     player.h \
-    scenewidget.h \
+    startscreen.h \
     triviascreen.h \
     truck.h \
     waterbottle.h
@@ -138,3 +138,6 @@ DISTFILES += \
 
 RESOURCES += \
     GameImages.qrc
+
+RC_ICONS = sloshedico.ico
+ICON = sloshedico.icns

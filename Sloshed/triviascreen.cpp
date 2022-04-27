@@ -1,3 +1,10 @@
+/************************************************
+ * TriviaScreen class
+ * Class definition for TriviaScreen QWidget
+ * @author: Anna Timofeyenko, Gabby Culley,
+ *          Gaby Torres, Raynard Christian, Angela Mishler
+ * @date: 4/24/2022
+************************************************/
 #include "triviascreen.h"
 #include "qgraphicseffect.h"
 #include <QPainter>
@@ -6,6 +13,13 @@
 #include <QDebug>
 #include <QRandomGenerator>
 
+/**
+ * Constructor for TriviaScreen.
+ * Initializes variables, especially the images and Box2D objects.
+ * Also populates the trivia vector.
+ * @brief TriviaScreen::TriviaScreen
+ * @param parent
+ */
 TriviaScreen::TriviaScreen(QWidget *parent)
     : QWidget(parent),
     world(b2Vec2(0.0f, 10.0f)),
@@ -14,8 +28,7 @@ TriviaScreen::TriviaScreen(QWidget *parent)
     x(0), y(0),
     xSpeed(20), ySpeed(20)
 {
-    // Set background
-    //setStyleSheet("background-image: url(:/GameImages/Images/End.png)");
+    populateTrivia();
 
     // Define the ground body.
     b2BodyDef groundBodyDef;
@@ -63,6 +76,10 @@ TriviaScreen::TriviaScreen(QWidget *parent)
     populateTrivia();
 }
 
+/**
+ * Draws the style sheet and redraws the bouncing "Trivia" image.
+ * @brief TriviaScreen::paintEvent
+ */
 void TriviaScreen::paintEvent(QPaintEvent *) {
     // Create a painter
     QPainter painter(this);
@@ -74,11 +91,14 @@ void TriviaScreen::paintEvent(QPaintEvent *) {
 
     // Draw bouncing "Trivia" image
     b2Vec2 position = body->GetPosition();
-    float angle = body->GetAngle();
     painter.drawImage((int)(position.x*20), (int)(position.y*20), image);
     painter.end();
 }
 
+/**
+ * Updates the Box2D world to make the "Trivia" image bounce.
+ * @brief TriviaScreen::updateWorld
+ */
 void TriviaScreen::updateWorld() {
     // It is generally best to keep the time step and iterations fixed.
     world.Step(1.0/60.0, 6, 2);
@@ -86,14 +106,109 @@ void TriviaScreen::updateWorld() {
 }
 
 /**
- * @brief TriviaScreen::populateTrivia called upon intialiazation of game, just populates trivia
+ * @brief TriviaScreen::populateTrivia called upon initialization of game, populates trivia vector with questions and answers
  */
 void TriviaScreen::populateTrivia(){
-    std::vector<QString> question = {"A standard drink is a unit of measurement. In the United States, a standard drink contains 0.6 fluid ounces of alcohol. Which of these drinks represents a standard drink?",
-                              "12 oz Bottle of Beer (true)",
-                              "5 oz glass of spiked punch (false)",
-                              "1 mixed drink (false)"};
-  triviaVector.push_back(question);
+  triviaVector.push_back(std::vector<QString>{"A standard drink is a unit of measurement. In the United States, a standard drink contains 0.6 fluid ounces of alcohol. Which of these drinks represents a standard drink?",
+                                         "12 oz Bottle of Beer",
+                                         "5 oz glass of spiked punch",
+                                         "1 mixed drink"});
+  triviaVector.push_back(std::vector<QString>{"Most hard alcohol (like vodka and rum) is approximately how high in percentage of alcohol?",
+                                              "40%",
+                                              "20%",
+                                              "5%"});
+  triviaVector.push_back(std::vector<QString>{"What do you think is the top reason given by students who choose to not drink?",
+                                              "They are going to drive",
+                                              "They dont want to spend the money",
+                                              "They dont have to drink to have a good time"});
+  triviaVector.push_back(std::vector<QString>{"What percentage of college students don’t drink at all?",
+                                              "36%",
+                                              "67%",
+                                              "12%"});
+  triviaVector.push_back(std::vector<QString>{"Which of these types of drinks can speed up alcohol absorption?",
+                                              "Carbonated mixers",
+                                              "Sweet Mixers",
+                                              "Caffeinated Beverages"});
+  triviaVector.push_back(std::vector<QString>{"True or False: Eating something substantial like a burger or pasta before or while drinking can cause alcohol to spend more time in the stomach where it is absorbed much more slowly?",
+                                              "True",
+                                              "False",
+                                              ""});
+  triviaVector.push_back(std::vector<QString>{"The ___ a person drinks, the ___ their BAC rises.",
+                                              "Faster",
+                                              "Slower",
+                                              ""});
+  triviaVector.push_back(std::vector<QString>{"True or False: Time is the only way to lower BAC.",
+                                              "True",
+                                              "False",
+                                              ""});
+  triviaVector.push_back(std::vector<QString>{"BAC typically rises quickly for females than males",
+                                              "True",
+                                              "False",
+                                              ""});
+  triviaVector.push_back(std::vector<QString>{"In which BAC levels will you experience confusion, dizziness or slurred speech?",
+                                              ".11-.20",
+                                              ".05-.10",
+                                              ".21-.35"});
+  triviaVector.push_back(std::vector<QString>{"True or False: Mixing alcohol with energy drinks will not mask the feeling of alcohol impairment.",
+                                              "False",
+                                              "True",
+                                              ""});
+  triviaVector.push_back(std::vector<QString>{"Drinking alcohol _____ reduce the the effectiveness of oral contraceptives.",
+                                              "Does not",
+                                              "Does",
+                                              ""});
+  triviaVector.push_back(std::vector<QString>{"A person is ___ responsible for obtaining clear consent for sexual activity regardlesss of whether they have been drinking alcohol",
+                                              "Always",
+                                              "Never",
+                                              ""});
+  triviaVector.push_back(std::vector<QString>{"What time period for a college student is most vulnerable for heavy drinking and alcohol-related consequences?",
+                                              "First 6 weeks of freshman year",
+                                              "Every finals week ",
+                                              "Last 6 weeks of senior year"});
+  //stopped at mixing alcohol with substances
+  triviaVector.push_back(std::vector<QString>{"True or False: When alcohol is combined with opioids it magnifies and amplifies the effects of opioids to a dangerous level.",
+                                              "True",
+                                              "False",
+                                               ""});
+  triviaVector.push_back(std::vector<QString>{"Which of these effects do Alcohol and Adderall have on the heart when combined?",
+                                              "All of the above",
+                                              "Increased blood pressure",
+                                              "Increased heart rate"});
+  triviaVector.push_back(std::vector<QString>{"Antidepressants and alcohol ___ the impacts of each other.",
+                                              "Magnify",
+                                              "Lessen ",
+                                              ""});
+  triviaVector.push_back(std::vector<QString>{"Which of these puts extreme pressure and stress on the heart?",
+                                              "Mixing alcohol and cocaine ",
+                                              "Drinking a shot after a beer",
+                                              "Running after drinking a beer"});
+
+  triviaVector.push_back(std::vector<QString>{"Which of these are common side effects when mixing Marijuana and Alcohol?",
+                                              "All of the above",
+                                              "Compromised judgment",
+                                              "Decreased attention, perception and memory"});
+  triviaVector.push_back(std::vector<QString>{"True or False: Marijuana suppresses the gag reflex and may leave intoxicated individuals unable to throw up, causing alcohol poisoning.",
+                                              "True",
+                                              "False ",
+                                              ""});
+}
+
+/**
+ * @brief TriviaScreen::giveMeARandomQuestion run by mainwindow and prompts trivia screen to send a random question
+ * @return a vector of Qstrings with teh possible answers
+ */
+std::vector<QString> TriviaScreen::giveMeARandomQuestion(){
+   int questionIndex = QRandomGenerator::global()->bounded(20); //20 is size of trivia vector
+   return randomizeTrivia(triviaVector.at(questionIndex));
+}
+
+/**
+ * @brief TriviaScreen::checkAnswer checks whether the given answer is correct
+ * @param answerNum
+ * @return
+ */
+bool TriviaScreen::checkAnswer(int answerNum){
+        return answerNum == correctIndex;
 }
 
 /**
@@ -110,7 +225,7 @@ void TriviaScreen::populateTrivia(){
  * @param correctIndex reference to an int of wehre the correct index is
  * @return a vector of strings to input on trivia interface
  */
-std::vector<QString> TriviaScreen::randomizeTrivia(std::vector<QString> questionVec, int &correctIndex){
+std::vector<QString> TriviaScreen::randomizeTrivia(std::vector<QString> questionVec){
     // Set i0, i1, and i2 to be UNIQUE random indices between 0 and 2 (inclusive).
     int i0 = QRandomGenerator::global()->bounded(3);
     int i1 = QRandomGenerator::global()->bounded(2);
@@ -127,38 +242,13 @@ std::vector<QString> TriviaScreen::randomizeTrivia(std::vector<QString> question
     }
 
     // The correct answer will be at index i0 in the new array
-    correctIndex = i0;
+    correctIndex = i0+1;
 
     // Add answers to a vector and return
-    std::vector<QString> answerVec = {"", "", ""};
-    answerVec[i0] = questionVec[0];
-    answerVec[i1] = questionVec[1];
-    answerVec[i2] = questionVec[2];
+    std::vector<QString> answerVec = {questionVec[0],"", "", ""};
+    answerVec[i0+1] = questionVec[1];
+    answerVec[i1+1] = questionVec[2];
+    answerVec[i2+1] = questionVec[3];
 
     return answerVec;
 }
-
-
-
-
-
-
-// [ [question, 1, 2, 3, 4, correct answer],
-// [question1, question2,
-  //[answer 1, andeer2
-//randomly generate a number
-//store index 3
-//get answer: pull anser[3]
-//get options: pull 3 randomly generated # indeces
-        //answer[r1[ answer[r2]
-//shuffle and show asnwers
-//read player answer
-// question1.getQuestion()
-// question1.getNextAnswer()
-
-//send back something
-//auto generate a numnber between 0-length of number of questions
-//mod that number by 4
-//hashmap<key int, string array>
-//[question, 1 , 2, 3, 4]
-

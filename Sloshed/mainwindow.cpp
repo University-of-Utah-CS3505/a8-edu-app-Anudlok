@@ -16,7 +16,7 @@
 #include <QPalette>
 #include <QKeyEvent>
 #include "player.h"
-#include "scenewidget.h"
+#include "startscreen.h"
 #include "gamescreen.h"
 #include <QSoundEffect>
 #include <QGraphicsBlurEffect>
@@ -28,18 +28,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->resize(WIDTH, HEIGHT);
 
-    // The stack window contains each of the gameplay screens.
-    // Index 0 is the start screen
-    // Index 1 is the gameplay screen
-    // We can add other screens to future widgets.
-
-    // Note: To add a SceneWidget to the mainwindow.ui, add a QWidget (SceneWidget's parent class)
-    // to the UI, right-click the QWidget, and click Promote to -> SceneWidget.
-
-    // If you want to add new custom classes that inherits from QWidget, you'll need to add
-    // the promoted class to the mainwindow.ui first. Right-click the QWidget, click Promote to...,
-    // and add your custom class in the window that pops up.
-
     // Set up start screen
     ui->startButton->setParent(ui->stackWindow->widget(0));
     ui->stackWindow->setCurrentIndex(0);
@@ -49,11 +37,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->gameplayScreen, &GameScreen::resetWater, this, &MainWindow::resetHydrationBar);
     connect(ui->gameplayScreen, &GameScreen::addWater, this, &MainWindow::addWaterToBar);
     connect(ui->gameplayScreen, &GameScreen::updateLevelView, this, &MainWindow::updateLevel);
+    connect(ui->gameplayScreen, &GameScreen::wonGame, this, &MainWindow::WinScreen);
+    ui->blackoutLabel->setVisible(false);
 
-    // Set up glug glug sound
+    // Set up drinking (gluglug) sound
     effect.setSource(QUrl("qrc:/Sounds/Sound/drinkingSound.wav"));
     effect.setLoopCount(1);
     effect.setVolume(0.25f);
+
+    ui->instructionsLabel->hide();
 }
 
 MainWindow::~MainWindow()
@@ -61,24 +53,31 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/**
+ * Shows the game's start screen.
+ * @brief MainWindow::GameStartScreen
+ */
 void MainWindow::GameStartScreen() {
-   this->setGraphicsEffect(0);
-   //ui->stackWindow->setStyleSheet("background-image: url(:/GameImages/Images/Background.png)");
+    blurScreen(0);
    ui->stackWindow->setCurrentIndex(0);
 }
 
+/**
+ * Slot for when the player presses the start button.
+ * @brief MainWindow::on_startButton_clicked
+ */
 void MainWindow::on_startButton_clicked()
 {
-    startGame();
+    ui->instructionsLabel->show();
+    instructionsPoppedUp = true;
 }
 
 /**
  * Starts or resumes the game.
  * Does NOT end or pause previous games.
- * @brief MainWindow::startGame
+ * @brief MainWindow::resumeGame
  */
 void MainWindow::resumeGame() {
-    this->setGraphicsEffect(0);
     ui->stackWindow->setCurrentIndex(3); // move this?
     ui->gameplayScreen->resumeGame();
     changeBarToBlue();
@@ -89,14 +88,18 @@ void MainWindow::resumeGame() {
  * Restarts the game from the beginning.
  * @brief MainWindow::startGame
  */
-void MainWindow::startGame() {
-    this->setGraphicsEffect(0);
+void MainWindow::startGame(bool setting) {
+    ui->instructionsLabel->hide();
     ui->stackWindow->setCurrentIndex(3); // move this?
-    ui->gameplayScreen->startGame(); // move this?
+    ui->gameplayScreen->startGame(setting); // move this?
     changeBarToBlue();
     blurScreen(0);    
 }
 
+/**
+ * Shows a screen when the player pauses the game.
+ * @brief MainWindow::PauseScreen
+ */
 void MainWindow::PauseScreen(){
     ui->gameplayScreen->pauseGame();
     ui->stackWindow->setCurrentIndex(2);
@@ -107,39 +110,94 @@ void MainWindow::PauseScreen(){
  * displaying the trivia questions they must answer
  */
 void MainWindow::CollideScreen(){
-   // qDebug() << "collide screen in mainwindow";
+    blurScreen(0);
     ui->gameplayScreen->stopGame();
-    //blur game screen
-   // blurScreen(20);
-    //ui->stackWindow->setStyleSheet("background-image: url(:/GameImages/Images/End.png)");
     ui->stackWindow->setCurrentIndex(1);
+   std::vector<QString> trivia =  ui->collideScreen->giveMeARandomQuestion();
+   ui->questionLabel->setText(trivia[0]);
+   ui->answerButton1->setText(trivia[1]);
+   ui->answerButton2->setText(trivia[2]);
+   ui->answerButton3->setText(trivia[3]);
 }
 
+/**
+ * Shows an "INTOXICATED" screen when the player dies due to dehydration.
+ * @brief MainWindow::LoseScreen
+ */
 void MainWindow::LoseScreen() {
     ui->gameplayScreen->stopGame();
     ui->stackWindow->setCurrentIndex(4);
 }
 
-void MainWindow::on_restartButton_clicked(){
+/**
+ * Shows a "CRASHED" screen when the player collides with a truck and loses trivia.
+ * @brief MainWindow::crashedScreen
+ */
+void MainWindow::crashedScreen() {
+    blurScreen(0);
+    ui->gameplayScreen->stopGame();
+    ui->stackWindow->setCurrentIndex(5);
+}
 
-    //probably have to reset all player movement
+/**
+ * Shows an "ARRIVED" screen when the player wins the game.
+ * @brief MainWindow::WinScreen
+ */
+void MainWindow::WinScreen() {
+    blurScreen(0);
+    ui->gameplayScreen->stopGame();
+    ui->stackWindow->setCurrentIndex(6);
+}
+
+/**
+ * Slot for "Restart" button in the pause screen.
+ * @brief MainWindow::on_restartButton_clicked
+ */
+void MainWindow::on_restartButton_clicked(){
     GameStartScreen();
 }
 
-//the console says "no matching signal for on_returnButton_clicked(); but i'm working on it
+/**
+ * Slot for "Resume" button in the pause screen.
+ * @brief MainWindow::on_restartButton_clicked
+ */
 void MainWindow::on_resumeButton_clicked(){
-    this->setGraphicsEffect(0);
+    blurScreen(0);
     resumeGame();
 }
 
-
-// https://www.qtcentre.org/threads/40779-keyboard-detecting-key-pressed
-// https://doc.qt.io/qt-5/qkeyevent.html
-// https://stackoverflow.com/questions/12558988/qt-keypress-event
+/**
+ * Handles key presses. Specifically, pauses the game when the escape key is pressed.
+ *
+ * Sources:
+ * https://www.qtcentre.org/threads/40779-keyboard-detecting-key-pressed
+ * https://doc.qt.io/qt-5/qkeyevent.html
+ * https://stackoverflow.com/questions/12558988/qt-keypress-event
+ *
+ * @brief MainWindow::keyPressEvent
+ * @param k
+ */
 void MainWindow::keyPressEvent(QKeyEvent * k){
     if(k->key() == Qt::Key_Escape){
         if(ui->stackWindow->currentIndex()!=0 && ui->stackWindow->currentIndex()!=2)
             PauseScreen();
+    }
+}
+
+/**
+ * Detects mouse clicks, specifically on the instructions popUp screen
+ * which then hides the instructions and starts the game.
+ *
+ * @brief MainWindow::mousePressEvent
+ * @param event
+ */
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    if (instructionsPoppedUp) {
+        if (event->buttons() == Qt::LeftButton) {
+            startGame(true);
+            instructionsPoppedUp = false;
+        }
     }
 }
 
@@ -163,15 +221,41 @@ void MainWindow::receiveHydrationTimer() {
 
     ui->hydrationBar->setValue(currVal - 1);
 
-    // Sets bar to purple at 50%
-    if (currVal <= 50) {
+    // Sets the blackout level with different levels
+    if (currVal <= 25) {
         changeBarToPurple();
+        ui->blackoutLabel->setStyleSheet("background-image: url(:/GameImages/Images/Blackout3.png)");
+        ui->blackoutLabel->setVisible(true);
 
-        //blur game screen
+        //changes the player's speed
+        ui->gameplayScreen->changeSpeed(1);
+
+        blurScreen(7);
+    } // Sets bar to purple at 50%
+    else if (currVal <= 50) {
+        changeBarToPurple();
+        ui->blackoutLabel->setStyleSheet("background-image: url(:/GameImages/Images/Blackout2.png)");
+        ui->blackoutLabel->setVisible(true);
+
+        ui->gameplayScreen->changeSpeed(2);
+
         blurScreen(5);
     }
-    else if (currVal > 50) {
+    else if (currVal <= 75) {
         changeBarToBlue();
+        ui->blackoutLabel->setStyleSheet("background-image: url(:/GameImages/Images/Blackout1.png)");
+        ui->blackoutLabel->setVisible(true);
+
+        ui->gameplayScreen->changeSpeed(3);
+
+        blurScreen(3);
+    }
+    else {
+        ui->blackoutLabel->setVisible(false);
+        changeBarToBlue();
+        blurScreen(0);
+
+        ui->gameplayScreen->changeSpeed(3);
     }
 }
 
@@ -209,14 +293,16 @@ void MainWindow::addWaterToBar() {
 
     int currVal = ui->hydrationBar->value();
     currVal+= 10;
+
     if (currVal > 100)
         currVal = 100;
+
     ui->hydrationBar->setValue(currVal);
 }
 
 /**
  * Resets hydration bar to 100%.
- * @brief MainWindow::resetWater
+ * @brief MainWindow::resetHydrationBar
  */
 void MainWindow::resetHydrationBar() {
     ui->hydrationBar->setValue(100);
@@ -228,9 +314,10 @@ void MainWindow::resetHydrationBar() {
  * @param blurRadius - Blurs the screen by this radius
  */
 void MainWindow::blurScreen(int blurRadius) {
-    blurEffect->setBlurRadius(blurRadius);
-    blurEffect->blurRadius();
-    this->setGraphicsEffect(blurEffect);
+    if (blurEffect->blurRadius() != blurRadius) {
+        blurEffect->setBlurRadius(blurRadius);
+        this->setGraphicsEffect(blurEffect);
+    }
 }
 
 /**
@@ -248,35 +335,83 @@ void MainWindow::CollideScreenDelay() {
  * @param level
  */
 void MainWindow::updateLevel(int level) {
-    ui->levelLabel->setText(QString("Level %1").arg(level));
+    ui->levelLabel->setText(QString("Level %1/7").arg(level));
 }
 
+/**
+ * Checks if the clicked answer is correct.
+ * @brief MainWindow::checkButtonAnswer
+ * @param buttonNum
+ */
+void MainWindow::checkButtonAnswer(int buttonNum){
+    if(ui->collideScreen->checkAnswer(buttonNum)){ //if correct, resume
+        startGame(false);
+    }
+    else {
+        crashedScreen();
+    }
+}
+
+/**
+ * Slot when answer #1 is clicked.
+ * @brief MainWindow::on_answerButton1_clicked
+ */
 void MainWindow::on_answerButton1_clicked()
 {
-    //send button 1 clicked to triviascreen
+    checkButtonAnswer(1);
 }
 
-
+/**
+ * Slot when answer #2 is clicked.
+ * @brief MainWindow::on_answerButton2_clicked
+ */
 void MainWindow::on_answerButton2_clicked()
 {
-     //send button 2 clicked to triviascreen
+    checkButtonAnswer(2);
 }
 
-
+/**
+ * Slot when answer #3 is clicked.
+ * @brief MainWindow::on_answerButton3_clicked
+ */
 void MainWindow::on_answerButton3_clicked()
 {
-     //send button 3 clicked to triviascreen
+    checkButtonAnswer(3);
 }
 
-
-void MainWindow::on_answerButton4_clicked()
-{
-     //send button 4 clicked to triviascreen
-}
-
-
+/**
+ * Slot when the reset button on the lose screen is clicked.
+ * @brief MainWindow::on_resetButton_clicked
+ */
 void MainWindow::on_resetButton_clicked()
 {
-    startGame();
+    GameStartScreen();
+}
+
+/**
+ * Slot when the reset button on the crashed screen is clicked.
+ * @brief MainWindow::on_crashedResetButton_clicked
+ */
+void MainWindow::on_crashedResetButton_clicked()
+{
+    GameStartScreen();
+}
+
+/**
+ * Slot when the reset button on the win screen is clicked.
+ * @brief MainWindow::on_winResetButton_clicked
+ */
+void MainWindow::on_winResetButton_clicked()
+{
+    GameStartScreen();
+}
+
+/**
+ * Slot when the quit button on the win screen is clicked.
+ * @brief MainWindow::on_winQuitButton_clicked
+ */
+void MainWindow::on_winQuitButton_clicked()
+{
+    QCoreApplication::quit();
 }
 

@@ -18,7 +18,6 @@
 GameScreen::GameScreen(QWidget *parent)
     : QWidget{parent}
 {
-    //setStyleSheet("background-image: url(:/GameImages/Images/Gameplay.png)");
     gameplayView = new QGraphicsView();
     gameplayView->setParent(this);
     gameplayView->resize(MainWindow::WIDTH, MainWindow::HEIGHT);
@@ -77,11 +76,11 @@ void GameScreen::startGame(bool fromLevelOne) {
     stopGame();
     if (fromLevelOne) {
         level = 1;
+        emit resetWater();
         emit updateLevelView(level);
     }
     addPlayer();
     initTimers();
-    emit resetWater();
     placeWaterBottles();
     resumeGame();
 }
@@ -134,18 +133,20 @@ void GameScreen::sendTruck() {
     Truck *truck;
     int y_pos = lanes[laneNum];
     int speed = truckSpeeds[level - 1];
+
     // Place truck
     if (movingRight)
         truck = new Truck(0 - Truck::HEIGHT, y_pos, speed, true);
     else
         truck = new Truck(MainWindow::WIDTH + Truck::WIDTH, y_pos, speed, false);
+
     // Set truck to transform (e.g. spin) from its center point
     truck->setTransformOriginPoint(truck->boundingRect().width()/2, truck->boundingRect().height()/2);
     gameplayScene->addItem(truck);
 }
 
 /**
- * Advances the game to the next level.
+ * Advances the game to the next level, or if level 10 is beat, tells MainWindow the game is won.
  * @brief GameScreen::nextLevel
  */
 void GameScreen::nextLevel() {
@@ -153,11 +154,11 @@ void GameScreen::nextLevel() {
     if (level < MAX_LEVEL) {
         level++;
         emit updateLevelView(level);
+        startGame(false);
     }
-
-    // TODO: Add Congratulations screen when last level is completed
-
-    startGame(false);
+    else {
+        emit wonGame();
+    }
 }
 
 /**
@@ -215,10 +216,19 @@ void GameScreen::addWaterToBar() {
  * Paints the GameScreen's style sheet.
  * @brief GameScreen::paintEvent
  */
-void GameScreen::paintEvent(QPaintEvent * e) {
+void GameScreen::paintEvent(QPaintEvent *) {
     // Draw custom style sheet
     QStyleOption opt;
     opt.initFrom(this);
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+}
+
+/**
+ * Changes the player's speed to a new value
+ * @brief GameScreen::changeSpeed
+ * @param speed the new speed value for player
+ */
+void GameScreen::changeSpeed(int speed) {
+    player->changeSpeed(speed);
 }

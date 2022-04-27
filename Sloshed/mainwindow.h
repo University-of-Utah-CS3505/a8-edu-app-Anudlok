@@ -29,12 +29,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void resumeGame();
-    void startGame();
+    void startGame(bool);
     void GameStartScreen();
     void PauseScreen();
     void CollideScreen();
     void CollideScreenDelay();
     void LoseScreen();
+    void crashedScreen();
+    void WinScreen();
     static int const WIDTH = 800;
     static int const HEIGHT = 800;
 
@@ -55,17 +57,24 @@ private slots:
 
     void on_answerButton3_clicked();
 
-    void on_answerButton4_clicked();
-
     void on_resetButton_clicked();
+
+    void on_crashedResetButton_clicked();
+
+    void on_winResetButton_clicked();
+
+    void on_winQuitButton_clicked();
 
 private:
     Ui::MainWindow *ui;
     QSoundEffect effect;
     QGraphicsBlurEffect *blurEffect = new QGraphicsBlurEffect();
+   void checkButtonAnswer(int buttonNum);
     void changeBarToPurple();
     void changeBarToBlue();
     void blurScreen(int blurRadius);
     bool isPurple = false;
+    bool instructionsPoppedUp = false;
+    void mousePressEvent(QMouseEvent *event);
 };
 #endif // MAINWINDOW_H
