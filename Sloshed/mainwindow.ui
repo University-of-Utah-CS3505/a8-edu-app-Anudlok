@@ -305,7 +305,7 @@ background-image: url(:/GameImages/Images/TransparentBG);</string>
        <string notr="true">color: rgb(245, 245, 245); background-image: url(:/GameImages/Images/TransparentBG)</string>
       </property>
       <property name="text">
-       <string>Level 1/10</string>
+       <string>Level 1/7</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -494,7 +494,7 @@ background-image: url(:/GameImages/Images/TransparentBG);</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

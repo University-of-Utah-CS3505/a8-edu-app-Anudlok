@@ -335,7 +335,7 @@ void MainWindow::CollideScreenDelay() {
  * @param level
  */
 void MainWindow::updateLevel(int level) {
-    ui->levelLabel->setText(QString("Level %1/10").arg(level));
+    ui->levelLabel->setText(QString("Level %1/7").arg(level));
 }
 
 /**
