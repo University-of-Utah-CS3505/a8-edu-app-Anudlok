@@ -36,7 +36,7 @@
      <string notr="true">background-image: url(:/GameImages/Images/End.png)</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="StartScreen" name="startScreen">
      <property name="styleSheet">
@@ -340,7 +340,7 @@ background-image: url(:/GameImages/Images/TransparentBG);</string>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
      </widget>
      <zorder>levelLabel</zorder>
@@ -494,7 +494,7 @@ background-image: url(:/GameImages/Images/TransparentBG);</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
