@@ -138,3 +138,6 @@ DISTFILES += \
 
 RESOURCES += \
     GameImages.qrc
+
+RC_ICONS = sloshedico.ico
+ICON = sloshedico.icns
