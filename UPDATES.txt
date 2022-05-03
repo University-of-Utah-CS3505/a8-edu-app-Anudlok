@@ -1,0 +1,5 @@
+Added additional "connect" statements to the GameScreen's AddPlayer method to fix a bug where the player sometimes freezes at the start of a level. 
+
+Added comments to the Player's advance method.
+
+Fixed typos in three of the trivia questions. 
