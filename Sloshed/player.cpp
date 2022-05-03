@@ -31,11 +31,13 @@ void Player::advance(int phase)
 {
     if(!phase) return;
 
+    // Sets the speed and trajectory of the player
     int speed_x = (x() - mouse_x_pos + 45) / (abs(x() - mouse_x_pos + 45)) * speed;
     int speed_y = (y() - mouse_y_pos + 45) / (abs(y() - mouse_y_pos + 45)) * speed;
 
     checkBoundaries();
 
+    // Stops the player from moving when center of mouse pointer
     if (x() - mouse_x_pos + 45 == 0)
         speed_x = 0;
     if (y() - mouse_y_pos + 45 == 0)
@@ -43,7 +45,7 @@ void Player::advance(int phase)
 
     QList<QGraphicsItem *> list = scene()->collidingItems(this) ;
 
-    if(!isColliding) {  // Needed so that hasCollided only emits once
+    if(!isColliding) {
         setPos(x() - speed_x, y() - speed_y);
         foreach(QGraphicsItem * i , list)
         {

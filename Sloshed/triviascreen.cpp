@@ -133,7 +133,7 @@ void TriviaScreen::populateTrivia(){
                                               "True",
                                               "False",
                                               ""});
-  triviaVector.push_back(std::vector<QString>{"The ___ a person drinks, the ___ their BAC rises.",
+  triviaVector.push_back(std::vector<QString>{"The ___ a person drinks, the faster their BAC rises.",
                                               "Faster",
                                               "Slower",
                                               ""});
@@ -171,7 +171,7 @@ void TriviaScreen::populateTrivia(){
                                               "False",
                                                ""});
   triviaVector.push_back(std::vector<QString>{"Which of these effects do Alcohol and Adderall have on the heart when combined?",
-                                              "All of the above",
+                                              "All of the answers",
                                               "Increased blood pressure",
                                               "Increased heart rate"});
   triviaVector.push_back(std::vector<QString>{"Antidepressants and alcohol ___ the impacts of each other.",
@@ -184,7 +184,7 @@ void TriviaScreen::populateTrivia(){
                                               "Running after drinking a beer"});
 
   triviaVector.push_back(std::vector<QString>{"Which of these are common side effects when mixing Marijuana and Alcohol?",
-                                              "All of the above",
+                                              "All of the answers",
                                               "Compromised judgment",
                                               "Decreased attention, perception and memory"});
   triviaVector.push_back(std::vector<QString>{"True or False: Marijuana suppresses the gag reflex and may leave intoxicated individuals unable to throw up, causing alcohol poisoning.",

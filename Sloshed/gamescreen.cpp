@@ -61,6 +61,8 @@ void GameScreen::initTimers() {
  */
 void GameScreen::addPlayer() {
     player = new Player();
+    connect(player, &Player::hasCollided, this, &GameScreen::handleCollision);
+    connect(player, &Player::nextLevel, this, &GameScreen::nextLevel);
 
     player->setTransformOriginPoint(player->boundingRect().width()/2 , player->boundingRect().height()/2);
     player->setScale(0.6);
